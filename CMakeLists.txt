@@ -27,18 +27,16 @@ add_executable(2dgameengine src/Main.cpp
         src/Game/Game.cpp
         src/Logger/Logger.h
         src/Logger/Logger.cpp
-        src/Components/TransformComponent.cpp
         src/Components/TransformComponent.h
-        src/Systems/MovementSystem.cpp
         src/Systems/MovementSystem.h
         src/ECS/ECS.h
         src/ECS/ECS.cpp
-        src/Components/RigidBodyComponent.cpp
         src/Components/RigidBodyComponent.h
-        src/Components/SpriteComponent.cpp
         src/Components/SpriteComponent.h
-        src/Systems/RenderSystem.cpp
-        src/Systems/RenderSystem.h)
+        src/Systems/RenderSystem.h
+        src/AssetStore/AssetStore.cpp
+        src/AssetStore/AssetStore.h
+)
 
 # Link libraries - use lua54 since you have liblua54.a
 target_link_libraries(2dgameengine
