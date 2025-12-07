@@ -36,6 +36,8 @@ add_executable(2dgameengine src/Main.cpp
         src/Systems/RenderSystem.h
         src/AssetStore/AssetStore.cpp
         src/AssetStore/AssetStore.h
+        src/Components/AnimationComponent.h
+        src/Systems/AnimationSystem.h
 )
 
 # Link libraries - use lua54 since you have liblua54.a
