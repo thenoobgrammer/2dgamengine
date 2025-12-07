@@ -24,11 +24,12 @@ public:
     ~Game();
     void Initialize();
     void Run();
-    void Setup() const;
+    void Setup();
     void ProcessInput();
     void Update();
     void Render() const;
     void Destroy() const;
+    void LoadLevel(int level);
 
     int windowWidth;
     int windowHeight;

@@ -1,6 +1,7 @@
 #ifndef INC_2DGAMEENGINE_RENDERSYSTEM_H
 #define INC_2DGAMEENGINE_RENDERSYSTEM_H
 
+#include <algorithm>
 #include <SDL_render.h>
 
 #include "../Components/SpriteComponent.h"
@@ -17,12 +18,29 @@ class RenderSystem: public System{
         }
 
         void Update(SDL_Renderer* renderer, const std::unique_ptr<AssetStore>& assetStore) {
-            auto entities = GetSystemEntities();
-            Logger::Log("RenderSystem processing " + std::to_string(entities.size()) + " entities");
-
+            // TODO: Sort how the entities of our system by z-index
+            //  ..
+            struct RenderableEntity {
+                TransformComponent transform;
+                SpriteComponent sprite;
+            };
+            std::vector<RenderableEntity> renderableEntities;
             for (auto entity: GetSystemEntities()) {
-                const auto transform = entity.GetComponent<TransformComponent>();
-                const auto sprite = entity.GetComponent<SpriteComponent>();
+                RenderableEntity renderableEntity;
+                renderableEntity.transform = entity.GetComponent<TransformComponent>();
+                renderableEntity.sprite = entity.GetComponent<SpriteComponent>();
+                renderableEntities.emplace_back(renderableEntity);
+            }
+
+            Logger::Log("Entities size " + std::to_string(renderableEntities.size()));
+
+            std::sort(renderableEntities.begin(), renderableEntities.end(), [](const RenderableEntity& a, const RenderableEntity& b) {
+                return a.sprite.zIndex < b.sprite.zIndex;
+            });
+
+            for (auto entity: renderableEntities) {
+                const auto transform = entity.transform;
+                const auto sprite = entity.sprite;
 
                 SDL_Rect srcRect = sprite.srcRect;
                 SDL_Rect dstRect = {
@@ -32,10 +50,10 @@ class RenderSystem: public System{
                     static_cast<int>(sprite.height * transform.scale.y)
                 };
 
-                Logger::Log("dstRect: x=" + std::to_string(dstRect.x) +
-                   " y=" + std::to_string(dstRect.y) +
-                   " w=" + std::to_string(dstRect.w) +
-                   " h=" + std::to_string(dstRect.h));
+                // Logger::Log("dstRect: x=" + std::to_string(dstRect.x) +
+                //    " y=" + std::to_string(dstRect.y) +
+                //    " w=" + std::to_string(dstRect.w) +
+                //    " h=" + std::to_string(dstRect.h));
 
                 SDL_RenderCopyEx(
                     renderer,
