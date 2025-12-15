@@ -6,22 +6,27 @@
 #include "../ECS/ECS.h"
 #include <iostream>
 #include <SDL.h>
-#include <SDL_image.h>
 #include <glm/glm.hpp>
 
+#include "../Components/BoxColliderComponent.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/TransformComponent.h"
 #include "../Components/SpriteComponent.h"
 #include "../Systems/AnimationSystem.h"
+#include "../Systems/CollisionSystem.h"
 #include "../Systems/MovementSystem.h"
 #include "../Systems/RenderSystem.h"
+#include "../Systems/DamageSystem.h"
+#include "../Systems/KeyboardMovementSystem.h"
 
 class AnimationComponent;
 
 Game::Game() {
   isRunning = false;
+  debugColliders = false;
   registry = std::make_unique<Registry>();
   assetStore = std::make_unique<AssetStore>();
+  eventBus = std::make_unique<EventBus>();
   Logger::Log("Game constructor called");
 }
 
@@ -71,7 +76,10 @@ void Game::ProcessInput() {
       case SDL_KEYDOWN:
         if (event.key.keysym.sym == SDLK_ESCAPE) {
           isRunning = false;
+        } else if (event.key.keysym.sym == SDLK_d) {
+          debugColliders = !debugColliders;
         }
+        eventBus->Emit<KeyPressedEvent>(event.key.keysym.sym);
         break;
     }
   }
@@ -82,6 +90,9 @@ void Game::LoadLevel(const int level) {
   registry->AddSystem<MovementSystem>();
   registry->AddSystem<RenderSystem>();
   registry->AddSystem<AnimationSystem>();
+  registry->AddSystem<CollisionSystem>();
+  registry->AddSystem<DamageSystem>();
+  registry->AddSystem<KeyboardMovementSystem>();
 
   // Adding assets to the assets store
   assetStore->LoadTexture(renderer, "chopper-image", "../assets/images/chopper.png");
@@ -129,14 +140,16 @@ void Game::LoadLevel(const int level) {
   radar.AddComponent<AnimationComponent>(8, 15, true);
 
   Entity tank = registry->CreateEntity();
-  tank.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-  tank.AddComponent<RigidBodyComponent>(glm::vec2(30.0, 0.0));
+  tank.AddComponent<TransformComponent>(glm::vec2(100.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+  tank.AddComponent<RigidBodyComponent>(glm::vec2(-30.0, 0.0));
   tank.AddComponent<SpriteComponent>("tank-image", 2, 32, 32);
+  tank.AddComponent<BoxColliderComponent>(32, 32);
 
   Entity truck = registry->CreateEntity();
   truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
   truck.AddComponent<RigidBodyComponent>(glm::vec2(20.0, 0.0));
   truck.AddComponent<SpriteComponent>("truck-image", 1, 32, 32);
+  truck.AddComponent<BoxColliderComponent>(32, 32);
 }
 
 void Game::Setup() {
@@ -155,12 +168,21 @@ void Game::Update() {
 
   msPreviousFrame = SDL_GetTicks();
 
+  // Reset all event handlers for the current frame
+  eventBus->Reset();
+
+  // Perform subscriptions of the events of all systems
+  registry->GetSystem<DamageSystem>().Subscribe(eventBus);
+  registry->GetSystem<KeyboardMovementSystem>().Subscribe(eventBus);
+
   // Update the registry to process the netities that are waiting to be created/deleted
   registry->Update();
 
   // Ask all systems to update
   registry->GetSystem<MovementSystem>().Update(deltaTime);
   registry->GetSystem<AnimationSystem>().Update();
+  registry->GetSystem<CollisionSystem>().Update(eventBus);
+
 }
 
 void Game::Render() const {
@@ -168,6 +190,10 @@ void Game::Render() const {
   SDL_RenderClear(renderer);
 
   registry->GetSystem<RenderSystem>().Update(renderer, assetStore);
+
+  if (debugColliders) {
+    registry->GetSystem<CollisionSystem>().RenderCollisionBox(renderer);
+  }
 
   SDL_RenderPresent(renderer);
 }

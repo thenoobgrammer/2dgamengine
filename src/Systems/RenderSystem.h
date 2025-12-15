@@ -32,8 +32,6 @@ class RenderSystem: public System{
                 renderableEntities.emplace_back(renderableEntity);
             }
 
-            Logger::Log("Entities size " + std::to_string(renderableEntities.size()));
-
             std::sort(renderableEntities.begin(), renderableEntities.end(), [](const RenderableEntity& a, const RenderableEntity& b) {
                 return a.sprite.zIndex < b.sprite.zIndex;
             });

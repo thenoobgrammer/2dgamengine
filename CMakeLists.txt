@@ -38,6 +38,14 @@ add_executable(2dgameengine src/Main.cpp
         src/AssetStore/AssetStore.h
         src/Components/AnimationComponent.h
         src/Systems/AnimationSystem.h
+        src/Components/BoxColliderComponent.h
+        src/Systems/CollisionSystem.h
+        src/Events/CollisionEvent.h
+        src/EventBus/EventBus.h
+        src/EventBus/Event.h
+        src/Systems/DamageSystem.h
+        src/Systems/KeyboardMovementSystem.h
+        src/Events/KeyPressedEvent.h
 )
 
 # Link libraries - use lua54 since you have liblua54.a

@@ -1,0 +1,32 @@
+[
+{
+  "directory": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/build",
+  "command": "C:\\Users\\tonyo\\scoop\\apps\\mingw\\current\\bin\\c++.exe -IC:/SDL2/include/SDL2 -I\"C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs\" -I\"C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs/lua\" -std=gnu++17 -o CMakeFiles\\2dgameengine.dir\\src\\Main.cpp.obj -c \"C:\\workspace\\2D Game Engine\\02_Libraries_Dependencies\\2dgameengine\\src\\Main.cpp\"",
+  "file": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/Main.cpp",
+  "output": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/build/CMakeFiles/2dgameengine.dir/src/Main.cpp.obj"
+},
+{
+  "directory": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/build",
+  "command": "C:\\Users\\tonyo\\scoop\\apps\\mingw\\current\\bin\\c++.exe -IC:/SDL2/include/SDL2 -I\"C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs\" -I\"C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs/lua\" -std=gnu++17 -o CMakeFiles\\2dgameengine.dir\\src\\Game\\Game.cpp.obj -c \"C:\\workspace\\2D Game Engine\\02_Libraries_Dependencies\\2dgameengine\\src\\Game\\Game.cpp\"",
+  "file": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/Game/Game.cpp",
+  "output": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/build/CMakeFiles/2dgameengine.dir/src/Game/Game.cpp.obj"
+},
+{
+  "directory": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/build",
+  "command": "C:\\Users\\tonyo\\scoop\\apps\\mingw\\current\\bin\\c++.exe -IC:/SDL2/include/SDL2 -I\"C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs\" -I\"C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs/lua\" -std=gnu++17 -o CMakeFiles\\2dgameengine.dir\\src\\Logger\\Logger.cpp.obj -c \"C:\\workspace\\2D Game Engine\\02_Libraries_Dependencies\\2dgameengine\\src\\Logger\\Logger.cpp\"",
+  "file": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/Logger/Logger.cpp",
+  "output": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/build/CMakeFiles/2dgameengine.dir/src/Logger/Logger.cpp.obj"
+},
+{
+  "directory": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/build",
+  "command": "C:\\Users\\tonyo\\scoop\\apps\\mingw\\current\\bin\\c++.exe -IC:/SDL2/include/SDL2 -I\"C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs\" -I\"C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs/lua\" -std=gnu++17 -o CMakeFiles\\2dgameengine.dir\\src\\ECS\\ECS.cpp.obj -c \"C:\\workspace\\2D Game Engine\\02_Libraries_Dependencies\\2dgameengine\\src\\ECS\\ECS.cpp\"",
+  "file": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/ECS/ECS.cpp",
+  "output": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/build/CMakeFiles/2dgameengine.dir/src/ECS/ECS.cpp.obj"
+},
+{
+  "directory": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/build",
+  "command": "C:\\Users\\tonyo\\scoop\\apps\\mingw\\current\\bin\\c++.exe -IC:/SDL2/include/SDL2 -I\"C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs\" -I\"C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs/lua\" -std=gnu++17 -o CMakeFiles\\2dgameengine.dir\\src\\AssetStore\\AssetStore.cpp.obj -c \"C:\\workspace\\2D Game Engine\\02_Libraries_Dependencies\\2dgameengine\\src\\AssetStore\\AssetStore.cpp\"",
+  "file": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/AssetStore/AssetStore.cpp",
+  "output": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/build/CMakeFiles/2dgameengine.dir/src/AssetStore/AssetStore.cpp.obj"
+}
+]

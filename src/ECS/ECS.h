@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <vector>
 #include <typeindex>
+#include <deque>
 
 // We use a bitset (1s and 0s) to keep track of which components an entity has
 // and also helps keep track which entities a system is interested in.
@@ -37,6 +38,7 @@ class Entity {
         Entity(int id) : id(id) {};
         Entity(const Entity& entity) = default;
         int GetId() const;
+        void Kill();
 
         // Operation overloading which means dictates what these operators do for the entity class
         Entity& operator = (const Entity& _other) = default;
@@ -123,6 +125,8 @@ class Registry {
         std::set<Entity> entitiesToBeAdded;
         std::set<Entity> entitiesToBeKilled;
 
+        std::deque<int> freeIds;
+
     public:
         Registry() {
             Logger::Log("Registry constructor called");
@@ -130,7 +134,11 @@ class Registry {
         ~Registry() {
             Logger::Log("Registry destructor called");
         };
+
         Entity CreateEntity();
+
+        void KillEntity(Entity entity);
+
         void Update();
 
         // Component management
@@ -147,6 +155,7 @@ class Registry {
 
         // Checks the component signature of an entity and add the entity to the systems of interest
         void AddEntityToSystems(Entity entity);
+        void RemoveEntityToSystems(Entity entity);
 };
 
 template<typename T>
@@ -207,7 +216,7 @@ void Registry::AddComponent(Entity entity, TArgs&& ...args) {
 
     entityComponentSignatures[entityId].set(componentId);
 
-    Logger::Log("Added component " + std::to_string(componentId) + " to entity " + std::to_string(entityId));
+    // Logger::Log("Added component " + std::to_string(componentId) + " to entity " + std::to_string(entityId));
 }
 
 template<typename T>
@@ -216,7 +225,7 @@ void Registry::RemoveComponent(Entity entity) {
     const auto entityId = entity.GetId();
     entityComponentSignatures[entityId].set(componentId, false);
 
-    Logger::Log("Removed component " + std::to_string(componentId) + " from entity " + std::to_string(entityId));
+    // Logger::Log("Removed component " + std::to_string(componentId) + " from entity " + std::to_string(entityId));
 }
 
 template<typename T>
