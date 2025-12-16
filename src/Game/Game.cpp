@@ -1,25 +1,30 @@
-#include "Game.h"
-
 #include <fstream>
-
-#include "../Logger/Logger.h"
-#include "../ECS/ECS.h"
 #include <iostream>
 #include <SDL.h>
 #include <glm/glm.hpp>
 
+#include "Game.h"
 #include "../Components/BoxColliderComponent.h"
+#include "../Components/CameraFollowComponent.h"
+#include "../Components/KeyboardControlledComponent.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/TransformComponent.h"
 #include "../Components/SpriteComponent.h"
+#include "../ECS/ECS.h"
+#include "../Logger/Logger.h"
 #include "../Systems/AnimationSystem.h"
+#include "../Systems/CameraMovementSystem.h"
 #include "../Systems/CollisionSystem.h"
 #include "../Systems/MovementSystem.h"
 #include "../Systems/RenderSystem.h"
 #include "../Systems/DamageSystem.h"
-#include "../Systems/KeyboardMovementSystem.h"
+#include "../Systems/KeyboardControlSystem.h"
+#include "../Systems/ProjectileEmitSystem.h"
 
-class AnimationComponent;
+int Game::windowWidth;
+int Game::windowHeight;
+int Game::mapWidth;
+int Game::mapHeight;
 
 Game::Game() {
   isRunning = false;
@@ -27,12 +32,9 @@ Game::Game() {
   registry = std::make_unique<Registry>();
   assetStore = std::make_unique<AssetStore>();
   eventBus = std::make_unique<EventBus>();
-  Logger::Log("Game constructor called");
 }
 
-Game::~Game() {
-  Logger::Log("Game destructor called");
-}
+Game::~Game() = default;
 
 void Game::Initialize() {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
@@ -64,6 +66,12 @@ void Game::Initialize() {
   // SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN | SDL_RENDERER_PRESENTVSYNC);
   SDL_SetWindowSize(win, windowWidth, windowHeight);
   isRunning = true;
+
+  // initialize the camera with the entire screen area
+  camera.x = 0;
+  camera.y = 0;
+  camera.w = windowWidth;
+  camera.h = windowHeight;
 }
 
 void Game::ProcessInput() {
@@ -85,21 +93,24 @@ void Game::ProcessInput() {
   }
 }
 
-void Game::LoadLevel(const int level) {
+void Game::LoadLevel(const int level) const {
   // Add the systems that need to be processed in our game
   registry->AddSystem<MovementSystem>();
   registry->AddSystem<RenderSystem>();
   registry->AddSystem<AnimationSystem>();
   registry->AddSystem<CollisionSystem>();
   registry->AddSystem<DamageSystem>();
-  registry->AddSystem<KeyboardMovementSystem>();
+  registry->AddSystem<KeyboardControlSystem>();
+  registry->AddSystem<CameraMovementSystem>();
+  registry->AddSystem<ProjectileEmitSystem>();
 
   // Adding assets to the assets store
-  assetStore->LoadTexture(renderer, "chopper-image", "../assets/images/chopper.png");
+  assetStore->LoadTexture(renderer, "chopper-image", "../assets/images/chopper-spritesheet.png");
   assetStore->LoadTexture(renderer, "tank-image", "../assets/images/tank-panther-right.png");
   assetStore->LoadTexture(renderer, "truck-image", "../assets/images/truck-ford-right.png");
   assetStore->LoadTexture(renderer, "radar-image", "../assets/images/radar.png");
   assetStore->LoadTexture(renderer, "tilemap-image", "../assets/tilemaps/jungle.png");
+  assetStore->LoadTexture(renderer, "bullet-image", "../assets/images/bullet.png");
 
   // TODO: Load the tilemaps
   //  We need to load the tilemap textures from ./assets/tilemaps/jungle.png
@@ -121,35 +132,41 @@ void Game::LoadLevel(const int level) {
 
       Entity tile = registry->CreateEntity();
       tile.AddComponent<TransformComponent>(glm::vec2(x*tileScale*tileSize, y*tileScale*tileSize), glm::vec2(tileScale, tileScale), 0.0);
-      tile.AddComponent<SpriteComponent>("tilemap-image", 0, tileSize, tileSize, srcRectX, srcRectY);
+      tile.AddComponent<SpriteComponent>("tilemap-image", 0, false, tileSize, tileSize, srcRectX, srcRectY);
     }
   }
   mapFile.close();
+  mapWidth = mapNumCols * tileSize * tileScale;
+  mapHeight = mapNumRows * tileSize * tileScale;
 
   // Create the entity
   Entity chopper = registry->CreateEntity();
-  chopper.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-  chopper.AddComponent<RigidBodyComponent>(glm::vec2(25.0, 0.0));
-  chopper.AddComponent<SpriteComponent>("chopper-image", 2, 32, 32);
+  chopper.AddComponent<TransformComponent>(glm::vec2(50.0, 50.0), glm::vec2(1.0, 1.0), 0.0);
+  chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+  chopper.AddComponent<SpriteComponent>("chopper-image", 2, false, 32, 32);
   chopper.AddComponent<AnimationComponent>(2, 10, true);
+  chopper.AddComponent<KeyboardControlledComponent>(glm::vec2(0, -200), glm::vec2(200, 0), glm::vec2(0, 200), glm::vec2(-200, 0));
+  chopper.AddComponent<CameraFollowComponent>();
 
   Entity radar = registry->CreateEntity();
   radar.AddComponent<TransformComponent>(glm::vec2(windowWidth - 100.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
   radar.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  radar.AddComponent<SpriteComponent>("radar-image", 2, 64, 64);
+  radar.AddComponent<SpriteComponent>("radar-image", 2, true, 64, 64);
   radar.AddComponent<AnimationComponent>(8, 15, true);
 
   Entity tank = registry->CreateEntity();
-  tank.AddComponent<TransformComponent>(glm::vec2(100.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-  tank.AddComponent<RigidBodyComponent>(glm::vec2(-30.0, 0.0));
-  tank.AddComponent<SpriteComponent>("tank-image", 2, 32, 32);
+  tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+  tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+  tank.AddComponent<SpriteComponent>("tank-image", 2, false, 32, 32);
   tank.AddComponent<BoxColliderComponent>(32, 32);
+  tank.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000, 0, false);
 
   Entity truck = registry->CreateEntity();
   truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-  truck.AddComponent<RigidBodyComponent>(glm::vec2(20.0, 0.0));
-  truck.AddComponent<SpriteComponent>("truck-image", 1, 32, 32);
+  truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+  truck.AddComponent<SpriteComponent>("truck-image", 1, false, 32, 32);
   truck.AddComponent<BoxColliderComponent>(32, 32);
+  truck.AddComponent<ProjectileEmitterComponent>(glm::vec2(0.0, 100.0), 2000, 10000, 0, false);
 }
 
 void Game::Setup() {
@@ -173,7 +190,7 @@ void Game::Update() {
 
   // Perform subscriptions of the events of all systems
   registry->GetSystem<DamageSystem>().Subscribe(eventBus);
-  registry->GetSystem<KeyboardMovementSystem>().Subscribe(eventBus);
+  registry->GetSystem<KeyboardControlSystem>().Subscribe(eventBus);
 
   // Update the registry to process the netities that are waiting to be created/deleted
   registry->Update();
@@ -182,6 +199,8 @@ void Game::Update() {
   registry->GetSystem<MovementSystem>().Update(deltaTime);
   registry->GetSystem<AnimationSystem>().Update();
   registry->GetSystem<CollisionSystem>().Update(eventBus);
+  registry->GetSystem<ProjectileEmitSystem>().Update(registry);
+  registry->GetSystem<CameraMovementSystem>().Update(camera);
 
 }
 
@@ -189,10 +208,10 @@ void Game::Render() const {
   SDL_SetRenderDrawColor(renderer, 21, 21, 21, 255);
   SDL_RenderClear(renderer);
 
-  registry->GetSystem<RenderSystem>().Update(renderer, assetStore);
+  registry->GetSystem<RenderSystem>().Update(renderer, assetStore, camera);
 
   if (debugColliders) {
-    registry->GetSystem<CollisionSystem>().RenderCollisionBox(renderer);
+    registry->GetSystem<CollisionSystem>().RenderCollisionBox(renderer, camera);
   }
 
   SDL_RenderPresent(renderer);

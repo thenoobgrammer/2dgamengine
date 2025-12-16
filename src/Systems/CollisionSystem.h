@@ -52,16 +52,16 @@ class CollisionSystem: public System {
             }
         }
 
-        void RenderCollisionBox(SDL_Renderer* renderer) {
+        void RenderCollisionBox(SDL_Renderer* renderer, SDL_Rect camera) {
             for (auto entity: GetSystemEntities()) {
                 auto& collider = entity.GetComponent<BoxColliderComponent>();
                 auto& transform = entity.GetComponent<TransformComponent>();
 
                 SDL_Rect collisionBox = {
-                    static_cast<int>(transform.position.x + collider.offset.x),
-                    static_cast<int>(transform.position.y + collider.offset.y),
-                    (collider.width),
-                    (collider.height)
+                    static_cast<int>(transform.position.x + collider.offset.x - camera.x),
+                    static_cast<int>(transform.position.y + collider.offset.y - camera.y),
+                    static_cast<int>(collider.width * transform.scale.x),
+                    static_cast<int>(collider.height * transform.scale.y)
                 };
 
                 SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);

@@ -44,8 +44,13 @@ add_executable(2dgameengine src/Main.cpp
         src/EventBus/EventBus.h
         src/EventBus/Event.h
         src/Systems/DamageSystem.h
-        src/Systems/KeyboardMovementSystem.h
+        src/Systems/KeyboardControlSystem.h
         src/Events/KeyPressedEvent.h
+        src/Components/KeyboardControlledComponent.h
+        src/Components/CameraFollowComponent.h
+        src/Systems/CameraMovementSystem.h
+        src/Components/ProjectileEmitterComponent.h
+        src/Systems/ProjectileEmitSystem.h
 )
 
 # Link libraries - use lua54 since you have liblua54.a

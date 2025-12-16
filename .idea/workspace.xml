@@ -30,195 +30,20 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Applying animation system and component to the sprites">
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/AnimationComponent.h.6C6CB6C844D8038A.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/AnimationSystem.h.A01502C3460375BC.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/AssetStore.cpp.0EFEDAAB12EEA6D8.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/AssetStore.h.6649D4E74183BFDD.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/BoxColliderComponent.h.30586D73E2A96FBF.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/CollisionEvent.h.93362AE9CD5FD76C.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/CollisionSystem.h.832BD495B0FF1161.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/DamageSystem.h.E2D93BAFFB2F7413.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/ECS.cpp.0003E99E30F11155.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/ECS.h.9977C425EAF94C88.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/Event.h.A526F277866F380E.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/EventBus.h.3514C3077506C5AD.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/Game.cpp.7F1F98781B37AB1B.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/Game.h.33BB9F4AAC7FCB28.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/Logger.cpp.D03FB6AF165FAF7E.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/Logger.h.2B04E527F4987421.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/Main.cpp.8CB61A657B269F37.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/MovementSystem.h.B4E072E38561DC19.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/RenderSystem.h.5849C55099B93586.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/RigidBodyComponent.h.99D684B04BF3DF0B.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/SpriteComponent.h.6F5E533309A24BAF.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/TransformComponent.h.8071396DEDA92585.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/_fixes.hpp.E789841AE362C7B8.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/_vectorize.hpp.F69F8F859298BCFF.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/common.hpp.F8BC7E800DDC01AE.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/compute_common.hpp.E822358B27CCAF06.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/compute_vector_relational.hpp.E3B6B0DB54383690.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/exponential.hpp.77CBE2D63DFD9B2D.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/func_common.inl.F32A524B256D6783.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/func_exponential.inl.8D0A839CF5D9E918.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/func_geometric.inl.FB2EA46EBF69244C.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/func_integer.inl.588F477339C42F2F.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/func_matrix.inl.6B5B65BB675D4EB1.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/func_packing.inl.0E33270330E37F0F.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/func_trigonometric.inl.60DED10D62F9A5B1.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/func_vector_relational.inl.F26DD46847057A7A.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/fwd.hpp.E2C151193B59F080.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/geometric.hpp.EE5FEBD908F74CE0.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/glm.hpp.4BE9B27EF7524DD2.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/integer.hpp.CB3C54098A1096E8.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/mat2x2.hpp.0E4DDC35AA07983E.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/mat2x3.hpp.B23F288FBEF2BCA0.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/mat2x4.hpp.4C2E5473FC2A44CD.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/mat3x2.hpp.DA4C1CCC344E973D.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/mat3x3.hpp.5B09C5FE3891F4A6.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/mat3x4.hpp.7FAADC019CA20CAC.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/mat4x2.hpp.D4B8B7C43166F319.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/mat4x3.hpp.374AE1C420853506.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/mat4x4.hpp.9FF2DB8BD0773867.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix.hpp.84D91D6C337F386F.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double2x2.hpp.4DD014BC6ECE0F0A.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double2x2_precision.hpp.259EE630A6913F22.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double2x3.hpp.AA47B083F49226AF.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double2x3_precision.hpp.6595A77288590991.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double2x4.hpp.161E549C3C2108F6.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double2x4_precision.hpp.F4E1F4EB488BD1E5.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double3x2.hpp.E778BD11029B3FF1.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double3x2_precision.hpp.4CA018F55F6986BF.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double3x3.hpp.6B637484591C636D.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double3x3_precision.hpp.78886ACBB9056052.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double3x4.hpp.AB8F36FFA7B03A7D.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double3x4_precision.hpp.4AE044E75CD255FA.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double4x2.hpp.48D100BF51AFDA32.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double4x2_precision.hpp.54AFC2BCDB073F31.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double4x3.hpp.0EC34F06D79CBAE4.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double4x3_precision.hpp.107A110A0969CF88.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double4x4.hpp.FA2A7CC9DAB297B7.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_double4x4_precision.hpp.A3E18E7B211C7FBC.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float2x2.hpp.A702829B6426B550.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float2x2_precision.hpp.949CB8200A81AD20.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float2x3.hpp.F7163126DF691EA6.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float2x3_precision.hpp.0328BC0B3D1BB2B7.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float2x4.hpp.2C34166C7B5D6858.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float2x4_precision.hpp.84923E218F7FBFE6.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float3x2.hpp.ED5AC94602330EAF.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float3x2_precision.hpp.555E7A8FD2896DDA.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float3x3.hpp.A293B9669458B187.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float3x3_precision.hpp.2E7225A7BB207902.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float3x4.hpp.A15BF3E7556D6DC2.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float3x4_precision.hpp.25172D47B97249A3.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float4x2.hpp.DAE66433FA14246F.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float4x2_precision.hpp.E8DD372EBF683999.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float4x3.hpp.C08F25C349F369E1.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float4x3_precision.hpp.2421AD35E1582597.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float4x4.hpp.63B868F009D72519.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/matrix_float4x4_precision.hpp.044D5927DE7A6502.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/packing.hpp.6E9E7305EF0EB8AD.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/platform.h.912A1689F4FCBCBA.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/qualifier.hpp.495B24B216B737C1.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/setup.hpp.2357B0307C4552B9.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/trigonometric.hpp.C5A7D4FAEB43D42C.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_half.hpp.79AA92577EA2EF65.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_half.inl.8A0E1C188177B41C.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat2x2.hpp.F2DDA2BF8108E85B.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat2x2.inl.69A899011C54853C.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat2x3.hpp.07B189AA93E2294B.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat2x3.inl.731A43D38DCD6E28.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat2x4.hpp.888DD2FC40E822F5.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat2x4.inl.066C02F5A8ACAD73.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat3x2.hpp.C7F10F0E8CCBA476.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat3x2.inl.A8B7098099E08E70.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat3x3.hpp.C957A2625FCA6F23.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat3x3.inl.2DBD0D59ADB1E1FC.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat3x4.hpp.9A76ED59649143E2.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat3x4.inl.0777B0506B044868.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat4x2.hpp.D296AD21002ACB7C.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat4x2.inl.46CDD5D469F90A39.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat4x3.hpp.BAD9BF176DD455C6.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat4x3.inl.352C3DEB5D3799A3.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat4x4.hpp.D0BFA382022AEBFF.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_mat4x4.inl.1E790B2B5AA6FCCA.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_vec1.hpp.4BF90808B26C6C73.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_vec1.inl.D5C765D3E58EF37A.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_vec2.hpp.514BC127B9220B26.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_vec2.inl.04185666BF508328.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_vec3.hpp.B7FA2406F9B7FF5C.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_vec3.inl.38A239DCC4A0C47D.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_vec4.hpp.E6C64EF37FD590A2.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/type_vec4.inl.884B151959685521.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vec2.hpp.18CD58F78A42564F.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vec3.hpp.61BE351C4871F3EE.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vec4.hpp.72C1CB74E59C7D77.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_bool2.hpp.B7F0FDA802AA2B95.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_bool2_precision.hpp.849BE74BDDFB40FF.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_bool3.hpp.F0D571FF1E4C20F1.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_bool3_precision.hpp.8BC99E0B0FAC64F2.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_bool4.hpp.E5CDB7253D65E5B9.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_bool4_precision.hpp.A46885597D0C6DF7.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_double2.hpp.8231E7AD87874431.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_double2_precision.hpp.259A59FC73C99A86.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_double3.hpp.E74D9CFC921641C5.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_double3_precision.hpp.F5F9CF8B3D56A889.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_double4.hpp.BC8BAA59F09C691E.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_double4_precision.hpp.2D9AA1344601F817.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_float2.hpp.8CB7E9F62DEE3C73.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_float2_precision.hpp.838B3F1ACC869CA1.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_float3.hpp.3048965D342CDFE4.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_float3_precision.hpp.ED2D11DF7F007D43.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_float4.hpp.F01CB952A40D6A26.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_float4_precision.hpp.28F077B85877164D.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_int2.hpp.966116FFAFBF59A9.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_int2_precision.hpp.EF290B62EBC147B4.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_int3.hpp.891E64EBC31111F9.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_int3_precision.hpp.CEAF9F1B0199BA0D.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_int4.hpp.9818FBCCBB3F67CB.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_int4_precision.hpp.1763010B524081C6.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_relational.hpp.46E1CB1280E1C628.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_uint2.hpp.5339376D79686D83.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_uint2_precision.hpp.D8D70E741795F04C.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_uint3.hpp.9328D686D95FD22A.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_uint3_precision.hpp.D8315E7B30463638.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_uint4.hpp.56F0E19131FF6397.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cache/clangd/index/vector_uint4_precision.hpp.BF91628995034C25.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/4.1.0/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/4.1.0/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/4.1.0/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/4.1.0/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/4.1.0/CMakeRCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/4.1.0/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/4.1.0/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/4.1.0/CompilerIdC/a.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/4.1.0/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/4.1.0/CompilerIdCXX/a.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/InstallScripts.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/CMakeFiles/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/compile_commands.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compile_commands.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/BoxColliderComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventBus/Event.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventBus/EventBus.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Events/CollisionEvent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Events/KeyPressedEvent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Systems/CollisionSystem.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Systems/DamageSystem.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Systems/KeyboardMovementSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Added a collision system&#10;Added a damage system&#10;Added a BoxCollider component&#10;Added a debug mode&#10;Added an event system using eventbuses">
+      <change afterPath="$PROJECT_DIR$/src/Components/CameraFollowComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/KeyboardControlledComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/ProjectileEmitterComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Systems/CameraMovementSystem.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Systems/ProjectileEmitSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ECS/ECS.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ECS/ECS.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ECS/ECS.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/ECS/ECS.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SpriteComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SpriteComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/CollisionSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/CollisionSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/DamageSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/DamageSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/KeyboardMovementSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/KeyboardControlSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Systems/RenderSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/RenderSystem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -306,6 +131,11 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="2dgameengine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2dgameengine" TARGET_NAME="2dgameengine" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2dgameengine" RUN_TARGET_NAME="2dgameengine">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -332,7 +162,7 @@
       <workItem from="1764488385650" duration="2739000" />
       <workItem from="1764716556752" duration="40352000" />
       <workItem from="1765771939998" duration="8378000" />
-      <workItem from="1765780658298" duration="1091000" />
+      <workItem from="1765780658298" duration="13673000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -366,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765081801126</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added a collision system&#10;Added a damage system&#10;Added a BoxCollider component&#10;Added a debug mode&#10;Added an event system using eventbuses">
+      <option name="closed" value="true" />
+      <created>1765782410688</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1765782410688</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,7 +220,8 @@
     <MESSAGE value="Displaying textures in the render system" />
     <MESSAGE value="Applying depth to sprites" />
     <MESSAGE value="Applying animation system and component to the sprites" />
-    <option name="LAST_COMMIT_MESSAGE" value="Applying animation system and component to the sprites" />
+    <MESSAGE value="Added a collision system&#10;Added a damage system&#10;Added a BoxCollider component&#10;Added a debug mode&#10;Added an event system using eventbuses" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a collision system&#10;Added a damage system&#10;Added a BoxCollider component&#10;Added a debug mode&#10;Added an event system using eventbuses" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

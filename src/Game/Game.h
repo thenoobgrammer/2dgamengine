@@ -1,10 +1,11 @@
 #ifndef INC_2DGAMEENGINE_GAME_H
 #define INC_2DGAMEENGINE_GAME_H
 
-#include "../ECS/ECS.h"
-#include "../AssetStore/AssetStore.h"
-#include "../EventBus/EventBus.h"
 #include <SDL.h>
+
+#include "../AssetStore/AssetStore.h"
+#include "../ECS/ECS.h"
+#include "../EventBus/EventBus.h"
 
 const int FPS = 60;
 const int MILLISECONDS_PER_FRAME = 1000 / FPS;
@@ -16,6 +17,7 @@ private:
     int msPreviousFrame = 0;
     SDL_Window* win;
     SDL_Renderer* renderer;
+    SDL_Rect camera;
 
     std::unique_ptr<Registry> registry;
     std::unique_ptr<AssetStore> assetStore;
@@ -31,10 +33,12 @@ public:
     void Update();
     void Render() const;
     void Destroy() const;
-    void LoadLevel(int level);
+    void LoadLevel(int level) const;
 
-    int windowWidth;
-    int windowHeight;
+    static int windowWidth;
+    static int windowHeight;
+    static int mapWidth;
+    static int mapHeight;
 };
 
 #endif //INC_2DGAMEENGINE_GAME_H

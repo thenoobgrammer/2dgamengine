@@ -1,0 +1,8 @@
+#ifndef INC_2DGAMEENGINE_CAMERAFOLLOWCOMPONENT_H
+#define INC_2DGAMEENGINE_CAMERAFOLLOWCOMPONENT_H
+
+struct CameraFollowComponent {
+    CameraFollowComponent() = default;
+};
+
+#endif //INC_2DGAMEENGINE_CAMERAFOLLOWCOMPONENT_H

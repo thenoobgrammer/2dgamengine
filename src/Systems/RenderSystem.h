@@ -17,7 +17,7 @@ class RenderSystem: public System{
             RequireComponent<SpriteComponent>();
         }
 
-        void Update(SDL_Renderer* renderer, const std::unique_ptr<AssetStore>& assetStore) {
+        void Update(SDL_Renderer* renderer, const std::unique_ptr<AssetStore>& assetStore, SDL_Rect camera) {
             // TODO: Sort how the entities of our system by z-index
             //  ..
             struct RenderableEntity {
@@ -42,16 +42,11 @@ class RenderSystem: public System{
 
                 SDL_Rect srcRect = sprite.srcRect;
                 SDL_Rect dstRect = {
-                    static_cast<int>(transform.position.x),
-                    static_cast<int>(transform.position.y),
+                    static_cast<int>(transform.position.x - (sprite.isFixed ? 0 : camera.x)),
+                    static_cast<int>(transform.position.y - (sprite.isFixed ? 0 : camera.y)),
                     static_cast<int>(sprite.width * transform.scale.x),
                     static_cast<int>(sprite.height * transform.scale.y)
                 };
-
-                // Logger::Log("dstRect: x=" + std::to_string(dstRect.x) +
-                //    " y=" + std::to_string(dstRect.y) +
-                //    " w=" + std::to_string(dstRect.w) +
-                //    " h=" + std::to_string(dstRect.h));
 
                 SDL_RenderCopyEx(
                     renderer,
