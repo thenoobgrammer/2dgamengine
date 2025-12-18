@@ -94,79 +94,10 @@ void Game::ProcessInput() {
 }
 
 void Game::LoadLevel(const int level) const {
-  // Add the systems that need to be processed in our game
-  registry->AddSystem<MovementSystem>();
-  registry->AddSystem<RenderSystem>();
-  registry->AddSystem<AnimationSystem>();
-  registry->AddSystem<CollisionSystem>();
-  registry->AddSystem<DamageSystem>();
-  registry->AddSystem<KeyboardControlSystem>();
-  registry->AddSystem<CameraMovementSystem>();
-  registry->AddSystem<ProjectileEmitSystem>();
-
-  // Adding assets to the assets store
-  assetStore->LoadTexture(renderer, "chopper-image", "../assets/images/chopper-spritesheet.png");
-  assetStore->LoadTexture(renderer, "tank-image", "../assets/images/tank-panther-right.png");
-  assetStore->LoadTexture(renderer, "truck-image", "../assets/images/truck-ford-right.png");
-  assetStore->LoadTexture(renderer, "radar-image", "../assets/images/radar.png");
-  assetStore->LoadTexture(renderer, "tilemap-image", "../assets/tilemaps/jungle.png");
-  assetStore->LoadTexture(renderer, "bullet-image", "../assets/images/bullet.png");
-
-  // TODO: Load the tilemaps
-  //  We need to load the tilemap textures from ./assets/tilemaps/jungle.png
-  int tileSize = 32;
-  double tileScale = 2.0;
-  int mapNumCols = 25;
-  int mapNumRows = 20;
-  std::fstream mapFile;
-  mapFile.open("../assets/tilemaps/jungle.map");
-
-  for (int y = 0; y < mapNumRows; y++) {
-    for (int x = 0; x < mapNumCols; x++) {
-      char ch;
-      mapFile.get(ch);
-      int srcRectY = std::atoi(&ch) * tileSize;
-      mapFile.get(ch);
-      int srcRectX = std::atoi(&ch) * tileSize;
-      mapFile.ignore();
-
-      Entity tile = registry->CreateEntity();
-      tile.AddComponent<TransformComponent>(glm::vec2(x*tileScale*tileSize, y*tileScale*tileSize), glm::vec2(tileScale, tileScale), 0.0);
-      tile.AddComponent<SpriteComponent>("tilemap-image", 0, false, tileSize, tileSize, srcRectX, srcRectY);
-    }
-  }
-  mapFile.close();
-  mapWidth = mapNumCols * tileSize * tileScale;
-  mapHeight = mapNumRows * tileSize * tileScale;
-
-  // Create the entity
-  Entity chopper = registry->CreateEntity();
-  chopper.AddComponent<TransformComponent>(glm::vec2(50.0, 50.0), glm::vec2(1.0, 1.0), 0.0);
-  chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  chopper.AddComponent<SpriteComponent>("chopper-image", 2, false, 32, 32);
-  chopper.AddComponent<AnimationComponent>(2, 10, true);
-  chopper.AddComponent<KeyboardControlledComponent>(glm::vec2(0, -200), glm::vec2(200, 0), glm::vec2(0, 200), glm::vec2(-200, 0));
-  chopper.AddComponent<CameraFollowComponent>();
-
-  Entity radar = registry->CreateEntity();
-  radar.AddComponent<TransformComponent>(glm::vec2(windowWidth - 100.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-  radar.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  radar.AddComponent<SpriteComponent>("radar-image", 2, true, 64, 64);
-  radar.AddComponent<AnimationComponent>(8, 15, true);
-
-  Entity tank = registry->CreateEntity();
-  tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-  tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  tank.AddComponent<SpriteComponent>("tank-image", 2, false, 32, 32);
-  tank.AddComponent<BoxColliderComponent>(32, 32);
-  tank.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000, 0, false);
-
-  Entity truck = registry->CreateEntity();
-  truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-  truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  truck.AddComponent<SpriteComponent>("truck-image", 1, false, 32, 32);
-  truck.AddComponent<BoxColliderComponent>(32, 32);
-  truck.AddComponent<ProjectileEmitterComponent>(glm::vec2(0.0, 100.0), 2000, 10000, 0, false);
+  RegisterSystems();
+  LoadAssets();
+  LoadTilemap(level);
+  SpawnEntities(level);
 }
 
 void Game::Setup() {
@@ -231,3 +162,101 @@ void Game::Destroy() const {
   SDL_DestroyRenderer(renderer);
   SDL_Quit();
 }
+
+void Game::RegisterSystems() const {
+  registry->AddSystem<MovementSystem>();
+  registry->AddSystem<RenderSystem>();
+  registry->AddSystem<AnimationSystem>();
+  registry->AddSystem<CollisionSystem>();
+  registry->AddSystem<DamageSystem>();
+  registry->AddSystem<KeyboardControlSystem>();
+  registry->AddSystem<CameraMovementSystem>();
+  registry->AddSystem<ProjectileEmitSystem>();
+}
+
+void Game::LoadAssets() const {
+  assetStore->LoadTexture(renderer, "chopper-image", "../assets/images/chopper-spritesheet.png");
+  assetStore->LoadTexture(renderer, "tank-image", "../assets/images/tank-panther-right.png");
+  assetStore->LoadTexture(renderer, "truck-image", "../assets/images/truck-ford-right.png");
+  assetStore->LoadTexture(renderer, "radar-image", "../assets/images/radar.png");
+  assetStore->LoadTexture(renderer, "tilemap-image", "../assets/tilemaps/jungle.png");
+  assetStore->LoadTexture(renderer, "bullet-image", "../assets/images/bullet.png");
+}
+
+void Game::LoadTilemap(const int level) const {
+  const int tileSize = 32;
+  const double tileScale = 2.0;
+  const int mapNumCols = 25;
+  const int mapNumRows = 20;
+
+  std::fstream mapFile;
+  mapFile.open("../assets/tilemaps/jungle.map");
+
+  for (int y = 0; y < mapNumRows; y++) {
+    for (int x = 0; x < mapNumCols; x++) {
+      char ch;
+      mapFile.get(ch);
+      int srcRectY = std::atoi(&ch) * tileSize;
+      mapFile.get(ch);
+      int srcRectX = std::atoi(&ch) * tileSize;
+      mapFile.ignore();
+
+      Entity tile = registry->CreateEntity();
+      tile.AddComponent<TransformComponent>(glm::vec2(x*tileScale*tileSize, y*tileScale*tileSize), glm::vec2(tileScale, tileScale), 0.0);
+      tile.AddComponent<SpriteComponent>("tilemap-image", 0, false, tileSize, tileSize, srcRectX, srcRectY);
+    }
+  }
+  mapFile.close();
+
+  mapWidth = mapNumCols * tileSize * tileScale;
+  mapHeight = mapNumRows * tileSize * tileScale;
+}
+
+void Game::SpawnEntities(const int level) const {
+  SpawnChopper();
+  SpawnRadar();
+  SpawnTank();
+  SpawnTruck();
+}
+
+void Game::SpawnRadar() const {
+  Entity radar = registry->CreateEntity();
+  radar.AddComponent<TransformComponent>(glm::vec2(windowWidth - 100.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+  radar.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+  radar.AddComponent<SpriteComponent>("radar-image", 2, true, 64, 64);
+  radar.AddComponent<AnimationComponent>(8, 15, true);
+}
+
+void Game::SpawnChopper() const {
+  Entity chopper = registry->CreateEntity();
+  chopper.AddComponent<TransformComponent>(glm::vec2(50.0, 50.0), glm::vec2(1.0, 1.0), 0.0);
+  chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+  chopper.AddComponent<SpriteComponent>("chopper-image", 2, false, 32, 32);
+  chopper.AddComponent<AnimationComponent>(2, 10, true);
+  chopper.AddComponent<KeyboardControlledComponent>(
+      glm::vec2(0, -200),
+      glm::vec2(200, 0),
+      glm::vec2(0, 200),
+      glm::vec2(-200, 0)
+  );
+  chopper.AddComponent<CameraFollowComponent>();
+}
+
+void Game::SpawnTank() const {
+  Entity tank = registry->CreateEntity();
+  tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+  tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+  tank.AddComponent<SpriteComponent>("tank-image", 2, false, 32, 32);
+  tank.AddComponent<BoxColliderComponent>(32, 32);
+  tank.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000, 0, false);
+}
+
+void Game::SpawnTruck() const {
+  Entity truck = registry->CreateEntity();
+  truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+  truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+  truck.AddComponent<SpriteComponent>("truck-image", 1, false, 32, 32);
+  truck.AddComponent<BoxColliderComponent>(32, 32);
+  truck.AddComponent<ProjectileEmitterComponent>(glm::vec2(0.0, 100.0), 2000, 10000, 0, false);
+}
+
