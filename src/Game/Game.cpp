@@ -3,23 +3,28 @@
 #include <SDL.h>
 #include <glm/glm.hpp>
 
-#include "Game.h"
 #include "../Components/BoxColliderComponent.h"
 #include "../Components/CameraFollowComponent.h"
+#include "../Components/HealthComponent.h"
 #include "../Components/KeyboardControlledComponent.h"
 #include "../Components/RigidBodyComponent.h"
-#include "../Components/TransformComponent.h"
 #include "../Components/SpriteComponent.h"
+#include "../Components/TransformComponent.h"
 #include "../ECS/ECS.h"
 #include "../Logger/Logger.h"
 #include "../Systems/AnimationSystem.h"
 #include "../Systems/CameraMovementSystem.h"
 #include "../Systems/CollisionSystem.h"
-#include "../Systems/MovementSystem.h"
-#include "../Systems/RenderSystem.h"
 #include "../Systems/DamageSystem.h"
 #include "../Systems/KeyboardControlSystem.h"
+#include "../Systems/MovementSystem.h"
 #include "../Systems/ProjectileEmitSystem.h"
+#include "../Systems/RenderSystem.h"
+#include "Game.h"
+
+#include "../Components/NameComponent.h"
+#include "../Components/TagComponent.h"
+#include "../Systems/HealthSystem.h"
 
 int Game::windowWidth;
 int Game::windowHeight;
@@ -153,6 +158,7 @@ void Game::RegisterSystems() const {
   registry->AddSystem<KeyboardControlSystem>();
   registry->AddSystem<CameraMovementSystem>();
   registry->AddSystem<ProjectileEmitSystem>();
+  registry->AddSystem<HealthSystem>();
 }
 
 void Game::Render() const {
@@ -190,9 +196,11 @@ void Game::SpawnEntities(const int level) const {
 
 void Game::SpawnChopper() const {
   Entity chopper = registry->CreateEntity();
+  chopper.AddComponent<NameComponent>("playerChopper");
   chopper.AddComponent<TransformComponent>(glm::vec2(50.0, 50.0), glm::vec2(1.0, 1.0), 0.0);
   chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
   chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 2);
+  chopper.AddComponent<TagComponent>(Tag::Player);
   chopper.AddComponent<AnimationComponent>(2, 10, true);
   chopper.AddComponent<KeyboardControlledComponent>(
       glm::vec2(0, -200),
@@ -201,7 +209,7 @@ void Game::SpawnChopper() const {
       glm::vec2(-200, 0)
   );
   chopper.AddComponent<CameraFollowComponent>();
-  chopper.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000, 0, false);
+  chopper.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000);
 }
 
 void Game::SpawnRadar() const {
@@ -209,24 +217,31 @@ void Game::SpawnRadar() const {
   radar.AddComponent<TransformComponent>(glm::vec2(windowWidth - 100.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
   radar.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
   radar.AddComponent<SpriteComponent>("radar-image", 64, 64, 2, true);
+  radar.AddComponent<TagComponent>(Tag::UIElement);
   radar.AddComponent<AnimationComponent>(8, 15, true);
 }
 
 void Game::SpawnTank() const {
   Entity tank = registry->CreateEntity();
+  tank.AddComponent<NameComponent>("tank");
   tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
   tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
   tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 1);
   tank.AddComponent<BoxColliderComponent>(32, 32);
+  tank.AddComponent<TagComponent>(Tag::Enemy);
+  tank.AddComponent<HealthComponent>(50);
   // tank.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000, 0, false);
 }
 
 void Game::SpawnTruck() const {
   Entity truck = registry->CreateEntity();
+  truck.AddComponent<NameComponent>("truck");
   truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
   truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
   truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 2);
   truck.AddComponent<BoxColliderComponent>(32, 32);
+  truck.AddComponent<TagComponent>(Tag::Enemy);
+  truck.AddComponent<HealthComponent>(50);
   // truck.AddComponent<ProjectileEmitterComponent>(glm::vec2(0.0, 100.0), 2000, 10000, 0, false);
 }
 
@@ -248,6 +263,7 @@ void Game::Update() {
   // Perform subscriptions of the events of all systems
   registry->GetSystem<DamageSystem>().Subscribe(eventBus);
   registry->GetSystem<KeyboardControlSystem>().Subscribe(eventBus);
+  registry->GetSystem<HealthSystem>().Subscribe(eventBus);
 
   // Update the registry to process the netities that are waiting to be created/deleted
   registry->Update();
@@ -258,5 +274,6 @@ void Game::Update() {
   registry->GetSystem<CollisionSystem>().Update(eventBus);
   registry->GetSystem<ProjectileEmitSystem>().Update(registry);
   registry->GetSystem<CameraMovementSystem>().Update(camera);
+  registry->GetSystem<HealthSystem>().Update();
 
 }

@@ -1,9 +1,11 @@
 #ifndef INC_2DGAMEENGINE_CAMERAMOVEMENTSYSTEM_H
 #define INC_2DGAMEENGINE_CAMERAMOVEMENTSYSTEM_H
 
-#include "../ECS/ECS.h"
 #include "../Components/CameraFollowComponent.h"
 #include "../Components/TransformComponent.h"
+#include "../ECS/ECS.h"
+#include "../Game/Game.h"
+
 #include <SDL.h>
 
 class CameraMovementSystem: public System {

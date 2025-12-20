@@ -51,6 +51,12 @@ add_executable(2dgameengine src/Main.cpp
         src/Systems/CameraMovementSystem.h
         src/Components/ProjectileEmitterComponent.h
         src/Systems/ProjectileEmitSystem.h
+        src/Components/HealthComponent.h
+        src/Components/TagComponent.h
+        src/Systems/HealthSystem.h
+        src/Events/DamageEvent.h
+        src/Components/NameComponent.h
+        src/Components/ProjectileComponent.h
 )
 
 # Link libraries - use lua54 since you have liblua54.a

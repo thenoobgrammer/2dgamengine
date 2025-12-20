@@ -44,6 +44,7 @@ class Entity {
     private:
         int id;
     public:
+        Entity() = default;
         Entity(int id) : id(id) {};
         Entity(const Entity& entity) = default;
         int GetId() const;

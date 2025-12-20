@@ -1,11 +1,12 @@
 #ifndef INC_2DGAMEENGINE_PROJECTILEEMITSYSTEM_H
 #define INC_2DGAMEENGINE_PROJECTILEEMITSYSTEM_H
 
+#include "../Components/BoxColliderComponent.h"
+#include "../Components/ProjectileComponent.h"
 #include "../Components/ProjectileEmitterComponent.h"
-#include "../Components/TransformComponent.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/SpriteComponent.h"
-#include "../Components/BoxColliderComponent.h"
+#include "../Components/TransformComponent.h"
 #include "../ECS/ECS.h"
 #include <SDL.h>
 
@@ -29,6 +30,9 @@ public:
                     projectilePosition.y += (transform.scale.y * sprite.height / 2);
                 }
                 Entity projectile = registry->CreateEntity();
+                projectile.AddComponent<NameComponent>("projectile");
+                projectile.AddComponent<TagComponent>(Tag::Projectile);
+                projectile.AddComponent<ProjectileComponent>(projectileEmitter.damage);
                 projectile.AddComponent<TransformComponent>(projectilePosition, glm::vec2(1.0, 1.0), 0.0);
                 projectile.AddComponent<RigidBodyComponent>(projectileEmitter.velocity);
                 projectile.AddComponent<SpriteComponent>("bullet-image", 4, 4, 4);
