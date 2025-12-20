@@ -1,12 +1,13 @@
 #ifndef INC_2DGAMEENGINE_KEYBOARDMOVEMENTSYSTEM_H
 #define INC_2DGAMEENGINE_KEYBOARDMOVEMENTSYSTEM_H
 
-#include <memory>
+#include "../Components/KeyboardControlledComponent.h"
+#include "../Components/ProjectileEmitterComponent.h"
+#include "../Components/RigidBodyComponent.h"
+#include "../Components/SpriteComponent.h"
 #include "../EventBus/EventBus.h"
 #include "../Events/KeyPressedEvent.h"
-#include  "../Components/RigidBodyComponent.h"
-#include  "../Components/KeyboardControlledComponent.h"
-#include  "../Components/SpriteComponent.h"
+#include <memory>
 
 class KeyboardControlSystem : public System {
     public:
@@ -14,7 +15,9 @@ class KeyboardControlSystem : public System {
             RequireComponent<KeyboardControlledComponent>();
             RequireComponent<SpriteComponent>();
             RequireComponent<RigidBodyComponent>();
+            RequireComponent<ProjectileEmitterComponent>();
         }
+
         void Subscribe(std::unique_ptr<EventBus>& eventBus) {
             eventBus->Subscribe<KeyPressedEvent>(this, &KeyboardControlSystem::onKeypress);
         }
@@ -24,23 +27,35 @@ class KeyboardControlSystem : public System {
                 const auto keyboardcontrol = entity.GetComponent<KeyboardControlledComponent>();
                 auto& sprite = entity.GetComponent<SpriteComponent>();
                 auto& rigidbody = entity.GetComponent<RigidBodyComponent>();
+                auto& projectile = entity.GetComponent<ProjectileEmitterComponent>();
 
                 switch (keyEvent.symbol) {
                     case SDLK_UP:
                         rigidbody.velocity=keyboardcontrol.upVeolcity;
+                        rigidbody.direction=glm::vec2(0, -1);
                         sprite.srcRect.y = sprite.height * 0;
                         break;
                     case SDLK_RIGHT:
                         rigidbody.velocity=keyboardcontrol.rightVeolcity;
+                        rigidbody.direction=glm::vec2(1, 0);
                         sprite.srcRect.y = sprite.height * 1;
                         break;
                     case SDLK_DOWN:
                         rigidbody.velocity=keyboardcontrol.downVeolcity;
+                        rigidbody.direction=glm::vec2(0, 1);
                         sprite.srcRect.y = sprite.height * 2;
                         break;
                     case SDLK_LEFT:
                         rigidbody.velocity=keyboardcontrol.leftVeolcity;
+                        rigidbody.direction=glm::vec2(-1, 0);
                         sprite.srcRect.y = sprite.height * 3;
+                        break;
+                    case SDLK_LCTRL:
+                        rigidbody.velocity = glm::vec2(0);
+                        break;
+                    case SDLK_SPACE:
+                        projectile.shouldEmit = true;
+                        projectile.velocity = rigidbody.direction * 400.0f;
                         break;
                 }
             }

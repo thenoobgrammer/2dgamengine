@@ -1,7 +1,6 @@
 #ifndef INC_2DGAMEENGINE_ECS_H
 #define INC_2DGAMEENGINE_ECS_H
 
-#include "../Logger/Logger.h"
 #include <bitset>
 #include <memory>
 #include <set>
@@ -10,12 +9,18 @@
 #include <typeindex>
 #include <deque>
 
+#include "../Logger/Logger.h"
+
 // We use a bitset (1s and 0s) to keep track of which components an entity has
 // and also helps keep track which entities a system is interested in.
 constexpr unsigned int MAX_COMPONENTS = 32;
 
 typedef std::bitset<MAX_COMPONENTS> Signature;
 
+/**********************************************************
+ * The component structure :
+ * Purely data, should contain an ID for accessibility
+ **********************************************************/
 struct IComponent {
     protected:
         static int nextId;
@@ -31,6 +36,10 @@ class Component: public IComponent {
         }
 };
 
+/**********************************************************
+ * The Entity structure :
+ * Responsibility: Identify an object in the game
+ **********************************************************/
 class Entity {
     private:
         int id;
@@ -56,6 +65,12 @@ class Entity {
         class Registry* registry; // Because registry is delcared later in the header file.
 };
 
+
+/**********************************************************
+ * The System structure :
+ * Responsibility: Set of logical instructions that allows
+ * components to interact with each other
+ **********************************************************/
 class System {
     private:
         Signature componentSignature;
@@ -73,9 +88,13 @@ class System {
         template<typename T> void RequireComponent();
 };
 
+/**********************************************************
+ * The Pool class:
+ * Responsibility: Wrapped list that takes a generic type
+ **********************************************************/
 class IPool {
     public:
-        virtual ~IPool() {};
+        virtual ~IPool() = default;
 };
 
 template <typename T>
@@ -114,48 +133,49 @@ class Pool: public IPool {
         }
 };
 
-// Class that coordinates everything
+/**********************************************************
+ * The Registry class:
+ * Responsibility: Manages components, systems and entities -
+ * provides accessor functions
+ **********************************************************/
 class Registry {
     private:
-        int numEntities = 0;
-        std::vector<std::shared_ptr<IPool>> componentPools;
-        std::vector<Signature> entityComponentSignatures;
-        std::unordered_map<std::type_index, std::shared_ptr<System>> systems;
+    int numEntities = 0;
+    std::vector<std::shared_ptr<IPool>> componentPools;
+    std::vector<Signature> entityComponentSignatures;
 
-        std::set<Entity> entitiesToBeAdded;
-        std::set<Entity> entitiesToBeKilled;
+    std::unordered_map<std::type_index, std::shared_ptr<System>> systems;
 
-        std::deque<int> freeIds;
+    std::set<Entity> entitiesToBeAdded;
+    std::set<Entity> entitiesToBeKilled;
+
+    std::deque<int> freeIds;
 
     public:
-        Registry() {
-            Logger::Log("Registry constructor called");
-        };
-        ~Registry() {
-            Logger::Log("Registry destructor called");
-        };
+    Registry() = default;
+    ~Registry() = default;
 
-        Entity CreateEntity();
+    Entity CreateEntity();
 
-        void KillEntity(Entity entity);
+    void KillEntity(Entity entity);
 
-        void Update();
+    void Update();
 
-        // Component management
-        template <typename T, typename ...TArgs> void AddComponent(Entity entity, TArgs&& ...args);
-        template <typename T> void RemoveComponent(Entity entity);
-        template <typename T> bool HasComponent(Entity entity) const;
-        template <typename T> T& GetComponent(Entity entity) const;
+    // Component management
+    template <typename T, typename ...TArgs> void AddComponent(Entity entity, TArgs&& ...args);
+    template <typename T> void RemoveComponent(Entity entity);
+    template <typename T> bool HasComponent(Entity entity) const;
+    template <typename T> T& GetComponent(Entity entity) const;
 
-        // System management
-        template <typename T, typename ...TArgs> void AddSystem(TArgs&& ...args);
-        template <typename T> void RemoveSystem();
-        template <typename T> bool HasSystem () const;
-        template <typename T> T& GetSystem() const;
+    // System management
+    template <typename T, typename ...TArgs> void AddSystem(TArgs&& ...args);
+    template <typename T> void RemoveSystem();
+    template <typename T> bool HasSystem () const;
+    template <typename T> T& GetSystem() const;
 
-        // Checks the component signature of an entity and add the entity to the systems of interest
-        void AddEntityToSystems(Entity entity);
-        void RemoveEntityToSystems(Entity entity);
+    // Checks the component signature of an entity and add the entity to the systems of interest
+    void AddEntityToSystems(Entity entity);
+    void RemoveEntityToSystems(Entity entity);
 };
 
 template<typename T>

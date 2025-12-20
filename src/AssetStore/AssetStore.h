@@ -17,7 +17,6 @@ class AssetStore {
 
     private:
         std::map<std::string, SDL_Texture*> textures;
-
 };
 
 

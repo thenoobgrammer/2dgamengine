@@ -1,12 +1,13 @@
 #ifndef INC_2DGAMEENGINE_EVENTBUS_H
 #define INC_2DGAMEENGINE_EVENTBUS_H
 
-#include "../Logger/Logger.h"
-#include "Event.h"
 #include <map>
 #include <typeindex>
 #include <functional>
 #include <list>
+
+#include "../Logger/Logger.h"
+#include "Event.h"
 
 class IEventCallback {
     private:

@@ -23,17 +23,26 @@ private:
     std::unique_ptr<AssetStore> assetStore;
     std::unique_ptr<EventBus> eventBus;
 
+    void RegisterSystems() const;
+    void LoadAssets() const;
+    void LoadTilemap(const int level) const;
+    void SpawnEntities(const int level) const;
+    void SpawnChopper() const;
+    void SpawnTank() const;
+    void SpawnTruck() const;
+    void SpawnRadar() const;
+
 public:
     Game();
     ~Game();
     void Initialize();
     void Run();
-    void Setup();
     void ProcessInput();
     void Update();
     void Render() const;
     void Destroy() const;
     void LoadLevel(int level) const;
+    void Setup();
 
     static int windowWidth;
     static int windowHeight;
