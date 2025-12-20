@@ -37,12 +37,12 @@ public:
     ~Game();
     void Initialize();
     void Run();
-    void Setup();
     void ProcessInput();
     void Update();
     void Render() const;
     void Destroy() const;
     void LoadLevel(int level) const;
+    void Setup();
 
     static int windowWidth;
     static int windowHeight;

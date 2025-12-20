@@ -45,7 +45,7 @@ class CollisionSystem: public System {
                     );
 
                     if (collisionHappened) {
-                        Logger::Log("Collision detected");
+                        // Logger::Log("Collision detected");
                         eventBus->Emit<CollisionEvent>(a, b);
                     }
                 }
