@@ -25,6 +25,7 @@
 #include "../Components/NameComponent.h"
 #include "../Components/TagComponent.h"
 #include "../Systems/HealthSystem.h"
+#include "../Systems/RenderTextSystem.h"
 
 int Game::windowWidth;
 int Game::windowHeight;
@@ -51,6 +52,10 @@ void Game::Initialize() {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
     Logger::Log("SDL_Init error");
     return;
+  }
+
+  if (TTF_Init() != 0) {
+    Logger::Err("Failed to initialize SDL_ttf: " + std::string(TTF_GetError()));
   }
 
   SDL_DisplayMode displayMode;
@@ -94,9 +99,14 @@ void Game::LoadAssets() const {
   assetStore->LoadTexture(renderer, "bullet-image", "../assets/images/bullet.png");
 }
 
+void Game::LoadFonts() const {
+  assetStore->LoadFont("damage-font", "../assets/fonts/charriot.ttf", 14);
+}
+
 void Game::LoadLevel(const int level) const {
   RegisterSystems();
   LoadAssets();
+  LoadFonts();
   LoadTilemap(level);
   SpawnEntities(level);
 }
@@ -159,6 +169,7 @@ void Game::RegisterSystems() const {
   registry->AddSystem<CameraMovementSystem>();
   registry->AddSystem<ProjectileEmitSystem>();
   registry->AddSystem<HealthSystem>();
+  registry->AddSystem<RenderTextSystem>();
 }
 
 void Game::Render() const {
@@ -166,6 +177,7 @@ void Game::Render() const {
   SDL_RenderClear(renderer);
 
   registry->GetSystem<RenderSystem>().Update(renderer, assetStore, camera);
+  registry->GetSystem<RenderTextSystem>().Update(renderer, assetStore);
 
   if (debugColliders) {
     registry->GetSystem<CollisionSystem>().RenderCollisionBox(renderer, camera);
@@ -197,7 +209,7 @@ void Game::SpawnEntities(const int level) const {
 void Game::SpawnChopper() const {
   Entity chopper = registry->CreateEntity();
   chopper.AddComponent<NameComponent>("playerChopper");
-  chopper.AddComponent<TransformComponent>(glm::vec2(50.0, 50.0), glm::vec2(1.0, 1.0), 0.0);
+  chopper.AddComponent<TransformComponent>(glm::vec2(50.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
   chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
   chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 2);
   chopper.AddComponent<TagComponent>(Tag::Player);
@@ -209,7 +221,7 @@ void Game::SpawnChopper() const {
       glm::vec2(-200, 0)
   );
   chopper.AddComponent<CameraFollowComponent>();
-  chopper.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000);
+  chopper.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 0, 10000);
 }
 
 void Game::SpawnRadar() const {
@@ -224,7 +236,7 @@ void Game::SpawnRadar() const {
 void Game::SpawnTank() const {
   Entity tank = registry->CreateEntity();
   tank.AddComponent<NameComponent>("tank");
-  tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+  tank.AddComponent<TransformComponent>(glm::vec2(500.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
   tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
   tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 1);
   tank.AddComponent<BoxColliderComponent>(32, 32);
@@ -236,7 +248,7 @@ void Game::SpawnTank() const {
 void Game::SpawnTruck() const {
   Entity truck = registry->CreateEntity();
   truck.AddComponent<NameComponent>("truck");
-  truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+  truck.AddComponent<TransformComponent>(glm::vec2(10.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
   truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
   truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 2);
   truck.AddComponent<BoxColliderComponent>(32, 32);
@@ -263,7 +275,7 @@ void Game::Update() {
   // Perform subscriptions of the events of all systems
   registry->GetSystem<DamageSystem>().Subscribe(eventBus);
   registry->GetSystem<KeyboardControlSystem>().Subscribe(eventBus);
-  registry->GetSystem<HealthSystem>().Subscribe(eventBus);
+  registry->GetSystem<HealthSystem>().Subscribe(eventBus, registry);
 
   // Update the registry to process the netities that are waiting to be created/deleted
   registry->Update();
@@ -275,5 +287,4 @@ void Game::Update() {
   registry->GetSystem<ProjectileEmitSystem>().Update(registry);
   registry->GetSystem<CameraMovementSystem>().Update(camera);
   registry->GetSystem<HealthSystem>().Update();
-
 }

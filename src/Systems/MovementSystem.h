@@ -21,7 +21,6 @@ public:
             transform.position.y += rigidBody.velocity.y * deltaTime;
         }
     }
-
 };
 
 

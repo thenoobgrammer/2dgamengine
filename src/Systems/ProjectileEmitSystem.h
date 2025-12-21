@@ -22,7 +22,9 @@ public:
             auto& projectileEmitter = entity.GetComponent<ProjectileEmitterComponent>();
             const auto transform = entity.GetComponent<TransformComponent>();
 
-            if (SDL_GetTicks() - projectileEmitter.lastEmissionTime > projectileEmitter.repeatFrequency || projectileEmitter.shouldEmit) {
+            if ((projectileEmitter.repeatFrequency != 0 &&
+                SDL_GetTicks() - projectileEmitter.lastEmissionTime > projectileEmitter.repeatFrequency)
+                || projectileEmitter.shouldEmit) {
                 glm::vec2 projectilePosition = transform.position;
                 if (entity.HasComponent<SpriteComponent>()) {
                     const auto sprite = entity.GetComponent<SpriteComponent>();

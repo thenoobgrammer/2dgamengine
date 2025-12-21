@@ -25,6 +25,7 @@ private:
 
     void RegisterSystems() const;
     void LoadAssets() const;
+    void LoadFonts() const;
     void LoadTilemap(const int level) const;
     void SpawnEntities(const int level) const;
     void SpawnChopper() const;

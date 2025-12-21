@@ -6,7 +6,7 @@
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
-    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
+    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="Cpp.Editor" type="string" />
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
   </component>
   <component name="CMakePresetLoader">{
@@ -31,22 +31,19 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Refactoring #1">
-      <change afterPath="$PROJECT_DIR$/src/Components/HealthComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/NameComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/ProjectileComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/TagComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Events/DamageEvent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Systems/HealthSystem.h" afterDir="false" />
+    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Added some damage system&#10;Chopper can now shoot bullets in the right direction&#10;Added health component and system for killing enemy entities when they are 0 health&#10;Added TagComponent for tagging entities&#10;Added NameComponent for debugging entities">
+      <change afterPath="$PROJECT_DIR$/src/Components/LifeTimeComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/TextComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Systems/RenderTextSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ProjectileEmitterComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ProjectileEmitterComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ECS/ECS.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/ECS/ECS.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Events/CollisionEvent.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Events/CollisionEvent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AssetStore/AssetStore.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/AssetStore/AssetStore.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AssetStore/AssetStore.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/AssetStore/AssetStore.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Systems/CameraMovementSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/CameraMovementSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Systems/CollisionSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/CollisionSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Systems/DamageSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/DamageSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/HealthSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/HealthSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/MovementSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/MovementSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Systems/ProjectileEmitSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/ProjectileEmitSystem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +69,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../SDL2/include/SDL2/SDL_events.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/Game/Game.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Main.cpp" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
@@ -115,7 +113,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "fileTemplates",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -222,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766039647252</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added some damage system&#10;Chopper can now shoot bullets in the right direction&#10;Added health component and system for killing enemy entities when they are 0 health&#10;Added TagComponent for tagging entities&#10;Added NameComponent for debugging entities">
+      <option name="closed" value="true" />
+      <created>1766215630280</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1766215630280</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +247,8 @@
     <MESSAGE value="Added a collision system&#10;Added a damage system&#10;Added a BoxCollider component&#10;Added a debug mode&#10;Added an event system using eventbuses" />
     <MESSAGE value="Added camera follow components&#10;Added KeyboardControlledComponent&#10;Small bug: can't see projectile" />
     <MESSAGE value="Refactoring #1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring #1" />
+    <MESSAGE value="Added some damage system&#10;Chopper can now shoot bullets in the right direction&#10;Added health component and system for killing enemy entities when they are 0 health&#10;Added TagComponent for tagging entities&#10;Added NameComponent for debugging entities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some damage system&#10;Chopper can now shoot bullets in the right direction&#10;Added health component and system for killing enemy entities when they are 0 health&#10;Added TagComponent for tagging entities&#10;Added NameComponent for debugging entities" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

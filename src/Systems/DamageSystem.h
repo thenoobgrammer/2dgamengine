@@ -4,7 +4,6 @@
 #include "../Components/BoxColliderComponent.h"
 #include "../Components/NameComponent.h"
 #include "../Components/ProjectileComponent.h"
-#include "../Components/ProjectileEmitterComponent.h"
 #include "../Components/TagComponent.h"
 #include "../ECS/ECS.h"
 #include "../EventBus/EventBus.h"

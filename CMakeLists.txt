@@ -57,6 +57,9 @@ add_executable(2dgameengine src/Main.cpp
         src/Events/DamageEvent.h
         src/Components/NameComponent.h
         src/Components/ProjectileComponent.h
+        src/Components/TextComponent.h
+        src/Systems/RenderTextSystem.h
+        src/Components/LifeTimeComponent.h
 )
 
 # Link libraries - use lua54 since you have liblua54.a
@@ -65,5 +68,6 @@ target_link_libraries(2dgameengine
         SDL2main
         SDL2
         SDL2_image
+        SDL2_ttf
         lua53
 )
