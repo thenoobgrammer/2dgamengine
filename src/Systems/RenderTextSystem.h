@@ -28,12 +28,13 @@ class RenderTextSystem: public System {
           continue;
         }
 
+        text.color.a = text.color.a - 2;
+
         auto& transform = e.GetComponent<TransformComponent>();
         TTF_Font* font = assetStore->GetFont(text.fontId);
         if (!font) {
           continue;
         }
-        Logger::Log(std::to_string(text.color.r) + std::to_string(text.color.g) + std::to_string(text.color.b) + " " + text.fontId);
         SDL_Surface* surface = TTF_RenderText_Blended(font, text.text.c_str(), text.color);
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
         SDL_Rect destRect = {

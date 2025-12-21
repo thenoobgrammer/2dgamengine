@@ -31,7 +31,8 @@ public:
     Entity damageText = registry -> CreateEntity();
     damageText.AddComponent<TextComponent>("-" + std::to_string(event.damage), "damage-font", SDL_Color{ 190, 0, 0, 255 });
     damageText.AddComponent<LifeTimeComponent>(800);
-    damageText.AddComponent<TransformComponent>(targetTransform.position + glm::vec2(0.0, -20), glm::vec2(1.0), 0.0);
+    damageText.AddComponent<TransformComponent>(targetTransform.position, glm::vec2(1.0), 0.0);
+    damageText.AddComponent<RigidBodyComponent>(glm::vec2(0.0, -20.0));
   }
 
   void Update() {
