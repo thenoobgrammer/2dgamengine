@@ -22,6 +22,7 @@ class CameraMovementSystem: public System {
             if (transform.position.x  + (camera.w / 2) < Game::mapWidth) {
                 camera.x = transform.position.x - (Game::windowWidth / 2);
             }
+
             if (transform.position.y + (camera.h / 2) < Game::mapHeight) {
                 camera.y = transform.position.y - (Game::windowHeight / 2);
             }

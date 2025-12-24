@@ -18,8 +18,6 @@ class RenderSystem: public System{
         }
 
         void Update(SDL_Renderer* renderer, const std::unique_ptr<AssetStore>& assetStore, SDL_Rect camera) {
-            // TODO: Sort how the entities of our system by z-index
-            //  ..
             struct RenderableEntity {
                 TransformComponent transform;
                 SpriteComponent sprite;
@@ -48,15 +46,20 @@ class RenderSystem: public System{
                     static_cast<int>(sprite.height * transform.scale.y)
                 };
 
-                SDL_RenderCopyEx(
-                    renderer,
-                    assetStore->GetTexture(sprite.assetId),
-                    &srcRect,
-                    &dstRect,
-                    transform.rotation,
-                    NULL,
-                    SDL_FLIP_NONE
+                if (sprite.assetId.empty()) {
+                    SDL_SetRenderDrawColor(renderer, 0, 190, 0, 256);
+                    SDL_RenderDrawRect(renderer, &dstRect);
+                } else {
+                    SDL_RenderCopyEx(
+                        renderer,
+                        assetStore->GetTexture(sprite.assetId),
+                        &srcRect,
+                        &dstRect,
+                        transform.rotation,
+                        NULL,
+                        SDL_FLIP_NONE
                     );
+                }
             }
         }
 };

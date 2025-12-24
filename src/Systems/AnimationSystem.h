@@ -19,9 +19,14 @@ class AnimationSystem: public System {
                 auto& sprite = entity.GetComponent<SpriteComponent>();
 
                 animation.currentFrame = ((SDL_GetTicks() - animation.startTime) * animation.frameSpeedRate / 1000) % animation.numFrames;
-                sprite.srcRect.x = animation.currentFrame * sprite.width;
+
+                int col = animation.currentFrame % animation.numColumns;
+                int row = animation.currentFrame / animation.numColumns;
+
+                sprite.srcRect.x = col * sprite.width;
+                sprite.srcRect.y = row * sprite.height;
             }
         }
 };
 
-#endif //INC_2DGAMEENGINE_ANIMATIONSYSTEM_H
+#endif
