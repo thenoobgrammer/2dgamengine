@@ -24,6 +24,7 @@
 
 #include "../Components/NameComponent.h"
 #include "../Components/TagComponent.h"
+#include "../Systems/AISystem.h"
 #include "../Systems/HealthSystem.h"
 #include "../Systems/RenderTextSystem.h"
 
@@ -189,6 +190,7 @@ void Game::RegisterSystems() const {
   registry->AddSystem<ProjectileEmitSystem>();
   registry->AddSystem<HealthSystem>();
   registry->AddSystem<RenderTextSystem>();
+  registry->AddSystem<AISystem>();
 }
 
 void Game::Render() const {
@@ -220,7 +222,6 @@ void Game::Setup() {
 
 void Game::SpawnEntities(const int level) const {
   SpawnPlayer();
-  // SpawnRadar();
   SpawnTank();
   SpawnTruck();
   SpawnUI();
@@ -256,12 +257,13 @@ void Game::Update() {
   registry->GetSystem<ProjectileEmitSystem>().Update(registry);
   registry->GetSystem<CameraMovementSystem>().Update(camera);
   registry->GetSystem<HealthSystem>().Update();
+  registry->GetSystem<AISystem>().Update();
 }
 
 void Game::SpawnPlayer() const {
   Entity player = registry->CreateEntity();
-  player.AddComponent<NameComponent>("playerChopper");
-  player.AddComponent<TransformComponent>(glm::vec2(50.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
+  player.AddComponent<NameComponent>("player");
+  player.AddComponent<TransformComponent>(glm::vec2(50.0, 120.0), glm::vec2(1.0, 1.0), 0.0);
   player.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
   player.AddComponent<SpriteComponent>("player-image", 32, 128, 2);
   player.AddComponent<TagComponent>(Tag::Player);
@@ -276,36 +278,29 @@ void Game::SpawnPlayer() const {
   player.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 0, 10000);
 }
 
-void Game::SpawnRadar() const {
-  Entity radar = registry->CreateEntity();
-  radar.AddComponent<TransformComponent>(glm::vec2(windowWidth - 100.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-  radar.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  radar.AddComponent<SpriteComponent>("radar-image", 64, 64, 2, true);
-  radar.AddComponent<TagComponent>(Tag::UIElement);
-  radar.AddComponent<AnimationComponent>(8, 8, 15, true);
-}
-
 void Game::SpawnTank() const {
   Entity tank = registry->CreateEntity();
   tank.AddComponent<NameComponent>("tank");
   tank.AddComponent<TransformComponent>(glm::vec2(500.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
-  tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+  tank.AddComponent<RigidBodyComponent>(glm::vec2(0));
   tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 1);
   tank.AddComponent<BoxColliderComponent>(32, 32);
   tank.AddComponent<TagComponent>(Tag::Enemy);
   tank.AddComponent<HealthComponent>(50);
-  // tank.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000, 0, false);
+  tank.AddComponent<AIComponent>(60, AIBehavior::Chase);
+  tank.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000, 0, false);
 }
 
 void Game::SpawnTruck() const {
   Entity truck = registry->CreateEntity();
   truck.AddComponent<NameComponent>("truck");
   truck.AddComponent<TransformComponent>(glm::vec2(10.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
-  truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+  truck.AddComponent<RigidBodyComponent>(glm::vec2(0));
   truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 2);
   truck.AddComponent<BoxColliderComponent>(32, 32);
   truck.AddComponent<TagComponent>(Tag::Enemy);
   truck.AddComponent<HealthComponent>(50);
+  truck.AddComponent<AIComponent>(60, AIBehavior::Chase);
   // truck.AddComponent<ProjectileEmitterComponent>(glm::vec2(0.0, 100.0), 2000, 10000, 0, false);
 }
 

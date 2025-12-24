@@ -60,6 +60,8 @@ add_executable(2dgameengine src/Main.cpp
         src/Components/TextComponent.h
         src/Systems/RenderTextSystem.h
         src/Components/LifeTimeComponent.h
+        src/Systems/AISystem.h
+        src/Components/AIComponent.h
 )
 
 # Link libraries - use lua54 since you have liblua54.a
