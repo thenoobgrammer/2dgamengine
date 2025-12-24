@@ -1,0 +1,83 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "assetsv2/level-0.tmx",
+    "expandedProjectPaths": [
+        "cmake-build-debug",
+        ".",
+        "assetsv2",
+        "assetsv2/tilesets"
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "assetsv2/level-0.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 783,
+                "y": 738
+            }
+        },
+        "assetsv2/maps/map.tmx": {
+            "scale": 1.1340625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 399.889776798016,
+                "y": 320.08817856158726
+            }
+        },
+        "assetsv2/tilesets/TX Plant.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assetsv2/tilesets/TX Props.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assetsv2/tilesets/TX Struct.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assetsv2/tilesets/TX Tileset Grass.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assetsv2/tilesets/TX Tileset Stone Ground.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assetsv2/tilesets/TX Tileset Wall.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/assetsv2/maps",
+    "last.imagePath": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/assetsv2/images",
+    "map.height": 20,
+    "map.lastUsedExportFilter": "CSV files (*.csv)",
+    "map.lastUsedFormat": "tmx",
+    "map.width": 25,
+    "openFiles": [
+        "assetsv2/level-0.tmx",
+        "assetsv2/tilesets/TX Props.tsx",
+        "assetsv2/tilesets/TX Plant.tsx",
+        "assetsv2/tilesets/TX Tileset Wall.tsx",
+        "assetsv2/tilesets/TX Tileset Stone Ground.tsx",
+        "assetsv2/tilesets/TX Struct.tsx",
+        "assetsv2/tilesets/TX Tileset Grass.tsx"
+    ],
+    "project": "tiled-project.tiled-project",
+    "recentFiles": [
+        "assetsv2/tilesets/TX Struct.tsx",
+        "assetsv2/tilesets/TX Plant.tsx",
+        "assetsv2/tilesets/TX Props.tsx",
+        "assetsv2/tilesets/TX Tileset Wall.tsx",
+        "assetsv2/tilesets/TX Tileset Stone Ground.tsx",
+        "assetsv2/tilesets/TX Tileset Grass.tsx",
+        "assetsv2/maps/map.tmx",
+        "assetsv2/level-0.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}

@@ -31,10 +31,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Added some damage system&#10;Chopper can now shoot bullets in the right direction&#10;Added health component and system for killing enemy entities when they are 0 health&#10;Added TagComponent for tagging entities&#10;Added NameComponent for debugging entities">
+    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Damage now fades in">
+      <change afterPath="$PROJECT_DIR$/src/Components/AIComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Systems/AISystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Systems/HealthSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/HealthSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Systems/RenderTextSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/RenderTextSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ECS/ECS.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/ECS/ECS.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +62,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../SDL2/include/SDL2/SDL_events.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/ECS/ECS.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/ECS/ECS.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/Game/Game.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Main.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/Game/Game.cpp" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -79,44 +84,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;C/C++ File.Run.executor&quot;: &quot;Run&quot;,
-    &quot;CMake Application.2dgameengine.executor&quot;: &quot;Run&quot;,
-    &quot;Makefile Target.Run.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
-    &quot;cf.advertisement.text.overridden&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs/sdl/lib&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C/C++ File.Run.executor": "Run",
+    "CMake Application.2dgameengine.executor": "Run",
+    "Makefile Target.Run.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "cf.advertisement.text.overridden": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "change-assets-set",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs/sdl/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\CLion 2025.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\sdl\lib" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\sdl\include" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\assetsv2\images\player" />
+      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\assetsv2\tilesets" />
+      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\assetsv2\images" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\src" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\lua" />
-      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\cmake-build-debug" />
-      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\sol" />
     </key>
   </component>
   <component name="RunManager">
@@ -218,7 +225,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766215630280</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Damage now fades in">
+      <option name="closed" value="true" />
+      <created>1766355120144</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1766355120144</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +253,8 @@
     <MESSAGE value="Added camera follow components&#10;Added KeyboardControlledComponent&#10;Small bug: can't see projectile" />
     <MESSAGE value="Refactoring #1" />
     <MESSAGE value="Added some damage system&#10;Chopper can now shoot bullets in the right direction&#10;Added health component and system for killing enemy entities when they are 0 health&#10;Added TagComponent for tagging entities&#10;Added NameComponent for debugging entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some damage system&#10;Chopper can now shoot bullets in the right direction&#10;Added health component and system for killing enemy entities when they are 0 health&#10;Added TagComponent for tagging entities&#10;Added NameComponent for debugging entities" />
+    <MESSAGE value="Damage now fades in" />
+    <option name="LAST_COMMIT_MESSAGE" value="Damage now fades in" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

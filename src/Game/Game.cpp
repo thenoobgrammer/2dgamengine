@@ -24,8 +24,11 @@
 
 #include "../Components/NameComponent.h"
 #include "../Components/TagComponent.h"
+#include "../Systems/AISystem.h"
 #include "../Systems/HealthSystem.h"
 #include "../Systems/RenderTextSystem.h"
+
+#include <sstream>
 
 int Game::windowWidth;
 int Game::windowHeight;
@@ -60,8 +63,8 @@ void Game::Initialize() {
 
   SDL_DisplayMode displayMode;
   SDL_GetCurrentDisplayMode(0, &displayMode);
-  windowWidth = 1920;//displayMode.w;
-  windowHeight = 1080;//displayMode.h;
+  windowWidth = 1280;//displayMode.w;
+  windowHeight = 720;//displayMode.h;
   win = SDL_CreateWindow(
     "2d Game Engine",
     SDL_WINDOWPOS_CENTERED,
@@ -91,12 +94,17 @@ void Game::Initialize() {
 }
 
 void Game::LoadAssets() const {
+  assetStore->LoadTexture(renderer, "player-image", "../assetsv2/images/TX Player.png");
   assetStore->LoadTexture(renderer, "chopper-image", "../assets/images/chopper-spritesheet.png");
   assetStore->LoadTexture(renderer, "tank-image", "../assets/images/tank-panther-right.png");
   assetStore->LoadTexture(renderer, "truck-image", "../assets/images/truck-ford-right.png");
   assetStore->LoadTexture(renderer, "radar-image", "../assets/images/radar.png");
   assetStore->LoadTexture(renderer, "tilemap-image", "../assets/tilemaps/jungle.png");
   assetStore->LoadTexture(renderer, "bullet-image", "../assets/images/bullet.png");
+
+  assetStore->LoadTexture(renderer, "tileset-grass", "../assetsv2/tilesets/TX Tileset Grass.png");
+  assetStore->LoadTexture(renderer, "tileset-stone-ground", "../assetsv2/tilesets/TX Tileset Stone Ground.png");
+  assetStore->LoadTexture(renderer, "tileset-wall", "../assetsv2/tilesets/TX Tileset Wall.png");
 }
 
 void Game::LoadFonts() const {
@@ -107,37 +115,49 @@ void Game::LoadLevel(const int level) const {
   RegisterSystems();
   LoadAssets();
   LoadFonts();
-  LoadTilemap(level);
+  LoadTilemapLayer("tileset-grass", "level_0_Grass.csv", 0, 32, 2.0, 8);
+  LoadTilemapLayer("tileset-wall", "level_0_Stones.csv", 1, 32, 2.0, 8);
+  LoadTilemapLayer("tileset-stone-ground", "level_0_Structures.csv", 2, 32, 2.0, 16);
   SpawnEntities(level);
 }
 
-void Game::LoadTilemap(const int level) const {
-  const int tileSize = 32;
-  const double tileScale = 2.0;
-  const int mapNumCols = 25;
-  const int mapNumRows = 20;
-
+void Game::LoadTilemapLayer(const std::string& assetId, const std::string& filename, int zIndex, int tileSize, double tileScale, int tileSetCols) const {
   std::fstream mapFile;
-  mapFile.open("../assets/tilemaps/jungle.map");
+  mapFile.open("../assetsv2/maps/" + filename);
 
-  for (int y = 0; y < mapNumRows; y++) {
-    for (int x = 0; x < mapNumCols; x++) {
-      char ch;
-      mapFile.get(ch);
-      int srcRectY = std::atoi(&ch) * tileSize;
-      mapFile.get(ch);
-      int srcRectX = std::atoi(&ch) * tileSize;
-      mapFile.ignore();
+  std::string line;
+  int y = 0;
+  int maxX = 0;
 
-      Entity tile = registry->CreateEntity();
-      tile.AddComponent<TransformComponent>(glm::vec2(x*tileScale*tileSize, y*tileScale*tileSize), glm::vec2(tileScale, tileScale), 0.0);
-      tile.AddComponent<SpriteComponent>("tilemap-image", tileSize, tileSize, 0, false, srcRectX, srcRectY);
+  while (std::getline(mapFile, line)) {
+    std::stringstream ss(line);
+    std::string tileIdStr;
+    int x = 0;
+
+    while (std::getline(ss, tileIdStr, ',')) {
+      int tileId = std::stoi(tileIdStr);
+      if (tileId >= 0) {
+        int srcRectX = (tileId % tileSetCols) * tileSize;
+        int srcRectY = (tileId / tileSetCols) * tileSize;
+
+        Entity tile = registry->CreateEntity();
+        tile.AddComponent<TransformComponent>(
+            glm::vec2(x * tileScale * tileSize, y * tileScale * tileSize),
+            glm::vec2(tileScale, tileScale),
+            0.0
+        );
+        tile.AddComponent<SpriteComponent>(assetId, tileSize, tileSize, zIndex, false, srcRectX, srcRectY);
+      }
+
+      x++;
     }
+    if (x > maxX) maxX = x;
+    y++;
   }
-  mapFile.close();
 
-  mapWidth = mapNumCols * tileSize * tileScale;
-  mapHeight = mapNumRows * tileSize * tileScale;
+  mapFile.close();
+  mapWidth = maxX * tileSize * tileScale;
+  mapHeight = y * tileSize * tileScale;
 }
 
 void Game::ProcessInput() {
@@ -170,6 +190,7 @@ void Game::RegisterSystems() const {
   registry->AddSystem<ProjectileEmitSystem>();
   registry->AddSystem<HealthSystem>();
   registry->AddSystem<RenderTextSystem>();
+  registry->AddSystem<AISystem>();
 }
 
 void Game::Render() const {
@@ -200,61 +221,10 @@ void Game::Setup() {
 }
 
 void Game::SpawnEntities(const int level) const {
-  SpawnChopper();
-  SpawnRadar();
+  SpawnPlayer();
   SpawnTank();
   SpawnTruck();
-}
-
-void Game::SpawnChopper() const {
-  Entity chopper = registry->CreateEntity();
-  chopper.AddComponent<NameComponent>("playerChopper");
-  chopper.AddComponent<TransformComponent>(glm::vec2(50.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
-  chopper.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  chopper.AddComponent<SpriteComponent>("chopper-image", 32, 32, 2);
-  chopper.AddComponent<TagComponent>(Tag::Player);
-  chopper.AddComponent<AnimationComponent>(2, 10, true);
-  chopper.AddComponent<KeyboardControlledComponent>(
-      glm::vec2(0, -200),
-      glm::vec2(200, 0),
-      glm::vec2(0, 200),
-      glm::vec2(-200, 0)
-  );
-  chopper.AddComponent<CameraFollowComponent>();
-  chopper.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 0, 10000);
-}
-
-void Game::SpawnRadar() const {
-  Entity radar = registry->CreateEntity();
-  radar.AddComponent<TransformComponent>(glm::vec2(windowWidth - 100.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-  radar.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  radar.AddComponent<SpriteComponent>("radar-image", 64, 64, 2, true);
-  radar.AddComponent<TagComponent>(Tag::UIElement);
-  radar.AddComponent<AnimationComponent>(8, 15, true);
-}
-
-void Game::SpawnTank() const {
-  Entity tank = registry->CreateEntity();
-  tank.AddComponent<NameComponent>("tank");
-  tank.AddComponent<TransformComponent>(glm::vec2(500.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
-  tank.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 1);
-  tank.AddComponent<BoxColliderComponent>(32, 32);
-  tank.AddComponent<TagComponent>(Tag::Enemy);
-  tank.AddComponent<HealthComponent>(50);
-  // tank.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000, 0, false);
-}
-
-void Game::SpawnTruck() const {
-  Entity truck = registry->CreateEntity();
-  truck.AddComponent<NameComponent>("truck");
-  truck.AddComponent<TransformComponent>(glm::vec2(10.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
-  truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 2);
-  truck.AddComponent<BoxColliderComponent>(32, 32);
-  truck.AddComponent<TagComponent>(Tag::Enemy);
-  truck.AddComponent<HealthComponent>(50);
-  // truck.AddComponent<ProjectileEmitterComponent>(glm::vec2(0.0, 100.0), 2000, 10000, 0, false);
+  SpawnUI();
 }
 
 void Game::Update() {
@@ -287,4 +257,115 @@ void Game::Update() {
   registry->GetSystem<ProjectileEmitSystem>().Update(registry);
   registry->GetSystem<CameraMovementSystem>().Update(camera);
   registry->GetSystem<HealthSystem>().Update();
+  registry->GetSystem<AISystem>().Update();
 }
+
+void Game::SpawnPlayer() const {
+  Entity player = registry->CreateEntity();
+  player.AddComponent<NameComponent>("player");
+  player.AddComponent<TransformComponent>(glm::vec2(50.0, 120.0), glm::vec2(1.0, 1.0), 0.0);
+  player.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+  player.AddComponent<SpriteComponent>("player-image", 32, 128, 2);
+  player.AddComponent<TagComponent>(Tag::Player);
+  player.AddComponent<AnimationComponent>(1, 1, 10, true);
+  player.AddComponent<KeyboardControlledComponent>(
+      glm::vec2(0, -200),
+      glm::vec2(200, 0),
+      glm::vec2(0, 200),
+      glm::vec2(-200, 0)
+  );
+  player.AddComponent<CameraFollowComponent>();
+  player.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 0, 10000);
+}
+
+void Game::SpawnTank() const {
+  Entity tank = registry->CreateEntity();
+  tank.AddComponent<NameComponent>("tank");
+  tank.AddComponent<TransformComponent>(glm::vec2(500.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
+  tank.AddComponent<RigidBodyComponent>(glm::vec2(0));
+  tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 1);
+  tank.AddComponent<BoxColliderComponent>(32, 32);
+  tank.AddComponent<TagComponent>(Tag::Enemy);
+  tank.AddComponent<HealthComponent>(50);
+  tank.AddComponent<AIComponent>(60, AIBehavior::Chase);
+  tank.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000, 0, false);
+}
+
+void Game::SpawnTruck() const {
+  Entity truck = registry->CreateEntity();
+  truck.AddComponent<NameComponent>("truck");
+  truck.AddComponent<TransformComponent>(glm::vec2(10.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
+  truck.AddComponent<RigidBodyComponent>(glm::vec2(0));
+  truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 2);
+  truck.AddComponent<BoxColliderComponent>(32, 32);
+  truck.AddComponent<TagComponent>(Tag::Enemy);
+  truck.AddComponent<HealthComponent>(50);
+  truck.AddComponent<AIComponent>(60, AIBehavior::Chase);
+  // truck.AddComponent<ProjectileEmitterComponent>(glm::vec2(0.0, 100.0), 2000, 10000, 0, false);
+}
+
+void Game::SpawnUI() const {
+  Entity healthIndicator = registry->CreateEntity();
+  healthIndicator.AddComponent<NameComponent>("healthIndicator");
+  healthIndicator.AddComponent<TagComponent>(Tag::UIElement);
+  healthIndicator.AddComponent<SpriteComponent>("", 64, 64, 2, true);
+  healthIndicator.AddComponent<TransformComponent>(glm::vec2(30, windowHeight - 96), glm::vec2(1.0, 1.0), 0.0);
+  healthIndicator.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+
+  Entity armorIndicator = registry->CreateEntity();
+  armorIndicator.AddComponent<NameComponent>("armorIndicator");
+  armorIndicator.AddComponent<TagComponent>(Tag::UIElement);
+  armorIndicator.AddComponent<SpriteComponent>("", 64, 64, 2, true);
+  armorIndicator.AddComponent<TransformComponent>(glm::vec2(30 + 64, windowHeight - 96), glm::vec2(1.0, 1.0), 0.0);
+  armorIndicator.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+
+  Entity weaponSlot1 = registry->CreateEntity();
+  weaponSlot1.AddComponent<NameComponent>("weaponSlot1");
+  weaponSlot1.AddComponent<TagComponent>(Tag::UIElement);
+  weaponSlot1.AddComponent<SpriteComponent>("", 64, 64, 2, true);
+  weaponSlot1.AddComponent<TransformComponent>(glm::vec2(windowWidth/2 - 128, windowHeight - 96), glm::vec2(1.0, 1.0), 0.0);
+  weaponSlot1.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+
+  Entity weaponSlot2 = registry->CreateEntity();
+  weaponSlot2.AddComponent<NameComponent>("weaponSlot2");
+  weaponSlot2.AddComponent<TagComponent>(Tag::UIElement);
+  weaponSlot2.AddComponent<SpriteComponent>("", 64, 64, 2, true);
+  weaponSlot2.AddComponent<TransformComponent>(glm::vec2(windowWidth/2 - 64, windowHeight - 96), glm::vec2(1.0, 1.0), 0.0);
+  weaponSlot2.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+
+  Entity attackSlot1 = registry->CreateEntity();
+  attackSlot1.AddComponent<NameComponent>("attackSlot1");
+  attackSlot1.AddComponent<TagComponent>(Tag::UIElement);
+  attackSlot1.AddComponent<SpriteComponent>("", 64, 64, 2, true);
+  attackSlot1.AddComponent<TransformComponent>(glm::vec2(windowWidth/2 + 64, windowHeight - 96), glm::vec2(1.0, 1.0), 0.0);
+  attackSlot1.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+
+  Entity attackSlot2 = registry->CreateEntity();
+  attackSlot2.AddComponent<NameComponent>("attackSlot2");
+  attackSlot2.AddComponent<TagComponent>(Tag::UIElement);
+  attackSlot2.AddComponent<SpriteComponent>("", 64, 64, 2, true);
+  attackSlot2.AddComponent<TransformComponent>(glm::vec2(windowWidth/2 + 128, windowHeight - 96), glm::vec2(1.0, 1.0), 0.0);
+  attackSlot2.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+
+  Entity attackSlot3 = registry->CreateEntity();
+  attackSlot3.AddComponent<NameComponent>("attackSlot3");
+  attackSlot3.AddComponent<TagComponent>(Tag::UIElement);
+  attackSlot3.AddComponent<SpriteComponent>("", 64, 64, 2, true);
+  attackSlot3.AddComponent<TransformComponent>(glm::vec2(windowWidth/2 + 192, windowHeight - 96), glm::vec2(1.0, 1.0), 0.0);
+  attackSlot3.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+
+  Entity specialAttackGauger = registry->CreateEntity();
+  specialAttackGauger.AddComponent<NameComponent>("specialAttackGauger");
+  specialAttackGauger.AddComponent<TagComponent>(Tag::UIElement);
+  specialAttackGauger.AddComponent<SpriteComponent>("", 64, 64, 2, true);
+  specialAttackGauger.AddComponent<TransformComponent>(glm::vec2(windowWidth - 64 - 30, windowHeight - 96), glm::vec2(1.0, 1.0), 0.0);
+  specialAttackGauger.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+
+  Entity itemBags = registry->CreateEntity();
+  itemBags.AddComponent<NameComponent>("itemBags");
+  itemBags.AddComponent<TagComponent>(Tag::UIElement);
+  itemBags.AddComponent<SpriteComponent>("", 64, 64, 2, true);
+  itemBags.AddComponent<TransformComponent>(glm::vec2(windowWidth - 64 - 30, 30), glm::vec2(1.0, 1.0), 0.0);
+  itemBags.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+}
+

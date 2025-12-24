@@ -279,8 +279,7 @@ bool Entity::HasComponent() const {
     return registry->HasComponent<TComponent>(*this);
 }
 
-template<typename TComponent>
-TComponent& Entity::GetComponent() const {
+template<typename TComponent> TComponent &Entity::GetComponent() const {
     return registry->GetComponent<TComponent>(*this);
 }
 
