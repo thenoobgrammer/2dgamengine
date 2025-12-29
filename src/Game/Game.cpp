@@ -183,7 +183,6 @@ void Game::ProcessInput() {
       break;
     case SDL_MOUSEBUTTONDOWN:
       eventBus->Emit<MouseEvent>(event.button);
-      Logger::Log("Pressed a mouse button + " + std::to_string(event.button.button));
       break;
     case SDL_MOUSEMOTION:
       eventBus->Emit<MouseEvent>(event.motion);

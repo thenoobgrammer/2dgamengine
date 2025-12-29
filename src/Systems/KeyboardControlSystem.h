@@ -59,7 +59,7 @@ class KeyboardControlSystem : public System {
                         break;
                     case SDLK_SPACE:
                         projectile.shouldEmit = true;
-                        projectile.velocity = rigidbody.direction * 400.0f;
+                        projectile.velocity = glm::vec2(1.0) * 400.0f;
                         break;
                 }
             }

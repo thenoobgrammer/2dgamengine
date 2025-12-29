@@ -2,7 +2,6 @@
 #define INC_2DGAMEENGINE_FOLLOWMOUSEMOVEMENT_H
 
 #include "../Components/PlayerComponent.h"
-#include "../Components/ProjectileEmitterComponent.h"
 #include "../Components/TransformComponent.h"
 #include "../ECS/ECS.h"
 #include "../Events/MouseEvent.h"
