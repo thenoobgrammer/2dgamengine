@@ -2,6 +2,8 @@
 #define INC_2DGAMEENGINE_PROJECTILEEMITSYSTEM_H
 
 #include "../Components/BoxColliderComponent.h"
+#include "../Components/MouseTrackComponent.h"
+#include "../Components/PlayerComponent.h"
 #include "../Components/ProjectileComponent.h"
 #include "../Components/ProjectileEmitterComponent.h"
 #include "../Components/RigidBodyComponent.h"
@@ -30,6 +32,10 @@ public:
                     const auto sprite = entity.GetComponent<SpriteComponent>();
                     projectilePosition.x += (transform.scale.x * sprite.width / 2);
                     projectilePosition.y += (transform.scale.y * sprite.height / 2);
+                }
+                if (entity.HasComponent<PlayerComponent>()) {
+                    auto track = entity.GetComponent<MouseTrackComponent>();
+
                 }
                 Entity projectile = registry->CreateEntity();
                 projectile.AddComponent<NameComponent>("projectile");

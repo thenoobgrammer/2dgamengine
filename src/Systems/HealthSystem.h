@@ -8,7 +8,6 @@
 
 class HealthSystem: public System {
 private:
-  EventBus* eventBus = nullptr;
   Registry* registry = nullptr;
 
 public:
@@ -18,7 +17,6 @@ public:
   ~HealthSystem() = default;
 
   void Subscribe(std::unique_ptr<EventBus>& eventBus, std::unique_ptr<Registry>& registry) {
-    this->eventBus = eventBus.get();
     this->registry = registry.get();
     eventBus->Subscribe<DamageEvent>(this, &HealthSystem::onReceiveDamage);
   }

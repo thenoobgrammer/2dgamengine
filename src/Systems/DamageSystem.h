@@ -32,15 +32,6 @@ class DamageSystem: public System {
             bool bIsProjectile = event.b.HasComponent<TagComponent>() &&
                 event.b.GetComponent<TagComponent>().tag == Tag::Projectile;
 
-            if (event.a.HasComponent<NameComponent>()) {
-                std::string aName = event.a.GetComponent<NameComponent>().name;
-                Logger::Log("A name " + aName);
-            }
-            if (event.b.HasComponent<NameComponent>()) {
-                std::string bName = event.b.GetComponent<NameComponent>().name;
-                Logger::Log("B name " + bName);
-            }
-
             if (aIsProjectile && event.b.HasComponent<HealthComponent>()) {
                 projectile = event.a;
                 target = event.b;

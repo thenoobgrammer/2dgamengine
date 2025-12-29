@@ -1,0 +1,6 @@
+#ifndef INC_2DGAMEENGINE_PLAYERCOMPONENT_H
+#define INC_2DGAMEENGINE_PLAYERCOMPONENT_H
+
+struct PlayerComponent {};
+
+#endif

@@ -32,12 +32,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Damage now fades in">
-      <change afterPath="$PROJECT_DIR$/src/Components/AIComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Systems/AISystem.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/MouseTrackComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/PlayerComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Events/MouseEvent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/EnemyFactory.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/EnemyFactory.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Systems/MouseTrackingSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ECS/ECS.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/ECS/ECS.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/AISystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/AISystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/DamageSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/DamageSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/HealthSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/HealthSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/KeyboardControlSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/KeyboardControlSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/ProjectileEmitSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/ProjectileEmitSystem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +109,7 @@
     "cf.advertisement.text.overridden": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "change-assets-set",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs/sdl/lib",
     "node.js.detected.package.eslint": "true",

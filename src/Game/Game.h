@@ -6,6 +6,7 @@
 #include "../AssetStore/AssetStore.h"
 #include "../ECS/ECS.h"
 #include "../EventBus/EventBus.h"
+#include "../Factory/EnemyFactory.h"
 
 const int FPS = 60;
 const int MILLISECONDS_PER_FRAME = 1000 / FPS;
@@ -22,6 +23,7 @@ private:
     std::unique_ptr<Registry> registry;
     std::unique_ptr<AssetStore> assetStore;
     std::unique_ptr<EventBus> eventBus;
+    std::unique_ptr<EnemyFactory> enemyFactory;
 
     void RegisterSystems() const;
     void LoadAssets() const;
@@ -31,7 +33,6 @@ private:
     void SpawnPlayer() const;
     void SpawnTank() const;
     void SpawnTruck() const;
-    void SpawnRadar() const;
     void SpawnUI() const;
 
 public:
@@ -50,6 +51,8 @@ public:
     static int windowHeight;
     static int mapWidth;
     static int mapHeight;
+    static int mouseX;
+    static int mouseY;
 };
 
 #endif //INC_2DGAMEENGINE_GAME_H
