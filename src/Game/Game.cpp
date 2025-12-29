@@ -22,10 +22,13 @@
 #include "../Systems/RenderSystem.h"
 #include "Game.h"
 
+#include "../Components/MouseTrackComponent.h"
 #include "../Components/NameComponent.h"
+#include "../Components/PlayerComponent.h"
 #include "../Components/TagComponent.h"
 #include "../Systems/AISystem.h"
 #include "../Systems/HealthSystem.h"
+#include "../Systems/MouseTrackingSystem.h"
 #include "../Systems/RenderTextSystem.h"
 
 #include <sstream>
@@ -34,6 +37,8 @@ int Game::windowWidth;
 int Game::windowHeight;
 int Game::mapWidth;
 int Game::mapHeight;
+int Game::mouseX;
+int Game::mouseY;
 
 Game::Game() {
   isRunning = false;
@@ -41,6 +46,7 @@ Game::Game() {
   registry = std::make_unique<Registry>();
   assetStore = std::make_unique<AssetStore>();
   eventBus = std::make_unique<EventBus>();
+  enemyFactory = std::make_unique<EnemyFactory>(registry);
 }
 
 Game::~Game() = default;
@@ -175,6 +181,12 @@ void Game::ProcessInput() {
       }
       eventBus->Emit<KeyPressedEvent>(event.key.keysym.sym);
       break;
+    case SDL_MOUSEBUTTONDOWN:
+      eventBus->Emit<MouseEvent>(event.button);
+      break;
+    case SDL_MOUSEMOTION:
+      eventBus->Emit<MouseEvent>(event.motion);
+      break;
     }
   }
 }
@@ -191,6 +203,7 @@ void Game::RegisterSystems() const {
   registry->AddSystem<HealthSystem>();
   registry->AddSystem<RenderTextSystem>();
   registry->AddSystem<AISystem>();
+  registry->AddSystem<MouseTrackingSystem>();
 }
 
 void Game::Render() const {
@@ -246,6 +259,7 @@ void Game::Update() {
   registry->GetSystem<DamageSystem>().Subscribe(eventBus);
   registry->GetSystem<KeyboardControlSystem>().Subscribe(eventBus);
   registry->GetSystem<HealthSystem>().Subscribe(eventBus, registry);
+  registry->GetSystem<MouseTrackingSystem>().Subscribe(eventBus);
 
   // Update the registry to process the netities that are waiting to be created/deleted
   registry->Update();
@@ -258,10 +272,12 @@ void Game::Update() {
   registry->GetSystem<CameraMovementSystem>().Update(camera);
   registry->GetSystem<HealthSystem>().Update();
   registry->GetSystem<AISystem>().Update();
+  registry->GetSystem<MouseTrackingSystem>().Update();
 }
 
 void Game::SpawnPlayer() const {
   Entity player = registry->CreateEntity();
+  player.AddComponent<PlayerComponent>();
   player.AddComponent<NameComponent>("player");
   player.AddComponent<TransformComponent>(glm::vec2(50.0, 120.0), glm::vec2(1.0, 1.0), 0.0);
   player.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
@@ -275,33 +291,16 @@ void Game::SpawnPlayer() const {
       glm::vec2(-200, 0)
   );
   player.AddComponent<CameraFollowComponent>();
-  player.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 0, 10000);
+  player.AddComponent<ProjectileEmitterComponent>(glm::vec2(0), 0, 10000);
+  player.AddComponent<MouseTrackComponent>();
 }
 
 void Game::SpawnTank() const {
-  Entity tank = registry->CreateEntity();
-  tank.AddComponent<NameComponent>("tank");
-  tank.AddComponent<TransformComponent>(glm::vec2(500.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
-  tank.AddComponent<RigidBodyComponent>(glm::vec2(0));
-  tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 1);
-  tank.AddComponent<BoxColliderComponent>(32, 32);
-  tank.AddComponent<TagComponent>(Tag::Enemy);
-  tank.AddComponent<HealthComponent>(50);
-  tank.AddComponent<AIComponent>(60, AIBehavior::Chase);
-  tank.AddComponent<ProjectileEmitterComponent>(glm::vec2(100.0, 0.0), 5000, 10000, 0, false);
+  enemyFactory->Spawn(EnemyType::Tank, glm::vec2(10.0, 10.0));
 }
 
 void Game::SpawnTruck() const {
-  Entity truck = registry->CreateEntity();
-  truck.AddComponent<NameComponent>("truck");
-  truck.AddComponent<TransformComponent>(glm::vec2(10.0, 60.0), glm::vec2(1.0, 1.0), 0.0);
-  truck.AddComponent<RigidBodyComponent>(glm::vec2(0));
-  truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 2);
-  truck.AddComponent<BoxColliderComponent>(32, 32);
-  truck.AddComponent<TagComponent>(Tag::Enemy);
-  truck.AddComponent<HealthComponent>(50);
-  truck.AddComponent<AIComponent>(60, AIBehavior::Chase);
-  // truck.AddComponent<ProjectileEmitterComponent>(glm::vec2(0.0, 100.0), 2000, 10000, 0, false);
+  enemyFactory->Spawn(EnemyType::Truck, glm::vec2(500.0, 10.0));
 }
 
 void Game::SpawnUI() const {

@@ -28,7 +28,7 @@ class AISystem: public System {
         if (!entity.HasComponent<AIComponent>()) continue;
 
         const auto& ai = entity.GetComponent<AIComponent>();
-        const auto& transform = entity.GetComponent<TransformComponent>();
+        auto& transform = entity.GetComponent<TransformComponent>();
         auto& rigidBody = entity.GetComponent<RigidBodyComponent>();
 
         if (ai.behavior == AIBehavior::Chase) {
@@ -36,6 +36,14 @@ class AISystem: public System {
           const int directionY = (playerTransform.position.y < transform.position.y) ? -1 : 1;
           rigidBody.velocity.x = directionX * ai.chaseSpeed;
           rigidBody.velocity.y = directionY * ai.chaseSpeed;
+
+
+          float deltaX = playerTransform.position.x - transform.position.x;
+          float deltaY = playerTransform.position.y - transform.position.y;
+          float angleRadians = std::atan2(deltaY, deltaX);
+          float angleDegrees = angleRadians * 180.0f / M_PI;
+          transform.rotation = angleDegrees;
+
         } else if (ai.behavior == AIBehavior::Idle) {
           rigidBody.velocity.x = 0;
           rigidBody.velocity.y = 0;

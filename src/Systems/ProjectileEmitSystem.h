@@ -2,6 +2,8 @@
 #define INC_2DGAMEENGINE_PROJECTILEEMITSYSTEM_H
 
 #include "../Components/BoxColliderComponent.h"
+#include "../Components/MouseTrackComponent.h"
+#include "../Components/PlayerComponent.h"
 #include "../Components/ProjectileComponent.h"
 #include "../Components/ProjectileEmitterComponent.h"
 #include "../Components/RigidBodyComponent.h"
@@ -10,42 +12,55 @@
 #include "../ECS/ECS.h"
 #include <SDL.h>
 
-class ProjectileEmitSystem: public System {
+class ProjectileEmitSystem : public System {
 public:
-    ProjectileEmitSystem() {
-        RequireComponent<TransformComponent>();
-        RequireComponent<ProjectileEmitterComponent>();
-    }
+  ProjectileEmitSystem() {
+    RequireComponent<TransformComponent>();
+    RequireComponent<ProjectileEmitterComponent>();
+  }
 
-    void Update(std::unique_ptr<Registry>& registry) {
-        for (auto entity: GetSystemEntities()) {
-            auto& projectileEmitter = entity.GetComponent<ProjectileEmitterComponent>();
-            const auto transform = entity.GetComponent<TransformComponent>();
+  void Update(std::unique_ptr<Registry> &registry) {
+    for (auto entity : GetSystemEntities()) {
+      auto &projectileEmitter =
+          entity.GetComponent<ProjectileEmitterComponent>();
+      const auto transform = entity.GetComponent<TransformComponent>();
 
-            if ((projectileEmitter.repeatFrequency != 0 &&
-                SDL_GetTicks() - projectileEmitter.lastEmissionTime > projectileEmitter.repeatFrequency)
-                || projectileEmitter.shouldEmit) {
-                glm::vec2 projectilePosition = transform.position;
-                if (entity.HasComponent<SpriteComponent>()) {
-                    const auto sprite = entity.GetComponent<SpriteComponent>();
-                    projectilePosition.x += (transform.scale.x * sprite.width / 2);
-                    projectilePosition.y += (transform.scale.y * sprite.height / 2);
-                }
-                Entity projectile = registry->CreateEntity();
-                projectile.AddComponent<NameComponent>("projectile");
-                projectile.AddComponent<TagComponent>(Tag::Projectile);
-                projectile.AddComponent<ProjectileComponent>(projectileEmitter.damage);
-                projectile.AddComponent<TransformComponent>(projectilePosition, glm::vec2(1.0, 1.0), 0.0);
-                projectile.AddComponent<RigidBodyComponent>(projectileEmitter.velocity);
-                projectile.AddComponent<SpriteComponent>("bullet-image", 4, 4, 4);
-                projectile.AddComponent<BoxColliderComponent>(4, 4);
+      if ((projectileEmitter.repeatFrequency != 0 &&
+           SDL_GetTicks() - projectileEmitter.lastEmissionTime >
+               projectileEmitter.repeatFrequency) ||
+          projectileEmitter.shouldEmit) {
+        glm::vec2 projectilePosition = transform.position;
+        glm::vec2 projectileVelocity = projectileEmitter.velocity;
 
-                // Update projectile emitter component
-                projectileEmitter.lastEmissionTime = static_cast<int>(SDL_GetTicks());
-                projectileEmitter.shouldEmit = false;
-            }
+        if (entity.HasComponent<SpriteComponent>()) {
+          const auto sprite = entity.GetComponent<SpriteComponent>();
+          projectilePosition.x += (transform.scale.x * sprite.width / 2);
+          projectilePosition.y += (transform.scale.y * sprite.height / 2);
         }
+        if (entity.HasComponent<PlayerComponent>()) {
+          auto track = entity.GetComponent<MouseTrackComponent>();
+          auto deltaX = track.mouseX - projectilePosition.x;
+          auto deltaY = track.mouseY - projectilePosition.y;
+          auto radians = atan2(deltaX, deltaY);
+
+          projectileVelocity = glm::vec2(projectileEmitter.velocity.x * sin(radians), projectileEmitter.velocity.y * cos(radians));
+        }
+        Entity projectile = registry->CreateEntity();
+        projectile.AddComponent<NameComponent>("projectile");
+        projectile.AddComponent<TagComponent>(Tag::Projectile);
+        projectile.AddComponent<ProjectileComponent>(projectileEmitter.damage);
+        projectile.AddComponent<TransformComponent>(projectilePosition,
+                                                    glm::vec2(1.0, 1.0), 0.0);
+        projectile.AddComponent<RigidBodyComponent>(projectileVelocity);
+        projectile.AddComponent<SpriteComponent>("bullet-image", 4, 4, 4);
+        projectile.AddComponent<BoxColliderComponent>(4, 4);
+
+        // Update projectile emitter component
+        projectileEmitter.lastEmissionTime = static_cast<int>(SDL_GetTicks());
+        projectileEmitter.shouldEmit = false;
+      }
     }
+  }
 };
 
-#endif //INC_2DGAMEENGINE_PROJECTILEEMITSYSTEM_H
+#endif // INC_2DGAMEENGINE_PROJECTILEEMITSYSTEM_H

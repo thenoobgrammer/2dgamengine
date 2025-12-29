@@ -62,6 +62,12 @@ add_executable(2dgameengine src/Main.cpp
         src/Components/LifeTimeComponent.h
         src/Systems/AISystem.h
         src/Components/AIComponent.h
+        src/Factory/EnemyFactory.h
+        src/Factory/EnemyFactory.cpp
+        src/Systems/MouseTrackingSystem.h
+        src/Components/PlayerComponent.h
+        src/Events/MouseEvent.h
+        src/Components/MouseTrackComponent.h
 )
 
 # Link libraries - use lua54 since you have liblua54.a
