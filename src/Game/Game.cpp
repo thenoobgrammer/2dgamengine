@@ -47,6 +47,7 @@ Game::Game() {
   assetStore = std::make_unique<AssetStore>();
   eventBus = std::make_unique<EventBus>();
   enemyFactory = std::make_unique<EnemyFactory>(registry);
+  levelFactory = std::make_unique<LevelFactory>();
 }
 
 Game::~Game() = default;
@@ -121,6 +122,7 @@ void Game::LoadLevel(const int level) const {
   RegisterSystems();
   LoadAssets();
   LoadFonts();
+  levelFactory->LoadLevel(level);
   LoadTilemapLayer("tileset-grass", "level_0_Grass.csv", 0, 32, 2.0, 8);
   LoadTilemapLayer("tileset-wall", "level_0_Stones.csv", 1, 32, 2.0, 8);
   LoadTilemapLayer("tileset-stone-ground", "level_0_Structures.csv", 2, 32, 2.0, 16);
