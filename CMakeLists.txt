@@ -4,7 +4,11 @@ project(2dgameengine)
 set(CMAKE_CXX_STANDARD 17)
 
 # Point to your SDL2 directory
-set(SDL2_ROOT "C:/SDL2")
+if(WIN32)
+    set(SDL2_ROOT "C:/SDL2")
+elseif (APPLE)
+    set(SDL2_ROOT "/opt/homebrew")
+endif()
 
 # Add SDL include directories
 include_directories(${SDL2_ROOT}/include/SDL2)
@@ -78,12 +82,23 @@ add_executable(2dgameengine src/Main.cpp
 )
 
 # Link libraries - use lua54 since you have liblua54.a
-target_link_libraries(2dgameengine
-        mingw32
-        SDL2main
-        SDL2
-        SDL2_image
-        SDL2_ttf
-        lua53
-        jsoncpp_static
-)
+if(WIN32)
+    target_link_libraries(2dgameengine
+            mingw32
+            SDL2main
+            SDL2
+            SDL2_image
+            SDL2_ttf
+            lua53
+            jsoncpp_static
+    )
+elseif(APPLE)
+    link_directories(/opt/homebrew/lib)
+    target_link_libraries(2dgameengine
+            SDL2
+            SDL2_image
+            SDL2_ttf
+            lua
+            jsoncpp
+    )
+endif()

@@ -47,7 +47,7 @@ Game::Game() {
   assetStore = std::make_unique<AssetStore>();
   eventBus = std::make_unique<EventBus>();
   enemyFactory = std::make_unique<EnemyFactory>(registry);
-  levelFactory = std::make_unique<LevelFactory>();
+  levelFactory = std::make_unique<LevelFactory>(registry);
 }
 
 Game::~Game() = default;
@@ -123,49 +123,7 @@ void Game::LoadLevel(const int level) const {
   LoadAssets();
   LoadFonts();
   levelFactory->LoadLevel(level);
-  LoadTilemapLayer("tileset-grass", "level_0_Grass.csv", 0, 32, 2.0, 8);
-  LoadTilemapLayer("tileset-wall", "level_0_Stones.csv", 1, 32, 2.0, 8);
-  LoadTilemapLayer("tileset-stone-ground", "level_0_Structures.csv", 2, 32, 2.0, 16);
   SpawnEntities(level);
-}
-
-void Game::LoadTilemapLayer(const std::string& assetId, const std::string& filename, int zIndex, int tileSize, double tileScale, int tileSetCols) const {
-  std::fstream mapFile;
-  mapFile.open("../assetsv2/maps/" + filename);
-
-  std::string line;
-  int y = 0;
-  int maxX = 0;
-
-  while (std::getline(mapFile, line)) {
-    std::stringstream ss(line);
-    std::string tileIdStr;
-    int x = 0;
-
-    while (std::getline(ss, tileIdStr, ',')) {
-      int tileId = std::stoi(tileIdStr);
-      if (tileId >= 0) {
-        int srcRectX = (tileId % tileSetCols) * tileSize;
-        int srcRectY = (tileId / tileSetCols) * tileSize;
-
-        Entity tile = registry->CreateEntity();
-        tile.AddComponent<TransformComponent>(
-            glm::vec2(x * tileScale * tileSize, y * tileScale * tileSize),
-            glm::vec2(tileScale, tileScale),
-            0.0
-        );
-        tile.AddComponent<SpriteComponent>(assetId, tileSize, tileSize, zIndex, false, srcRectX, srcRectY);
-      }
-
-      x++;
-    }
-    if (x > maxX) maxX = x;
-    y++;
-  }
-
-  mapFile.close();
-  mapWidth = maxX * tileSize * tileScale;
-  mapHeight = y * tileSize * tileScale;
 }
 
 void Game::ProcessInput() {
@@ -232,7 +190,7 @@ void Game::Run() {
 }
 
 void Game::Setup() {
-  LoadLevel(1);
+  LoadLevel(0);
 }
 
 void Game::SpawnEntities(const int level) const {

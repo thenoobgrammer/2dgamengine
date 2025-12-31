@@ -30,7 +30,6 @@ private:
     void RegisterSystems() const;
     void LoadAssets() const;
     void LoadFonts() const;
-    void LoadTilemapLayer(const std::string& assetId, const std::string& filename, int zIndex, int tileSize, double tileScale, int tileSetCols) const;
     void SpawnEntities(const int level) const;
     void SpawnPlayer() const;
     void SpawnTank() const;
