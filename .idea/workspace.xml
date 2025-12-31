@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="4" type="long" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="Cpp.Editor" type="string" />
@@ -31,12 +32,26 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Added some ai component for enemies to chase player">
+    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Projectiles go in the directions of the mouse">
+      <change afterPath="$PROJECT_DIR$/assetsv2/levels/level_0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/allocator.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/assertions.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/config.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/forwards.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/json.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/json_features.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/libjsoncpp.dll.a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/libjsoncpp_static.a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/reader.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/value.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/version.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/writer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/LevelFactory.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Factory/LevelFactory.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Systems/KeyboardControlSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/KeyboardControlSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Systems/MouseTrackingSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/MouseTrackingSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Systems/ProjectileEmitSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/ProjectileEmitSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,10 +76,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../SDL2/include/SDL2/SDL_events.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/ECS/ECS.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/ECS/ECS.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/Game/Game.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/Game/Game.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/Systems/ProjectileEmitSystem.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -107,7 +119,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\CLion 2025.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -118,19 +130,14 @@
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\sdl\include" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\jsoncpp" />
+      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\json" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\assetsv2\images\player" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\assetsv2\tilesets" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\assetsv2\images" />
-      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\src" />
-      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\lua" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="2dgameengine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2dgameengine" TARGET_NAME="2dgameengine" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2dgameengine" RUN_TARGET_NAME="2dgameengine">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -159,7 +166,7 @@
       <workItem from="1765771939998" duration="8378000" />
       <workItem from="1765780658298" duration="35376000" />
       <workItem from="1766178473481" duration="6848000" />
-      <workItem from="1767025465687" duration="3654000" />
+      <workItem from="1767025465687" duration="14918000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -233,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766355120144</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Projectiles go in the directions of the mouse">
+      <option name="closed" value="true" />
+      <created>1767030871311</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1767030871311</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,7 +269,8 @@
     <MESSAGE value="Refactoring #1" />
     <MESSAGE value="Added some damage system&#10;Chopper can now shoot bullets in the right direction&#10;Added health component and system for killing enemy entities when they are 0 health&#10;Added TagComponent for tagging entities&#10;Added NameComponent for debugging entities" />
     <MESSAGE value="Damage now fades in" />
-    <option name="LAST_COMMIT_MESSAGE" value="Damage now fades in" />
+    <MESSAGE value="Projectiles go in the directions of the mouse" />
+    <option name="LAST_COMMIT_MESSAGE" value="Projectiles go in the directions of the mouse" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

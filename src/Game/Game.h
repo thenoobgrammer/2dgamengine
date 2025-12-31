@@ -7,6 +7,7 @@
 #include "../ECS/ECS.h"
 #include "../EventBus/EventBus.h"
 #include "../Factory/EnemyFactory.h"
+#include "../Factory/LevelFactory.h"
 
 const int FPS = 60;
 const int MILLISECONDS_PER_FRAME = 1000 / FPS;
@@ -24,11 +25,11 @@ private:
     std::unique_ptr<AssetStore> assetStore;
     std::unique_ptr<EventBus> eventBus;
     std::unique_ptr<EnemyFactory> enemyFactory;
+    std::unique_ptr<LevelFactory> levelFactory;
 
     void RegisterSystems() const;
     void LoadAssets() const;
     void LoadFonts() const;
-    void LoadTilemapLayer(const std::string& assetId, const std::string& filename, int zIndex, int tileSize, double tileScale, int tileSetCols) const;
     void SpawnEntities(const int level) const;
     void SpawnPlayer() const;
     void SpawnTank() const;

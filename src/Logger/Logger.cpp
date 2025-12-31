@@ -2,7 +2,10 @@
 #include <iostream>
 #include <iomanip>
 #include <chrono>
+#include <sstream>
+#ifdef _WIN32
 #include <windows.h>
+#endif
 
 const std::string RESET = "\033[0m";
 const std::string RED = "\033[31m";
@@ -19,8 +22,11 @@ std::string getFormattedDate() {
 }
 
 void setColor(int color) {
+#ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, color);
+#else
+#endif
 }
 
 void Logger::Log(const std::string& message) {

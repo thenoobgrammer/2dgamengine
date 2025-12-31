@@ -1,0 +1,37 @@
+{
+  "id": 0,
+  "name": "Level 0 - The tutorial",
+  "tilemap_layers": [
+    {
+      "asset_id": "tileset-grass",
+      "filepath": "level_0_Grass.csv",
+      "z_index": 0,
+      "tile_size": 32,
+      "tile_scale": 2.0,
+      "tileset_columns": 8
+    },
+    {
+      "asset_id": "tileset-wall",
+      "filepath": "level_0_Stones.csv",
+      "z_index": 1,
+      "tile_size": 32,
+      "tile_scale": 2.0,
+      "tileset_columns": 8
+    },
+    {
+      "asset_id": "tileset-stone-ground",
+      "filepath": "level_0_Structures.csv",
+      "z_index": 2,
+      "tile_size": 32,
+      "tile_scale": 2.0,
+      "tileset_columns": 16
+    }
+  ],
+  "total_enemy_count": 20,
+  "enemies": {
+    "1": 5,
+    "2": 5,
+    "3": 5,
+    "4": 5
+  }
+}
