@@ -33,25 +33,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Projectiles go in the directions of the mouse">
-      <change afterPath="$PROJECT_DIR$/assetsv2/levels/level_0.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/allocator.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/assertions.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/config.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/forwards.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/json.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/json_features.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/libjsoncpp.dll.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/libjsoncpp_static.a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/reader.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/value.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/version.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/jsoncpp/writer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory/LevelFactory.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Factory/LevelFactory.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/images/TX Plant.png" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/tilesets/TX Plant.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/images/TX Props.png" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/tilesets/TX Props.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/images/TX Struct.png" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/tilesets/TX Struct.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/levels/level_0.json" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/levels/level_0.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/maps/level_0_Grass.csv" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/maps/level_0_Grass.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/maps/level_0_Stones.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/maps/level_0_Structures.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/maps/map_0.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/maps/map_0.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Plant.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/tilesets/TX Plant.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Props.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/tilesets/TX Props.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Struct.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/tilesets/TX Struct.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tiled-project.tiled-session" beforeDir="false" afterPath="$PROJECT_DIR$/tiled-project.tiled-session" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,49 +91,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;C/C++ File.Run.executor&quot;: &quot;Run&quot;,
-    &quot;CMake Application.2dgameengine.executor&quot;: &quot;Run&quot;,
-    &quot;Makefile Target.Run.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
-    &quot;cf.advertisement.text.overridden&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;mouse-tracking-system&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs/sdl/lib&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\CLion 2025.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C/C++ File.Run.executor": "Run",
+    "CMake Application.2dgameengine.executor": "Run",
+    "Makefile Target.Run.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "cf.advertisement.text.overridden": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/libs/sdl/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "fileTemplates",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\CLion 2025.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\sdl\lib" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\sdl\include" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\assetsv2\tilesets" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\jsoncpp" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\json" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\assetsv2\images\player" />
-      <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\assetsv2\tilesets" />
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\assetsv2\images" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="2dgameengine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2dgameengine" TARGET_NAME="2dgameengine" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2dgameengine" RUN_TARGET_NAME="2dgameengine">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />

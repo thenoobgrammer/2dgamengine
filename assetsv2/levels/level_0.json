@@ -11,17 +11,9 @@
       "tileset_columns": 8
     },
     {
-      "asset_id": "tileset-wall",
-      "filepath": "level_0_Stones.csv",
+      "asset_id": "tileset-props",
+      "filepath": "level_0_Props.csv",
       "z_index": 1,
-      "tile_size": 32,
-      "tile_scale": 2.0,
-      "tileset_columns": 8
-    },
-    {
-      "asset_id": "tileset-stone-ground",
-      "filepath": "level_0_Structures.csv",
-      "z_index": 2,
       "tile_size": 32,
       "tile_scale": 2.0,
       "tileset_columns": 16

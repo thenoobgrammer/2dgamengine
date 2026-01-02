@@ -111,6 +111,7 @@ void Game::LoadAssets() const {
 
   assetStore->LoadTexture(renderer, "tileset-grass", "../assetsv2/tilesets/TX Tileset Grass.png");
   assetStore->LoadTexture(renderer, "tileset-stone-ground", "../assetsv2/tilesets/TX Tileset Stone Ground.png");
+  assetStore->LoadTexture(renderer, "tileset-props", "../assetsv2/tilesets/TX Props.png");
   assetStore->LoadTexture(renderer, "tileset-wall", "../assetsv2/tilesets/TX Tileset Wall.png");
 }
 
