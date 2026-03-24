@@ -30,10 +30,8 @@ private:
     void RegisterSystems() const;
     void LoadAssets() const;
     void LoadFonts() const;
-    void SpawnEntities(const int level) const;
+    void SpawnEntities(int level) const;
     void SpawnPlayer() const;
-    void SpawnTank() const;
-    void SpawnTruck() const;
     void SpawnUI() const;
 
 public:

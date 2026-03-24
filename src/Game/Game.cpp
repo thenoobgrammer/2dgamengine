@@ -47,7 +47,7 @@ Game::Game() {
   assetStore = std::make_unique<AssetStore>();
   eventBus = std::make_unique<EventBus>();
   enemyFactory = std::make_unique<EnemyFactory>(registry);
-  levelFactory = std::make_unique<LevelFactory>(registry);
+  levelFactory = std::make_unique<LevelFactory>(registry, enemyFactory);
 }
 
 Game::~Game() = default;
@@ -103,8 +103,8 @@ void Game::Initialize() {
 void Game::LoadAssets() const {
   assetStore->LoadTexture(renderer, "player-image", "../assetsv2/images/TX Player.png");
   assetStore->LoadTexture(renderer, "chopper-image", "../assets/images/chopper-spritesheet.png");
-  assetStore->LoadTexture(renderer, "tank-image", "../assets/images/tank-panther-right.png");
-  assetStore->LoadTexture(renderer, "truck-image", "../assets/images/truck-ford-right.png");
+  assetStore->LoadTexture(renderer, "tank", "../assets/images/tank-panther-right.png");
+  assetStore->LoadTexture(renderer, "truck", "../assets/images/truck-ford-right.png");
   assetStore->LoadTexture(renderer, "radar-image", "../assets/images/radar.png");
   assetStore->LoadTexture(renderer, "tilemap-image", "../assets/tilemaps/jungle.png");
   assetStore->LoadTexture(renderer, "bullet-image", "../assets/images/bullet.png");
@@ -196,8 +196,6 @@ void Game::Setup() {
 
 void Game::SpawnEntities(const int level) const {
   SpawnPlayer();
-  SpawnTank();
-  SpawnTruck();
   SpawnUI();
 }
 
@@ -256,13 +254,13 @@ void Game::SpawnPlayer() const {
   player.AddComponent<MouseTrackComponent>();
 }
 
-void Game::SpawnTank() const {
-  enemyFactory->Spawn(EnemyType::Tank, glm::vec2(10.0, 10.0));
-}
-
-void Game::SpawnTruck() const {
-  enemyFactory->Spawn(EnemyType::Truck, glm::vec2(500.0, 10.0));
-}
+// void Game::SpawnTank() const {
+//   enemyFactory->Spawn(EnemyType::Tank, glm::vec2(10.0, 10.0));
+// }
+//
+// void Game::SpawnTruck() const {
+//   enemyFactory->Spawn(EnemyType::Truck, glm::vec2(500.0, 10.0));
+// }
 
 void Game::SpawnUI() const {
   Entity healthIndicator = registry->CreateEntity();

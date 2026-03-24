@@ -25,7 +25,8 @@ class EnemyFactory {
 
   public:
     EnemyFactory(const std::unique_ptr<Registry> &registry);
-    void Spawn(EnemyType type, glm::vec2 position);
+    void Spawn(EnemyType type, glm::vec2 position, int count);
+    static EnemyType GetEnemyType(std::string name);
 };
 
 #endif

@@ -1,10 +1,12 @@
 {
   "id": 0,
   "name": "Level 0 - The tutorial",
+  "tmj_filepath": "level_0.tmj",
   "tilemap_layers": [
     {
       "asset_id": "tileset-grass",
       "filepath": "level_0_Grass.csv",
+      "tsj_filepath": "grass.tsj",
       "z_index": 0,
       "tile_size": 32,
       "tile_scale": 2.0,
@@ -13,6 +15,7 @@
     {
       "asset_id": "tileset-props",
       "filepath": "level_0_Props.csv",
+      "tsj_filepath": "props.tsj",
       "z_index": 1,
       "tile_size": 32,
       "tile_scale": 2.0,
@@ -21,9 +24,7 @@
   ],
   "total_enemy_count": 20,
   "enemies": {
-    "1": 5,
-    "2": 5,
-    "3": 5,
-    "4": 5
+    "tank": 10,
+    "truck": 10
   }
 }

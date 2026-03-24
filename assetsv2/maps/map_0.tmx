@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
  <editorsettings>
-  <export target="level_0.csv" format="csv"/>
+  <export target="level_0.tmj" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../tilesets/TX Tileset Grass.tsx"/>
  <tileset firstgid="65" source="../tilesets/TX Props.tsx"/>
@@ -29,7 +29,7 @@
 28,20,20,12,12,12,12,4,15,16,4,4,25,25,61,61,62,63,25,17,61,62,63,17,9
 </data>
  </layer>
- <layer id="3" name="Props" width="25" height="20">
+ <layer id="3" name="Props" width="25" height="20" opacity="0.94">
   <data encoding="csv">
 70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,218,0,0,0,134,134,0,70,0,
 86,79,80,0,0,0,0,0,0,0,0,0,0,0,0,0,234,0,0,0,150,150,0,86,0,
