@@ -7,9 +7,10 @@
 #include "../Components/SpriteComponent.h"
 #include "../EventBus/EventBus.h"
 #include "../Events/KeyPressedEvent.h"
+#include "../Events/KeyPressedEvent.h"
+#include "../Events/PickupItemEvent.h"
 #include <memory>
 
-#include "../Components/InventoryComponent.h"
 
 class KeyboardControlSystem : public System {
     private:
@@ -19,7 +20,7 @@ class KeyboardControlSystem : public System {
             RequireComponent<KeyboardControlledComponent>();
             RequireComponent<SpriteComponent>();
             RequireComponent<RigidBodyComponent>();
-            RequireComponent<ProjectileEmitterComponent>();\
+            RequireComponent<ProjectileEmitterComponent>();
         }
 
         void Subscribe(std::unique_ptr<EventBus>& eventBus) {
@@ -33,7 +34,6 @@ class KeyboardControlSystem : public System {
                 auto& sprite = entity.GetComponent<SpriteComponent>();
                 auto& rigidbody = entity.GetComponent<RigidBodyComponent>();
                 auto& projectile = entity.GetComponent<ProjectileEmitterComponent>();
-                auto& inventory = entity.GetComponent<InventoryComponent>();
 
                 switch (keyEvent.symbol) {
                     case SDLK_UP:
@@ -68,8 +68,7 @@ class KeyboardControlSystem : public System {
                         projectile.velocity = glm::vec2(1.0) * 400.0f;
                         break;
                     case SDLK_e:
-                        Logger::Log("I'm trying to pick up an item");
-                        eventBus->Emit<KeyPressedEvent>(keyEvent);
+                        eventBus->Emit<PickupItemEvent>(entity);
                         break;
                 }
             }

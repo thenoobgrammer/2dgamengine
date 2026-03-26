@@ -11,4 +11,4 @@ class DamageEvent: public Event {
     DamageEvent(Entity target, int damage): target(target), damage(damage) {}
 };
 
-#endif // INC_2DGAMEENGINE_DAMAGEEVENT_H
+#endif

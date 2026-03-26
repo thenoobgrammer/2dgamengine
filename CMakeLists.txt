@@ -24,11 +24,7 @@ include_directories(${CMAKE_SOURCE_DIR}/libs/jsoncpp)
 # Add SDL library directory
 link_directories(${SDL2_ROOT}/lib)
 
-# Add Lua library directory (where liblua54.a is)
-link_directories(${CMAKE_SOURCE_DIR}/libs/lua)
 
-# Add Jsoncpp lib
-link_directories(${CMAKE_SOURCE_DIR}/libs/jsoncpp)
 
 # Add your source files
 add_executable(2dgameengine src/Main.cpp

@@ -10,6 +10,7 @@
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/SpriteComponent.h"
 #include "../Components/TransformComponent.h"
+#include "../Components/InventoryComponent.h"
 #include "../ECS/ECS.h"
 #include "../Logger/Logger.h"
 #include "../Systems/AnimationSystem.h"
@@ -30,6 +31,7 @@
 #include "../Systems/HealthSystem.h"
 #include "../Systems/MouseTrackingSystem.h"
 #include "../Systems/RenderTextSystem.h"
+#include "../Systems/InventorySystem.h"
 
 #include <sstream>
 
@@ -165,6 +167,7 @@ void Game::RegisterSystems() const {
   registry->AddSystem<RenderTextSystem>();
   registry->AddSystem<AISystem>();
   registry->AddSystem<MouseTrackingSystem>();
+  registry->AddSystem<InventorySystem>();
 }
 
 void Game::Render() const {
@@ -219,6 +222,7 @@ void Game::Update() {
   registry->GetSystem<KeyboardControlSystem>().Subscribe(eventBus);
   registry->GetSystem<HealthSystem>().Subscribe(eventBus, registry);
   registry->GetSystem<MouseTrackingSystem>().Subscribe(eventBus);
+  registry->GetSystem<InventorySystem>().Subscribe(eventBus);
 
   // Update the registry to process the netities that are waiting to be created/deleted
   registry->Update();
@@ -232,6 +236,7 @@ void Game::Update() {
   registry->GetSystem<HealthSystem>().Update();
   registry->GetSystem<AISystem>().Update();
   registry->GetSystem<MouseTrackingSystem>().Update();
+  registry->GetSystem<InventorySystem>().Update();
 }
 
 void Game::SpawnPlayer() const {
@@ -252,15 +257,8 @@ void Game::SpawnPlayer() const {
   player.AddComponent<CameraFollowComponent>();
   player.AddComponent<ProjectileEmitterComponent>(glm::vec2(0), 0, 10000);
   player.AddComponent<MouseTrackComponent>();
+  player.AddComponent<InventoryComponent>();
 }
-
-// void Game::SpawnTank() const {
-//   enemyFactory->Spawn(EnemyType::Tank, glm::vec2(10.0, 10.0));
-// }
-//
-// void Game::SpawnTruck() const {
-//   enemyFactory->Spawn(EnemyType::Truck, glm::vec2(500.0, 10.0));
-// }
 
 void Game::SpawnUI() const {
   Entity healthIndicator = registry->CreateEntity();
@@ -326,4 +324,3 @@ void Game::SpawnUI() const {
   itemBags.AddComponent<TransformComponent>(glm::vec2(windowWidth - 64 - 30, 30), glm::vec2(1.0, 1.0), 0.0);
   itemBags.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
 }
-

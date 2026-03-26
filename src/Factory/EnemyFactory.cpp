@@ -8,7 +8,7 @@
 #include "../Components/SpriteComponent.h"
 #include "../Components/TagComponent.h"
 #include "../Components/TransformComponent.h"
-#include "../Game/Game.h"
+#include "../Components/InventoryComponent.h"
 
 EnemyFactory::EnemyFactory(const std::unique_ptr<Registry>& registry)
   : registry(registry.get()) {
@@ -37,5 +37,6 @@ void EnemyFactory::Spawn(EnemyType type, glm::vec2 position = glm::vec2(0), cons
     entity.AddComponent<BoxColliderComponent>(data.spriteWidth, data.spriteHeight);
     entity.AddComponent<HealthComponent>(data.health);
     entity.AddComponent<AIComponent>(data.chaseSpeed, data.behavior);
+    entity.AddComponent<InventoryComponent>(data.chaseSpeed, data.behavior);
   }
 }
