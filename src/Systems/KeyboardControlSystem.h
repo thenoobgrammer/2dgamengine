@@ -9,16 +9,21 @@
 #include "../Events/KeyPressedEvent.h"
 #include <memory>
 
+#include "../Components/InventoryComponent.h"
+
 class KeyboardControlSystem : public System {
+    private:
+        EventBus* eventBus = nullptr;
     public:
         KeyboardControlSystem() {
             RequireComponent<KeyboardControlledComponent>();
             RequireComponent<SpriteComponent>();
             RequireComponent<RigidBodyComponent>();
-            RequireComponent<ProjectileEmitterComponent>();
+            RequireComponent<ProjectileEmitterComponent>();\
         }
 
         void Subscribe(std::unique_ptr<EventBus>& eventBus) {
+            this->eventBus = eventBus.get();
             eventBus->Subscribe<KeyPressedEvent>(this, &KeyboardControlSystem::onKeypress);
         }
 
@@ -28,6 +33,7 @@ class KeyboardControlSystem : public System {
                 auto& sprite = entity.GetComponent<SpriteComponent>();
                 auto& rigidbody = entity.GetComponent<RigidBodyComponent>();
                 auto& projectile = entity.GetComponent<ProjectileEmitterComponent>();
+                auto& inventory = entity.GetComponent<InventoryComponent>();
 
                 switch (keyEvent.symbol) {
                     case SDLK_UP:
@@ -60,6 +66,10 @@ class KeyboardControlSystem : public System {
                     case SDLK_SPACE:
                         projectile.shouldEmit = true;
                         projectile.velocity = glm::vec2(1.0) * 400.0f;
+                        break;
+                    case SDLK_e:
+                        Logger::Log("I'm trying to pick up an item");
+                        eventBus->Emit<KeyPressedEvent>(keyEvent);
                         break;
                 }
             }

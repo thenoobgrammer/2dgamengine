@@ -79,6 +79,13 @@ add_executable(2dgameengine src/Main.cpp
         src/Components/MouseTrackComponent.h
         src/Factory/LevelFactory.cpp
         src/Factory/LevelFactory.h
+        src/Systems/SpellBindSystem.h
+        src/Systems/InventorySystem.h
+        src/Systems/EquipmentSystem.h
+        src/Components/ItemComponent.h
+        src/Components/ConsumableComponent.h
+        src/Components/EquippableComponent.h
+        src/Components/InventoryComponent.h
 )
 
 # Link libraries - use lua54 since you have liblua54.a
