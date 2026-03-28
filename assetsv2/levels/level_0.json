@@ -22,9 +22,8 @@
       "tileset_columns": 16
     }
   ],
-  "total_enemy_count": 20,
+  "total_enemy_count": 10,
   "enemies": {
-    "tank": 10,
-    "truck": 10
+    "skeleton": 10
   }
 }

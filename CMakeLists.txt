@@ -92,8 +92,8 @@ if(WIN32)
             SDL2
             SDL2_image
             SDL2_ttf
-            lua53
-            jsoncpp_static
+            ${CMAKE_SOURCE_DIR}/libs/lua/liblua54.a
+            ${CMAKE_SOURCE_DIR}/libs/jsoncpp/libjsoncpp_static.a
     )
 elseif(APPLE)
     link_directories(/opt/homebrew/lib)

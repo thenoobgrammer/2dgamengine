@@ -6,7 +6,8 @@
 
 enum class EnemyType {
   Tank,
-  Truck
+  Truck,
+  Skeleton
 };
 
 struct EnemyData {
@@ -26,7 +27,9 @@ class EnemyFactory {
   public:
     EnemyFactory(const std::unique_ptr<Registry> &registry);
     void Spawn(EnemyType type, glm::vec2 position, int count);
+    void LoadEnemyFiles();
     static EnemyType GetEnemyType(std::string name);
+
 };
 
 #endif

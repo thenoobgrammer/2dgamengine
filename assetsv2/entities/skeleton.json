@@ -1,0 +1,23 @@
+{
+  "type": "skeleton",
+  "variants": {
+    "normal": {
+      "health": 100,
+      "damage": 10,
+      "lootTable": []
+    },
+    "strong": {
+      "health": 250,
+      "damage": 25,
+      "lootTable": []
+    },
+    "elite": {
+      "health": 500,
+      "damage": 35,
+      "lootTable": []},
+    "boss": {
+      "health": 1000,
+      "damage": 50,
+      "lootTable": []}
+  }
+}
