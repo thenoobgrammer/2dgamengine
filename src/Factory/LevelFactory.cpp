@@ -10,6 +10,7 @@
 #include "../Components/SpriteComponent.h"
 #include "../Components/TransformComponent.h"
 #include "../Game/Game.h"
+#include "EnemyFactory.h"
 
 LevelFactory::LevelFactory(const std::unique_ptr<Registry> &registry, const std::unique_ptr<EnemyFactory> &enemy_factory) {
   this->registry = registry.get();
@@ -44,10 +45,14 @@ void LevelFactory::LoadLevel(int level = 0) {
   }
 
   const Json::Value& enemies =  data["enemies"];
+  // for (const auto& key : enemies.getMemberNames()) {
+  //   int count =  enemies[key].asInt();
+  //   if (key == "tank")  enemy_factory->Spawn(EnemyType::Tank, glm::vec2(0), count);
+  //   else if (key == "truck") enemy_factory->Spawn(EnemyType::Truck, glm::vec2(0), count);
+  // }
   for (const auto& key : enemies.getMemberNames()) {
     int count =  enemies[key].asInt();
-    if (key == "tank")  enemy_factory->Spawn(EnemyType::Tank, glm::vec2(0), count);
-    else if (key == "truck") enemy_factory->Spawn(EnemyType::Truck, glm::vec2(0), count);
+    enemy_factory->Spawn(EnemyFactory::GetEnemyType(key), "normal", glm::vec2(0), count);
   }
 
   file.close();
