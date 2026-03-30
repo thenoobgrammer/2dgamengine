@@ -5,29 +5,44 @@
 #include "glm/vec2.hpp"
 
 enum class EnemyType {
-  Tank,
-  Truck,
-  Skeleton
+    Tank,
+    Truck,
+    Skeleton,
+    None
+};
+
+struct LootTableElement {
+    std::string item;
+    float dropRate;
+};
+
+struct EnemyVariantProperty {
+    int health;
+    int damage;
+    float chaseSpeed;
+    std::vector<LootTableElement> lootTable;
+    AIBehavior behavior;
 };
 
 struct EnemyData {
-  std::string name;
-  std::string spriteId;
-  int spriteWidth;
-  int spriteHeight;
-  int health;
-  float chaseSpeed;
-  AIBehavior behavior;
+    std::string name;
+    std::string spriteId;
+    int spriteWidth;
+    int spriteHeight;
+    std::unordered_map<std::string, EnemyVariantProperty> variants;
 };
 
 class EnemyFactory {
-  Registry *registry = nullptr;
-  std::unordered_map<EnemyType, EnemyData> enemyDatabase;
+    Registry *registry = nullptr;
+    std::unordered_map<EnemyType, EnemyData> enemyDatabase;
+    std::unordered_map<EnemyType, EnemyData> enemyDatabaseV2;
+
 
   public:
     EnemyFactory(const std::unique_ptr<Registry> &registry);
-    void Spawn(EnemyType type, glm::vec2 position, int count);
-    void LoadEnemyFiles();
+    void Spawn(EnemyType type, std::string variant, glm::vec2 position, int count);
+    void LoadEnemies();
+    EnemyType EnemyTypeFromString(const std::string& str);
     static EnemyType GetEnemyType(std::string name);
 
 };

@@ -32,13 +32,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Asset addition">
-      <change afterPath="$PROJECT_DIR$/.clang-format" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assetsv2/entities/skeleton.json" afterDir="false" />
+    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Doesn't fully load on windows:&#10;- But added skeleton.json&#10;- Update to the EnemyFactory* so it reads .json for agnosticity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/levels/level_0.json" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/levels/level_0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile_commands.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assetsv2/entities/skeleton.json" beforeDir="false" afterPath="$PROJECT_DIR$/assetsv2/entities/skeleton.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Factory/EnemyFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/EnemyFactory.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Factory/EnemyFactory.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/EnemyFactory.h" afterDir="false" />
     </list>
@@ -84,35 +80,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "C/C++ File.Run.executor": "Run",
-    "CMake Application.2dgameengine.executor": "Run",
-    "Makefile Target.Run.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.west.config.association.type.startup.service": "true",
-    "cf.advertisement.text.overridden": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/workspace/002_2dgamengine",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CPPToolchains",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\CLion 2025.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;C/C++ File.Run.executor&quot;: &quot;Run&quot;,
+    &quot;CMake Application.2dgameengine.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.Run.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
+    &quot;cf.advertisement.text.overridden&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/workspace/002_2dgamengine&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\CLion 2025.2.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\workspace\2D Game Engine\02_Libraries_Dependencies\2dgameengine\libs\sdl\lib" />
@@ -127,11 +123,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="2dgameengine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2dgameengine" TARGET_NAME="2dgameengine" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2dgameengine" RUN_TARGET_NAME="2dgameengine">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -162,7 +153,8 @@
       <workItem from="1766178473481" duration="6848000" />
       <workItem from="1767025465687" duration="14918000" />
       <workItem from="1768007178895" duration="15531000" />
-      <workItem from="1774532140781" duration="10258000" />
+      <workItem from="1774532140781" duration="17538000" />
+      <workItem from="1774802519113" duration="4883000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -260,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767333060772</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Doesn't fully load on windows:&#10;- But added skeleton.json&#10;- Update to the EnemyFactory* so it reads .json for agnosticity">
+      <option name="closed" value="true" />
+      <created>1774707480297</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1774707480297</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,7 +284,8 @@
     <MESSAGE value="Projectiles go in the directions of the mouse" />
     <MESSAGE value="Level updates" />
     <MESSAGE value="Asset addition" />
-    <option name="LAST_COMMIT_MESSAGE" value="Asset addition" />
+    <MESSAGE value="Doesn't fully load on windows:&#10;- But added skeleton.json&#10;- Update to the EnemyFactory* so it reads .json for agnosticity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Doesn't fully load on windows:&#10;- But added skeleton.json&#10;- Update to the EnemyFactory* so it reads .json for agnosticity" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

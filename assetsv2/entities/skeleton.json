@@ -2,22 +2,36 @@
   "type": "skeleton",
   "variants": {
     "normal": {
+      "name": "",
       "health": 100,
       "damage": 10,
+      "defaultAIBehavior": "chase",
+      "chaseSpeed": 30.0,
       "lootTable": []
     },
     "strong": {
+      "name": "",
       "health": 250,
       "damage": 25,
+      "defaultAIBehavior": "chase",
+      "chaseSpeed": 30.0,
       "lootTable": []
     },
     "elite": {
+      "name": "",
       "health": 500,
       "damage": 35,
-      "lootTable": []},
+      "defaultAIBehavior": "chase",
+      "chaseSpeed": 35.0,
+      "lootTable": []
+    },
     "boss": {
+      "name": "",
       "health": 1000,
       "damage": 50,
-      "lootTable": []}
+      "defaultAIBehavior": "idle",
+      "chaseSpeed": 40.0,
+      "lootTable": []
+    }
   }
 }
