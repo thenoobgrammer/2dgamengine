@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.21)
 project(2dgameengine)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Point to your SDL2 directory
 if(WIN32)

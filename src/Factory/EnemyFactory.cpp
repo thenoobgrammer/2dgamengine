@@ -94,7 +94,7 @@ void EnemyFactory::LoadEnemies() {
     }
 }
 
-EnemyFactory::EnemyType EnemyTypeFromString(const std::string& str) {
+EnemyType EnemyFactory::EnemyTypeFromString(const std::string& str) {
     if (str == "skeleton" || str == "Skeleton") return EnemyType::Skeleton;
     return EnemyType::None;
 }

@@ -52,7 +52,7 @@ void LevelFactory::LoadLevel(int level = 0) {
   // }
   for (const auto& key : enemies.getMemberNames()) {
     int count =  enemies[key].asInt();
-    enemy_factory->Spawn(EnemyFactory::GetEnemyType(key), "normal", glm::vec2(0), count);
+    enemy_factory->Spawn(EnemyFactory::EnemyTypeFromString(key), "normal", glm::vec2(0), count);
   }
 
   file.close();

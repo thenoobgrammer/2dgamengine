@@ -42,8 +42,7 @@ class EnemyFactory {
     EnemyFactory(const std::unique_ptr<Registry> &registry);
     void Spawn(EnemyType type, std::string variant, glm::vec2 position, int count);
     void LoadEnemies();
-    EnemyType EnemyTypeFromString(const std::string& str);
-    static EnemyType GetEnemyType(std::string name);
+    static EnemyType EnemyTypeFromString(const std::string& str);
 
 };
 

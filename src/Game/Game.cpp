@@ -32,8 +32,10 @@
 #include "../Systems/MouseTrackingSystem.h"
 #include "../Systems/RenderTextSystem.h"
 #include "../Systems/InventorySystem.h"
+#include "SDL_events.h"
 
 #include <sstream>
+#include <string>
 
 int Game::windowWidth;
 int Game::windowHeight;
@@ -143,6 +145,9 @@ void Game::ProcessInput() {
         debugColliders = !debugColliders;
       }
       eventBus->Emit<KeyPressedEvent>(event.key.keysym.sym);
+      break;
+    case SDL_KEYUP:
+      eventBus->Emit<KeyUpEvent>(event.key.keysym.sym);
       break;
     case SDL_MOUSEBUTTONDOWN:
       eventBus->Emit<MouseEvent>(event.button);
