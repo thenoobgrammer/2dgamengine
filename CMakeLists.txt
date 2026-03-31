@@ -25,8 +25,6 @@ include_directories(${CMAKE_SOURCE_DIR}/libs/jsoncpp)
 # Add SDL library directory
 link_directories(${SDL2_ROOT}/lib)
 
-
-
 # Add your source files
 add_executable(2dgameengine src/Main.cpp
         src/Game/Game.h
@@ -85,8 +83,25 @@ add_executable(2dgameengine src/Main.cpp
         src/Components/InventoryComponent.h
 )
 
+target_compile_definitions(2dgameengine PRIVATE
+        ASSETS_PATH="${CMAKE_SOURCE_DIR}/"
+)
+
 # Link libraries - use lua54 since you have liblua54.a
 if(WIN32)
+    add_custom_command(TARGET 2dgameengine POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "C:/SDL2/bin/SDL2.dll"
+            "C:/SDL2/bin/SDL2_image.dll"
+            "C:/SDL2/bin/SDL2_ttf.dll"
+            "C:/SDL2/bin/libavif-16.dll"
+            "C:/SDL2/bin/libtiff-5.dll"
+            "C:/SDL2/bin/libwebp-7.dll"
+            "C:/SDL2/bin/libwebpdemux-2.dll"
+            "C:/Users/tonyo/scoop/apps/mingw/current/bin/libgcc_s_seh-1.dll"
+            "C:/Users/tonyo/scoop/apps/mingw/current/bin/libstdc++-6.dll"
+            $<TARGET_FILE_DIR:2dgameengine>
+    )
     target_link_libraries(2dgameengine
             mingw32
             SDL2main

@@ -17,6 +17,7 @@
 
 EnemyFactory::EnemyFactory(const std::unique_ptr<Registry>& registry)
   : registry(registry.get()) {
+    LoadEnemies();
   // enemyDatabase = {
   //   {EnemyType::Tank, {"tank", "tank", 32, 32, 50, 30.0f, AIBehavior::Chase}},
   //   {EnemyType::Truck, {"truck", "truck", 32, 32, 50, 20.0f, AIBehavior::Chase}},
@@ -29,9 +30,10 @@ void EnemyFactory::Spawn(EnemyType type, std::string variant, glm::vec2 position
     Logger::Err("Unknown enemy type");
     return;
   }
-  const auto& data = enemyDatabase[type];
+  const auto& data = enemyDatabaseV2[type];
 
   for (int i = 0; i < count; i++) {
+    Logger::Log("Spawning " + variant);
     glm::vec2 spawnPos = position + glm::vec2(rand() % 1000, rand() % 1000);
     Logger::Log("Spawning " + std::to_string(count));
     Entity entity = this->registry->CreateEntity();
@@ -47,7 +49,7 @@ void EnemyFactory::Spawn(EnemyType type, std::string variant, glm::vec2 position
 }
 
 void EnemyFactory::LoadEnemies() {
-    std::string enemiesDir = "../assetsv2/entities/";
+    std::string enemiesDir = std::string(ASSETS_PATH) + "assetsv2/entities/";
 
     for (const auto &entry: std::filesystem::directory_iterator(enemiesDir)) {
         Logger::Log("Loaded file: " +  entry.path().string());
@@ -91,6 +93,8 @@ void EnemyFactory::LoadEnemies() {
         }
 
         enemyDatabaseV2.emplace(EnemyTypeFromString(type), enemy);
+
+        file.close();
     }
 }
 

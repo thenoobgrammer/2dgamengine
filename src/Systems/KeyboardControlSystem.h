@@ -79,30 +79,20 @@ class KeyboardControlSystem : public System {
 
         void onKeyUp(KeyUpEvent &keyEvent) {
             for (auto entity: GetSystemEntities()) {
-                auto& sprite = entity.GetComponent<SpriteComponent>();
-                auto& rigidbody = entity.GetComponent<RigidBodyComponent>();
                 auto& keyboard = entity.GetComponent<KeyboardControlledComponent>();
 
                 switch (keyEvent.symbol) {
                     case SDLK_w:
                         keyboard.heldKeys.erase(SDLK_w);
-                        rigidbody.velocity=glm::vec2(0);
-                        rigidbody.direction=glm::vec2(0);
                         break;
                     case SDLK_d:
                         keyboard.heldKeys.erase(SDLK_d);
-                        rigidbody.velocity=glm::vec2(0);
-                        rigidbody.direction=glm::vec2(0);
                         break;
                     case SDLK_s:
                         keyboard.heldKeys.erase(SDLK_s);
-                        rigidbody.velocity=glm::vec2(0);
-                        rigidbody.direction=glm::vec2(0);
                         break;
                     case SDLK_a:
                         keyboard.heldKeys.erase(SDLK_a);
-                        rigidbody.velocity=glm::vec2(0);
-                        rigidbody.direction=glm::vec2(0);
                         break;
                 }
             }

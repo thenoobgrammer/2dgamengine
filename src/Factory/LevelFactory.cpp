@@ -23,7 +23,7 @@ void LevelFactory::LoadLevel(int level = 0) {
   //  - Level configuration should be inside structured data file
   //  - We already have a function to load the tilesets into the game - use that
   //  - Define a number of enemies per level and how many of each enemies
-  std::string filePath = "../assetsv2/levels/level_" + std::to_string(level) + ".json";
+  std::string filePath = std::string(ASSETS_PATH) + "assetsv2/levels/level_" + std::to_string(level) + ".json";
   std::ifstream file(filePath, std::ifstream::binary);
 
   Json::Value data;
@@ -50,6 +50,7 @@ void LevelFactory::LoadLevel(int level = 0) {
   //   if (key == "tank")  enemy_factory->Spawn(EnemyType::Tank, glm::vec2(0), count);
   //   else if (key == "truck") enemy_factory->Spawn(EnemyType::Truck, glm::vec2(0), count);
   // }
+Logger::Log("Found " + enemies.toStyledString());
   for (const auto& key : enemies.getMemberNames()) {
     int count =  enemies[key].asInt();
     enemy_factory->Spawn(EnemyFactory::EnemyTypeFromString(key), "normal", glm::vec2(0), count);
@@ -94,29 +95,4 @@ void LevelFactory::LoadTilemapLayer(const std::string& assetId, const std::strin
   mapFile.close();
   Game::mapWidth = maxX * tileSize * tileScale;
   Game::mapHeight = y * tileSize * tileScale;
-}
-
-void LevelFactory::LoadTilemapLayer2(const std::string& assetId, const std::string& filename, int zIndex, int tileSize, double tileScale, int tileSetCols) const {
-  std::string path = "../assetsv2/maps/" + filename + ".tmj";
-  std::ifstream file(path, std::ifstream::binary);
-
-  Json::Value data;
-  Json::CharReaderBuilder readerBuilder;
-  std::string errs;
-
-  if (Json::parseFromStream(readerBuilder, file, &data, &errs)) {
-    Logger::Log("Successfully loaded level from " + path);
-  }
-
-  const auto tmjFilepath = data["tmj_filepath"].asString();
-  const auto tmLayers = data["tilemap_layers"];
-
-  for (auto tmpl : tmLayers) {
-    auto asset_id = tmpl["asset_id"].asString();
-    auto tsj_filepath = tmpl["tsj_filepath"].asString();
-    auto z_index = tmpl["z_index"].asInt();
-    auto tile_size = tmpl["tile_size"].asInt();
-    auto tile_scale = tmpl["tile_scale"].asInt();
-    auto tileset_columns = tmpl["tileset_columns"].asInt();
-  }
 }

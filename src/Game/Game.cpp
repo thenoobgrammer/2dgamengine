@@ -44,6 +44,8 @@ int Game::mapHeight;
 int Game::mouseX;
 int Game::mouseY;
 
+const std::string ASSETS = std::string(ASSETS_PATH);
+
 Game::Game() {
   isRunning = false;
   debugColliders = false;
@@ -105,22 +107,22 @@ void Game::Initialize() {
 }
 
 void Game::LoadAssets() const {
-  assetStore->LoadTexture(renderer, "player-image", "../assetsv2/images/TX Player.png");
-  assetStore->LoadTexture(renderer, "chopper-image", "../assets/images/chopper-spritesheet.png");
-  assetStore->LoadTexture(renderer, "tank", "../assets/images/tank-panther-right.png");
-  assetStore->LoadTexture(renderer, "truck", "../assets/images/truck-ford-right.png");
-  assetStore->LoadTexture(renderer, "radar-image", "../assets/images/radar.png");
-  assetStore->LoadTexture(renderer, "tilemap-image", "../assets/tilemaps/jungle.png");
-  assetStore->LoadTexture(renderer, "bullet-image", "../assets/images/bullet.png");
+  assetStore->LoadTexture(renderer, "player-image", ASSETS + "assetsv2/images/TX Player.png");
+  assetStore->LoadTexture(renderer, "chopper-image", ASSETS + "assets/images/chopper-spritesheet.png");
+  assetStore->LoadTexture(renderer, "tank", ASSETS + "assets/images/tank-panther-right.png");
+  assetStore->LoadTexture(renderer, "truck", ASSETS + "assets/images/truck-ford-right.png");
+  assetStore->LoadTexture(renderer, "radar-image", ASSETS + "assets/images/radar.png");
+  assetStore->LoadTexture(renderer, "tilemap-image", ASSETS + "assets/tilemaps/jungle.png");
+  assetStore->LoadTexture(renderer, "bullet-image", ASSETS + "assets/images/bullet.png");
 
-  assetStore->LoadTexture(renderer, "tileset-grass", "../assetsv2/tilesets/TX Tileset Grass.png");
-  assetStore->LoadTexture(renderer, "tileset-stone-ground", "../assetsv2/tilesets/TX Tileset Stone Ground.png");
-  assetStore->LoadTexture(renderer, "tileset-props", "../assetsv2/tilesets/TX Props.png");
-  assetStore->LoadTexture(renderer, "tileset-wall", "../assetsv2/tilesets/TX Tileset Wall.png");
+  assetStore->LoadTexture(renderer, "tileset-grass", ASSETS + "assetsv2/tilesets/TX Tileset Grass.png");
+  assetStore->LoadTexture(renderer, "tileset-stone-ground", ASSETS + "assetsv2/tilesets/TX Tileset Stone Ground.png");
+  assetStore->LoadTexture(renderer, "tileset-props", ASSETS + "assetsv2/tilesets/TX Props.png");
+  assetStore->LoadTexture(renderer, "tileset-wall", ASSETS + "assetsv2/tilesets/TX Tileset Wall.png");
 }
 
 void Game::LoadFonts() const {
-  assetStore->LoadFont("damage-font", "../assets/fonts/charriot.ttf", 14);
+  assetStore->LoadFont("damage-font", ASSETS + "assets/fonts/charriot.ttf", 14);
 }
 
 void Game::LoadLevel(const int level) const {

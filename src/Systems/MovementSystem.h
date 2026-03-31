@@ -1,9 +1,10 @@
 #ifndef INC_2DGAMEENGINE_MOVEMENTSYSTEM_H
 #define INC_2DGAMEENGINE_MOVEMENTSYSTEM_H
 
+#include "../Components/KeyboardControlledComponent.h"
+#include "../Components/PlayerComponent.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/TransformComponent.h"
-#include "../Components/KeyboardControlledComponent.h"
 #include "../ECS/ECS.h"
 #include "SDL_keycode.h"
 
@@ -18,17 +19,25 @@ public:
         for (auto entity: GetSystemEntities()) {
             auto& transform = entity.GetComponent<TransformComponent>();
             auto& keyboard = entity.GetComponent<KeyboardControlledComponent>();
-            const auto rigidBody = entity.GetComponent<RigidBodyComponent>();
+            auto& rigidBody = entity.GetComponent<RigidBodyComponent>();
 
-            if (keyboard.heldKeys.count(SDLK_w) || keyboard.heldKeys.count(SDLK_s)) {
-                transform.position.y += rigidBody.velocity.y * deltaTime;
-            }
-            if (keyboard.heldKeys.count(SDLK_a) || keyboard.heldKeys.count(SDLK_d)) {
-                transform.position.x += rigidBody.velocity.x * deltaTime;
+            glm::vec2 direction(0.0, 0.0);
+
+            if (entity.HasComponent<PlayerComponent>()) {
+                if (keyboard.heldKeys.count(SDLK_w)) direction.y -= 1.0;
+                if (keyboard.heldKeys.count(SDLK_s)) direction.y += 1.0;
+                if (keyboard.heldKeys.count(SDLK_a)) direction.x -= 1.0;
+                if (keyboard.heldKeys.count(SDLK_d)) direction.x += 1.0;
+
+                if (glm::length(direction) > 0) {
+                    rigidBody.velocity = glm::normalize(direction) * glm::length(rigidBody.velocity);
+                } else {
+                    rigidBody.velocity = glm::vec2(0);
+                }
             }
 
-            // transform.position.x += rigidBody.velocity.x * deltaTime;
-            // transform.position.y += rigidBody.velocity.y * deltaTime;
+            transform.position.x += rigidBody.velocity.x * deltaTime;
+            transform.position.y += rigidBody.velocity.y * deltaTime;
         }
     }
 };
