@@ -8,6 +8,7 @@
 #include "../Components/BoxColliderComponent.h"
 #include "../Components/HealthComponent.h"
 #include "../Components/InventoryComponent.h"
+#include "../Components/LootTableComponent.h"
 #include "../Components/NameComponent.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/SpriteComponent.h"
@@ -26,30 +27,31 @@ EnemyFactory::EnemyFactory(const std::unique_ptr<Registry>& registry)
 }
 
 void EnemyFactory::Spawn(EnemyType type, std::string variant, glm::vec2 position = glm::vec2(0), const int count = 1) {
-  if (enemyDatabaseV2.find(type) == enemyDatabaseV2.end()) {
+    if (enemyDatabaseV2.find(type) == enemyDatabaseV2.end()) {
     Logger::Err("Unknown enemy type");
     return;
-  }
-  const auto& data = enemyDatabaseV2[type];
+    }
+    const auto& data = enemyDatabaseV2[type];
 
-  for (int i = 0; i < count; i++) {
-    Logger::Log("Spawning " + variant);
-    glm::vec2 spawnPos = position + glm::vec2(rand() % 1000, rand() % 1000);
-    Logger::Log("Spawning " + std::to_string(count));
-    Entity entity = this->registry->CreateEntity();
-    entity.AddComponent<NameComponent>(data.name);
-    entity.AddComponent<TagComponent>(Tag::Enemy);
-    entity.AddComponent<TransformComponent>(spawnPos, glm::vec2(1.0, 1.0), 0.0);
-    entity.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-    entity.AddComponent<SpriteComponent>(data.spriteId, data.spriteWidth, data.spriteHeight, 1);
-    entity.AddComponent<BoxColliderComponent>(data.spriteWidth, data.spriteHeight);
-    entity.AddComponent<HealthComponent>(data.variants.at(variant).health);
-    entity.AddComponent<AIComponent>(data.variants.at(variant).chaseSpeed, data.variants.at(variant).behavior);
-  }
+    for (int i = 0; i < count; i++) {
+        glm::vec2 spawnPos = position + glm::vec2(rand() % 1000, rand() % 1000);
+
+        Entity entity = this->registry->CreateEntity();
+
+        entity.AddComponent<NameComponent>(data.name);
+        entity.AddComponent<TagComponent>(Tag::Enemy);
+        entity.AddComponent<TransformComponent>(spawnPos, glm::vec2(1.0, 1.0), 0.0);
+        entity.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
+        entity.AddComponent<SpriteComponent>(data.spriteId, data.spriteWidth, data.spriteHeight, 1);
+        entity.AddComponent<BoxColliderComponent>(data.spriteWidth, data.spriteHeight);
+        entity.AddComponent<HealthComponent>(data.variants.at(variant).health);
+        entity.AddComponent<LootTableComponent>(data.variants.at(variant).lootTable);
+        // entity.AddComponent<AIComponent>(data.variants.at(variant).chaseSpeed, data.variants.at(variant).behavior);
+    }
 }
 
 void EnemyFactory::LoadEnemies() {
-    std::string enemiesDir = std::string(ASSETS_PATH) + "assetsv2/entities/";
+    std::string enemiesDir = std::string(ASSETS_PATH) + "assets/entities/";
 
     for (const auto &entry: std::filesystem::directory_iterator(enemiesDir)) {
         Logger::Log("Loaded file: " +  entry.path().string());

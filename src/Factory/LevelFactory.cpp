@@ -23,7 +23,7 @@ void LevelFactory::LoadLevel(int level = 0) {
   //  - Level configuration should be inside structured data file
   //  - We already have a function to load the tilesets into the game - use that
   //  - Define a number of enemies per level and how many of each enemies
-  std::string filePath = std::string(ASSETS_PATH) + "assetsv2/levels/level_" + std::to_string(level) + ".json";
+  std::string filePath = std::string(ASSETS_PATH) + "assets/levels/level_" + std::to_string(level) + ".json";
   std::ifstream file(filePath, std::ifstream::binary);
 
   Json::Value data;
@@ -44,24 +44,19 @@ void LevelFactory::LoadLevel(int level = 0) {
     LoadTilemapLayer(assetId, filename, zindex, tilesize, tilescale, tilesetcols);
   }
 
-  const Json::Value& enemies =  data["enemies"];
-  // for (const auto& key : enemies.getMemberNames()) {
-  //   int count =  enemies[key].asInt();
-  //   if (key == "tank")  enemy_factory->Spawn(EnemyType::Tank, glm::vec2(0), count);
-  //   else if (key == "truck") enemy_factory->Spawn(EnemyType::Truck, glm::vec2(0), count);
-  // }
-Logger::Log("Found " + enemies.toStyledString());
-  for (const auto& key : enemies.getMemberNames()) {
-    int count =  enemies[key].asInt();
-    enemy_factory->Spawn(EnemyFactory::EnemyTypeFromString(key), "normal", glm::vec2(0), count);
-  }
+    const Json::Value& enemies =  data["enemies"];
+
+    for (const auto& key : enemies.getMemberNames()) {
+        int count =  enemies[key].asInt();
+        enemy_factory->Spawn(EnemyFactory::EnemyTypeFromString(key), "normal", glm::vec2(0), count);
+    }
 
   file.close();
 }
 
 void LevelFactory::LoadTilemapLayer(const std::string& assetId, const std::string& filename, int zIndex, int tileSize, double tileScale, int tileSetCols) const {
   std::fstream mapFile;
-  mapFile.open("../assetsv2/maps/" + filename);
+  mapFile.open("../assets/maps/" + filename);
 
   std::string line;
   int y = 0;

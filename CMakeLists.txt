@@ -81,6 +81,11 @@ add_executable(2dgameengine src/Main.cpp
         src/Components/ConsumableComponent.h
         src/Components/EquippableComponent.h
         src/Components/InventoryComponent.h
+        src/Components/LootTableComponent.h
+        src/Components/elements/LootTableElement.h
+        src/Components/elements/EnemyVariantClass.h
+        src/Components/elements/AIBehavior.h
+        src/Systems/EnemyKillSystem.h
 )
 
 target_compile_definitions(2dgameengine PRIVATE

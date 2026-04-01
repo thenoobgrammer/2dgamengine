@@ -19,7 +19,7 @@ struct SpriteComponent {
         this->zIndex = zIndex;
         this->isFixed = isFixed;
         this->srcRect = { srcRectX, srcRectY, width, height };
-    };
+    }
 };
 
 

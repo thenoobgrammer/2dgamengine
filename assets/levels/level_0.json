@@ -1,21 +1,21 @@
 {
   "id": 0,
   "name": "Level 0 - The tutorial",
-  "tmj_filepath": "level_0.tmj",
+  "tmj_filepath": "",
   "tilemap_layers": [
     {
-      "asset_id": "tileset-grass",
-      "filepath": "level_0_Grass.csv",
-      "tsj_filepath": "grass.tsj",
+      "asset_id": "",
+      "filepath": "",
+      "tsj_filepath": "",
       "z_index": 0,
       "tile_size": 32,
       "tile_scale": 2.0,
       "tileset_columns": 8
     },
     {
-      "asset_id": "tileset-props",
-      "filepath": "level_0_Props.csv",
-      "tsj_filepath": "props.tsj",
+      "asset_id": "",
+      "filepath": "",
+      "tsj_filepath": "",
       "z_index": 1,
       "tile_size": 32,
       "tile_scale": 2.0,

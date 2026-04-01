@@ -1,6 +1,8 @@
 #ifndef INC_2DGAMEENGINE_ENEMY_H
 #define INC_2DGAMEENGINE_ENEMY_H
 #include "../Components/AIComponent.h"
+#include "../Components/elements/AIBehavior.h"
+#include "../Components/elements/LootTableElement.h"
 #include "../ECS/ECS.h"
 #include "glm/vec2.hpp"
 
@@ -9,11 +11,6 @@ enum class EnemyType {
     Truck,
     Skeleton,
     None
-};
-
-struct LootTableElement {
-    std::string item;
-    float dropRate;
 };
 
 struct EnemyVariantProperty {

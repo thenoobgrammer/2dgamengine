@@ -37,6 +37,8 @@
 #include <sstream>
 #include <string>
 
+#include "../Systems/EnemyKillSystem.h"
+
 int Game::windowWidth;
 int Game::windowHeight;
 int Game::mapWidth;
@@ -107,18 +109,13 @@ void Game::Initialize() {
 }
 
 void Game::LoadAssets() const {
-  assetStore->LoadTexture(renderer, "player-image", ASSETS + "assetsv2/images/TX Player.png");
+  assetStore->LoadTexture(renderer, "player-image", ASSETS + "assets/images/TX Player.png");
   assetStore->LoadTexture(renderer, "chopper-image", ASSETS + "assets/images/chopper-spritesheet.png");
   assetStore->LoadTexture(renderer, "tank", ASSETS + "assets/images/tank-panther-right.png");
   assetStore->LoadTexture(renderer, "truck", ASSETS + "assets/images/truck-ford-right.png");
   assetStore->LoadTexture(renderer, "radar-image", ASSETS + "assets/images/radar.png");
   assetStore->LoadTexture(renderer, "tilemap-image", ASSETS + "assets/tilemaps/jungle.png");
   assetStore->LoadTexture(renderer, "bullet-image", ASSETS + "assets/images/bullet.png");
-
-  assetStore->LoadTexture(renderer, "tileset-grass", ASSETS + "assetsv2/tilesets/TX Tileset Grass.png");
-  assetStore->LoadTexture(renderer, "tileset-stone-ground", ASSETS + "assetsv2/tilesets/TX Tileset Stone Ground.png");
-  assetStore->LoadTexture(renderer, "tileset-props", ASSETS + "assetsv2/tilesets/TX Props.png");
-  assetStore->LoadTexture(renderer, "tileset-wall", ASSETS + "assetsv2/tilesets/TX Tileset Wall.png");
 }
 
 void Game::LoadFonts() const {
@@ -175,6 +172,7 @@ void Game::RegisterSystems() const {
   registry->AddSystem<AISystem>();
   registry->AddSystem<MouseTrackingSystem>();
   registry->AddSystem<InventorySystem>();
+  registry->AddSystem<LootSystem>();
 }
 
 void Game::Render() const {
@@ -252,7 +250,7 @@ void Game::SpawnPlayer() const {
   player.AddComponent<NameComponent>("player");
   player.AddComponent<TransformComponent>(glm::vec2(50.0, 120.0), glm::vec2(1.0, 1.0), 0.0);
   player.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
-  player.AddComponent<SpriteComponent>("player-image", 32, 128, 2);
+  player.AddComponent<SpriteComponent>("", 32, 128, 2);
   player.AddComponent<TagComponent>(Tag::Player);
   player.AddComponent<AnimationComponent>(1, 1, 10, true);
   player.AddComponent<KeyboardControlledComponent>(

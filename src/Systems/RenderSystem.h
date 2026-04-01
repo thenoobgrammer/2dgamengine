@@ -47,7 +47,7 @@ class RenderSystem: public System{
                 };
 
                 if (sprite.assetId.empty()) {
-                    SDL_SetRenderDrawColor(renderer, 0, 190, 0, 256);
+                    SDL_SetRenderDrawColor(renderer, 0, 190, 0, 0);
                     SDL_RenderDrawRect(renderer, &dstRect);
                 } else {
                     SDL_RenderCopyEx(

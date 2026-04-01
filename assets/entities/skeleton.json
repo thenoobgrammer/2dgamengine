@@ -3,7 +3,7 @@
   "variants": {
     "normal": {
       "name": "",
-      "health": 100,
+      "health": 10,
       "damage": 10,
       "defaultAIBehavior": "chase",
       "chaseSpeed": 30.0,
