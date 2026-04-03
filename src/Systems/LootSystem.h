@@ -5,7 +5,7 @@
 #include "../EventBus/EventBus.h"
 #include "../Events/DropLootEvent.h"
 #include "../Factory/ItemFactory.h"
-
+#include <random>
 
 class LootSystem: public System {
 public:
@@ -25,9 +25,11 @@ public:
             auto& lootTable = entity.GetComponent<LootTableComponent>();
 
             for (const DropItem& drop: lootTable.drops) {
-                Logger::Log("entity: " + std::to_string(entity.GetId()) + " should drop: " + std::to_string(lootTable.shouldDop));
                 if (lootTable.shouldDop) {
-                    itemFactory->Spawn(drop.item, event.dropPosition, 1);
+                    float roll = rand() % 100 / 100.0f;
+                    if (roll <= drop.dropRate) {
+                        itemFactory->Spawn(drop.item, event.dropPosition);
+                    }
                 }
             }
         }

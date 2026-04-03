@@ -17,22 +17,21 @@ struct EnemyVariantProperty {
     int health;
     int damage;
     float chaseSpeed;
+    std::string spriteId;
+    int spriteWidth;
+    int spriteHeight;
     std::vector<DropItem> lootTable;
     AIBehavior behavior;
 };
 
 struct EnemyData {
     std::string name;
-    std::string spriteId;
-    int spriteWidth;
-    int spriteHeight;
     std::unordered_map<std::string, EnemyVariantProperty> variants;
 };
 
 class EnemyFactory {
     Registry *registry = nullptr;
     std::unordered_map<EnemyType, EnemyData> enemyDatabase;
-    std::unordered_map<EnemyType, EnemyData> enemyDatabaseV2;
 
 
   public:

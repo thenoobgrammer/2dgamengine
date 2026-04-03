@@ -90,6 +90,7 @@ add_executable(2dgameengine src/Main.cpp
         src/Factory/ItemFactory.h
         src/Components/elements/Item.h
         src/Events/DropLootEvent.h
+        src/Components/elements/ItemType.h
 )
 
 target_compile_definitions(2dgameengine PRIVATE

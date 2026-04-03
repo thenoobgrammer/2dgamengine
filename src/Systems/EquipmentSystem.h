@@ -6,7 +6,7 @@ class EquipmentSystem: public System {
     public:
         EquipmentSystem();
 
-        void Update() {};
+        void Update() {}
 };
 
 #endif

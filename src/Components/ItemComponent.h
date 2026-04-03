@@ -1,18 +1,10 @@
-#ifndef INC_2DGAMEENGINE_ITEM_H
-#define INC_2DGAMEENGINE_ITEM_H
+#ifndef INC_2DGAMEENGINE_ITEMCOMPONENT_H
+#define INC_2DGAMEENGINE_ITEMCOMPONENT_H
 
+#include "elements/ItemType.h"
 #include <string>
 
 struct ItemComponent {
-    enum ItemType {
-        Consumable,
-        Weapon,
-        Shield,
-        Armor,
-        Quest,
-        WorldItem
-    };
-
     std::string name;
     std::string description;
     ItemType type;

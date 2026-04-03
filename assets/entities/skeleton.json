@@ -6,13 +6,16 @@
       "health": 10,
       "damage": 10,
       "defaultAIBehavior": "chase",
+      "spriteId": "",
+      "spriteWidth": 32,
+      "spriteHeight": 32,
       "chaseSpeed": 30.0,
       "dropTable": [
         {
           "item": "Health potion",
           "description": "Restores 50% of your health.",
           "consumable": true,
-          "dropRate": 0.2
+          "dropRate": 0.4
         }
       ]
     },

@@ -11,7 +11,7 @@ class ItemFactory {
 
     explicit ItemFactory(const std::unique_ptr<Registry> &registry);
     virtual ~ItemFactory() = default;
-    void Spawn(const Item& item, glm::vec2 position, int count) const;
+    void Spawn(const Item& item, glm::vec2 position, int count = 1) const;
 };
 
 
