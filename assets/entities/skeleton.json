@@ -7,7 +7,14 @@
       "damage": 10,
       "defaultAIBehavior": "chase",
       "chaseSpeed": 30.0,
-      "lootTable": []
+      "dropTable": [
+        {
+          "item": "Health potion",
+          "description": "Restores 50% of your health.",
+          "consumable": true,
+          "dropRate": 0.2
+        }
+      ]
     },
     "strong": {
       "name": "",
@@ -15,7 +22,7 @@
       "damage": 25,
       "defaultAIBehavior": "chase",
       "chaseSpeed": 30.0,
-      "lootTable": []
+      "dropTable": []
     },
     "elite": {
       "name": "",
@@ -23,7 +30,7 @@
       "damage": 35,
       "defaultAIBehavior": "chase",
       "chaseSpeed": 35.0,
-      "lootTable": []
+      "dropTable": []
     },
     "boss": {
       "name": "",
@@ -31,7 +38,7 @@
       "damage": 50,
       "defaultAIBehavior": "idle",
       "chaseSpeed": 40.0,
-      "lootTable": []
+      "dropTable": []
     }
   }
 }

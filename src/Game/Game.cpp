@@ -5,7 +5,6 @@
 
 #include "../Components/BoxColliderComponent.h"
 #include "../Components/CameraFollowComponent.h"
-#include "../Components/HealthComponent.h"
 #include "../Components/KeyboardControlledComponent.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/SpriteComponent.h"
@@ -37,7 +36,8 @@
 #include <sstream>
 #include <string>
 
-#include "../Systems/EnemyKillSystem.h"
+#include "../Factory/ItemFactory.h"
+#include "../Systems/LootSystem.h"
 
 int Game::windowWidth;
 int Game::windowHeight;
@@ -56,6 +56,7 @@ Game::Game() {
   eventBus = std::make_unique<EventBus>();
   enemyFactory = std::make_unique<EnemyFactory>(registry);
   levelFactory = std::make_unique<LevelFactory>(registry, enemyFactory);
+  itemFactory = std::make_unique<ItemFactory>(registry);
 }
 
 Game::~Game() = default;
@@ -228,6 +229,7 @@ void Game::Update() {
   registry->GetSystem<HealthSystem>().Subscribe(eventBus, registry);
   registry->GetSystem<MouseTrackingSystem>().Subscribe(eventBus);
   registry->GetSystem<InventorySystem>().Subscribe(eventBus);
+  registry->GetSystem<LootSystem>().Subscribe(eventBus, itemFactory);
 
   // Update the registry to process the netities that are waiting to be created/deleted
   registry->Update();

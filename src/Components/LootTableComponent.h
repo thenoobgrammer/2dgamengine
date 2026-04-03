@@ -3,10 +3,12 @@
 #include <vector>
 
 struct LootTableComponent {
-    std::vector<LootTableElement> items;
+    std::vector<DropItem> drops;
+    bool shouldDop;
 
     LootTableComponent() = default;
-    LootTableComponent(const std::vector<LootTableElement> &items) : items(items) {}
+    LootTableComponent(const std::vector<DropItem> &inventory) :
+        drops(inventory), shouldDop(false) {}
 };
 
 #endif

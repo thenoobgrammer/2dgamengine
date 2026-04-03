@@ -2,6 +2,7 @@
 #define INC_2DGAMEENGINE_DAMAGESYSTEM_H
 
 #include "../Components/BoxColliderComponent.h"
+#include "../Components/HealthComponent.h"
 #include "../Components/NameComponent.h"
 #include "../Components/ProjectileComponent.h"
 #include "../Components/TagComponent.h"

@@ -2,7 +2,7 @@
 #define INC_2DGAMEENGINE_ENEMY_H
 #include "../Components/AIComponent.h"
 #include "../Components/elements/AIBehavior.h"
-#include "../Components/elements/LootTableElement.h"
+#include "../Components/elements/DropItem.h"
 #include "../ECS/ECS.h"
 #include "glm/vec2.hpp"
 
@@ -17,7 +17,7 @@ struct EnemyVariantProperty {
     int health;
     int damage;
     float chaseSpeed;
-    std::vector<LootTableElement> lootTable;
+    std::vector<DropItem> lootTable;
     AIBehavior behavior;
 };
 

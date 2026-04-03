@@ -19,17 +19,12 @@
 EnemyFactory::EnemyFactory(const std::unique_ptr<Registry>& registry)
   : registry(registry.get()) {
     LoadEnemies();
-  // enemyDatabase = {
-  //   {EnemyType::Tank, {"tank", "tank", 32, 32, 50, 30.0f, AIBehavior::Chase}},
-  //   {EnemyType::Truck, {"truck", "truck", 32, 32, 50, 20.0f, AIBehavior::Chase}},
-  //   {EnemyType::Skeleton, {"name", "truck", 32, 32, 50, 20.0f, AIBehavior::Chase}}
-  // };
 }
 
 void EnemyFactory::Spawn(EnemyType type, std::string variant, glm::vec2 position = glm::vec2(0), const int count = 1) {
     if (enemyDatabaseV2.find(type) == enemyDatabaseV2.end()) {
-    Logger::Err("Unknown enemy type");
-    return;
+        Logger::Err("Unknown enemy type");
+        return;
     }
     const auto& data = enemyDatabaseV2[type];
 
@@ -80,17 +75,19 @@ void EnemyFactory::LoadEnemies() {
                 const int health = variants[variantKey]["health"].asInt();
                 const int damage = variants[variantKey]["damage"].asInt();
                 const float chaseSpeed = variants[variantKey]["chaseSpeed"].asFloat();
-                const auto lootTableJson = variants[variantKey]["lootTable"];
+                const auto dropTableJson = variants[variantKey]["dropTable"];
 
-                std::vector<LootTableElement> lootTable;
-                for (const auto loot : lootTableJson) {
-                    lootTable.push_back({
-                        loot["item"].asString(),
-                        loot["dropRate"].asFloat()
-                    });
+                std::vector<DropItem> dropTable;
+                for (const auto& drop : dropTableJson) {
+                    Item item = {
+                        drop["item"].asString(),
+                        drop["description"].asString(),
+                        drop["consumable"].asBool(),
+                    };
+                    dropTable.push_back({ item, drop["dropRate"].asFloat() });
                 }
 
-                enemy.variants.emplace(variantKey, EnemyVariantProperty{ health, damage, chaseSpeed, lootTable, AIBehavior::Chase });
+                enemy.variants.emplace(variantKey, EnemyVariantProperty{ health, damage, chaseSpeed, dropTable, AIBehavior::Chase });
             }
         }
 

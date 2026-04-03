@@ -7,6 +7,7 @@
 #include "../ECS/ECS.h"
 #include "../EventBus/EventBus.h"
 #include "../Factory/EnemyFactory.h"
+#include "../Factory/ItemFactory.h"
 #include "../Factory/LevelFactory.h"
 
 const int FPS = 60;
@@ -26,6 +27,7 @@ private:
     std::unique_ptr<EventBus> eventBus;
     std::unique_ptr<EnemyFactory> enemyFactory;
     std::unique_ptr<LevelFactory> levelFactory;
+    std::unique_ptr<ItemFactory> itemFactory;
 
     void RegisterSystems() const;
     void LoadAssets() const;
