@@ -3,9 +3,9 @@
 
 #include <SDL_render.h>
 
-#include "../Components/ItemComponent.h"
 #include "../Components/LifeTimeComponent.h"
 #include "../Components/TextComponent.h"
+#include "../Components/TransformComponent.h"
 #include "../ECS/ECS.h"
 
 class RenderTextSystem: public System {
@@ -22,7 +22,6 @@ class RenderTextSystem: public System {
         if (!e.HasComponent<TextComponent>() && !e.HasComponent<ItemComponent>()) return;
 
         auto& text = e.GetComponent<TextComponent>();
-        auto& item = e.GetComponent<ItemComponent>();
         auto& lifeTime = e.GetComponent<LifeTimeComponent>();
 
         if (SDL_GetTicks() > lifeTime.destroyAt) {

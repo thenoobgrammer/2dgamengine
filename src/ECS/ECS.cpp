@@ -1,11 +1,10 @@
 #include "ECS.h"
-#include "../Logger/Logger.h"
 #include <algorithm>
 
 int IComponent::nextId = 0;
 
 int Entity::GetId() const {
-  return  id;
+  return id;
 }
 
 void Entity::Kill() {
@@ -24,6 +23,15 @@ void System::RemoveEntityFromSystem(Entity entity) {
 
 std::vector<Entity> System::GetSystemEntities() const {
   return entities;
+};
+
+Entity System::FindSystemEntityById(int id) const {
+  for (const auto& entity : entities) {
+    if (entity.GetId() == id) {
+        return entity;
+    }
+  }
+  return Entity();
 };
 
 const Signature& System::GetComponentSignature() const {
