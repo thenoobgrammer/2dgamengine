@@ -167,6 +167,7 @@ class Registry {
     template <typename T> void RemoveComponent(Entity entity);
     template <typename T> bool HasComponent(Entity entity) const;
     template <typename T> T& GetComponent(Entity entity) const;
+    std::vector<Entity> GetEntitiesWithComponents(Signature signature);
 
     // System management
     template <typename T, typename ...TArgs> void AddSystem(TArgs&& ...args);
@@ -258,6 +259,18 @@ T& Registry::GetComponent(Entity entity) const {
     const auto entityId = entity.GetId();
     auto componentPool = std::static_pointer_cast<Pool<T>>(componentPools[componentId]);
     return componentPool->Get(entityId);
+}
+
+inline std::vector<Entity> Registry::GetEntitiesWithComponents(Signature signature) {
+    std::vector<Entity> result = {};
+    for (int i = 0; i < entityComponentSignatures.size(); i++) {
+        if ((entityComponentSignatures[i] & signature) == signature) {
+            Entity entity(i);
+            entity.registry = this;
+            result.push_back(entity);
+        }
+    }
+    return result;
 }
 
 template<typename TComponent, typename ...TArgs>

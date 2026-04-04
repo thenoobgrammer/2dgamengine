@@ -31,9 +31,9 @@
 #include "../Systems/MouseTrackingSystem.h"
 #include "../Systems/RenderTextSystem.h"
 #include "../Systems/InventorySystem.h"
+#include "../Systems/ScannerSystem.h"
 #include "SDL_events.h"
 
-#include <sstream>
 #include <string>
 
 #include "../Factory/ItemFactory.h"
@@ -174,6 +174,7 @@ void Game::RegisterSystems() const {
   registry->AddSystem<MouseTrackingSystem>();
   registry->AddSystem<InventorySystem>();
   registry->AddSystem<LootSystem>();
+  registry->AddSystem<ScannerSystem>();
 }
 
 void Game::Render() const {
@@ -244,6 +245,7 @@ void Game::Update() {
   registry->GetSystem<AISystem>().Update();
   registry->GetSystem<MouseTrackingSystem>().Update();
   registry->GetSystem<InventorySystem>().Update();
+  registry->GetSystem<ScannerSystem>().Update(registry, eventBus);
 }
 
 void Game::SpawnPlayer() const {

@@ -25,15 +25,6 @@ std::vector<Entity> System::GetSystemEntities() const {
   return entities;
 };
 
-Entity System::FindSystemEntityById(int id) const {
-  for (const auto& entity : entities) {
-    if (entity.GetId() == id) {
-        return entity;
-    }
-  }
-  return Entity();
-};
-
 const Signature& System::GetComponentSignature() const {
   return componentSignature;
 };

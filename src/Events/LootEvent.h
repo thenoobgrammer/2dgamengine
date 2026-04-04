@@ -4,10 +4,10 @@
 #include "../ECS/ECS.h"
 #include "../EventBus/Event.h"
 
-class PickupItemEvent: public Event {
+class LootEvent: public Event {
 public:
-    Entity item;
-    PickupItemEvent(Entity item): item(item) {}
+    Entity drop;
+    LootEvent(Entity item): drop(item) {}
 };
 
 #endif

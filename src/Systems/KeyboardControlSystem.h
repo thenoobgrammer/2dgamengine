@@ -1,6 +1,8 @@
 #ifndef INC_2DGAMEENGINE_KEYBOARDMOVEMENTSYSTEM_H
 #define INC_2DGAMEENGINE_KEYBOARDMOVEMENTSYSTEM_H
 
+#include <memory>
+#include <unordered_set>
 #include "../Components/KeyboardControlledComponent.h"
 #include "../Components/ProjectileEmitterComponent.h"
 #include "../Components/RigidBodyComponent.h"
@@ -8,10 +10,10 @@
 #include "../EventBus/EventBus.h"
 #include "../Events/KeyPressedEvent.h"
 #include "../Events/KeyUpEvent.h"
-#include "../Events/PickupItemEvent.h"
+#include "../Events/LootEvent.h"
 #include "SDL_keycode.h"
-#include <memory>
-#include <unordered_set>
+
+#include "../Components/ItemComponent.h"
 
 
 class KeyboardControlSystem : public System {
@@ -69,9 +71,6 @@ class KeyboardControlSystem : public System {
                     case SDLK_SPACE:
                         projectile.shouldEmit = true;
                         projectile.velocity = glm::vec2(1.0) * 400.0f;
-                        break;
-                    case SDLK_e:
-                        eventBus->Emit<PickupItemEvent>(entity);
                         break;
                 }
             }
