@@ -7,6 +7,7 @@
     <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="5" type="long" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
   </component>
@@ -32,47 +33,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Movement is normalized&#10;Enememies are spawning based on variants">
-      <change afterPath="$PROJECT_DIR$/src/Components/LootTableComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/elements/AIBehavior.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/elements/EnemyVariantClass.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/elements/LootTableElement.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Systems/EnemyKillSystem.h" afterDir="false" />
+    <list default="true" id="4ff23ae9-55db-46d4-8674-e9b26050ff52" name="Changes" comment="Next step: &#10;- Audit game items count when loot drops&#10;- Render text + description of item when in range">
+      <change afterPath="$PROJECT_DIR$/src/Components/DropAnimationComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/entities/skeleton.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/skeleton.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/images/TX Plant with Shadow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/images/TX Player.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/images/TX Props with Shadow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/images/TX Shadow Plant.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/images/TX Shadow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/levels/level_0.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/levels/level_0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/maps/level_0.tmj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/maps/level_0_Grass.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/maps/level_0_Props.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/maps/map_0.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Plant.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Plant.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Props.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Props.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Struct.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Struct.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Tileset Grass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Tileset Grass.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Tileset Stone Ground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Tileset Stone Ground.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Tileset Wall.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/TX Tileset Wall.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/grass.tsj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assetsv2/tilesets/props.tsj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AIComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AIComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/SpriteComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SpriteComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/EnemyFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/EnemyFactory.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/EnemyFactory.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/EnemyFactory.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factory/LevelFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/LevelFactory.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factory/ItemFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factory/ItemFactory.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Systems/HealthSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/HealthSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Systems/RenderSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/RenderSystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Systems/AnimationSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Systems/AnimationSystem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,8 +63,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../../../../SDL2/include/SDL2/SDL_events.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/workspace/2D Game Engine/02_Libraries_Dependencies/2dgameengine/src/Systems/ProjectileEmitSystem.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/workspace/002_2dgamengine/src/Systems/AnimationSystem.h" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -159,11 +125,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="2dgameengine" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2dgameengine" TARGET_NAME="2dgameengine" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2dgameengine" RUN_TARGET_NAME="2dgameengine">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -195,7 +156,9 @@
       <workItem from="1767025465687" duration="14918000" />
       <workItem from="1768007178895" duration="15531000" />
       <workItem from="1774532140781" duration="17538000" />
-      <workItem from="1774802519113" duration="24757000" />
+      <workItem from="1774802519113" duration="35353000" />
+      <workItem from="1775133165590" duration="42143000" />
+      <workItem from="1781046754502" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -317,7 +280,31 @@
       <option name="project" value="LOCAL" />
       <updated>1774996351663</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Can spawn items on drop.">
+      <option name="closed" value="true" />
+      <created>1775199429816</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1775199429816</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Next step: &#10;- Audit game items count when loot drops&#10;- Add inventory to player&#10;- Pickup item functionality&#10;- Render text + description of item when in range">
+      <option name="closed" value="true" />
+      <created>1775238620724</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1775238620724</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Next step: &#10;- Audit game items count when loot drops&#10;- Render text + description of item when in range">
+      <option name="closed" value="true" />
+      <created>1775316485572</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1775316485572</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +331,10 @@
     <MESSAGE value="Doesn't fully load on windows:&#10;- But added skeleton.json&#10;- Update to the EnemyFactory* so it reads .json for agnosticity" />
     <MESSAGE value="Edited the EnemyFactory so it's more streamlined through a .json file." />
     <MESSAGE value="Movement is normalized&#10;Enememies are spawning based on variants" />
-    <option name="LAST_COMMIT_MESSAGE" value="Movement is normalized&#10;Enememies are spawning based on variants" />
+    <MESSAGE value="Can spawn items on drop." />
+    <MESSAGE value="Next step: &#10;- Audit game items count when loot drops&#10;- Add inventory to player&#10;- Pickup item functionality&#10;- Render text + description of item when in range" />
+    <MESSAGE value="Next step: &#10;- Audit game items count when loot drops&#10;- Render text + description of item when in range" />
+    <option name="LAST_COMMIT_MESSAGE" value="Next step: &#10;- Audit game items count when loot drops&#10;- Render text + description of item when in range" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

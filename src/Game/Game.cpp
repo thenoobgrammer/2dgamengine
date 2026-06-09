@@ -237,7 +237,7 @@ void Game::Update() {
 
   // Ask all systems to update
   registry->GetSystem<MovementSystem>().Update(deltaTime);
-  registry->GetSystem<AnimationSystem>().Update();
+  registry->GetSystem<AnimationSystem>().Update(deltaTime);
   registry->GetSystem<CollisionSystem>().Update(eventBus);
   registry->GetSystem<ProjectileEmitSystem>().Update(registry);
   registry->GetSystem<CameraMovementSystem>().Update(camera);
@@ -256,7 +256,7 @@ void Game::SpawnPlayer() const {
   player.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 0.0));
   player.AddComponent<SpriteComponent>("", 32, 128, 2);
   player.AddComponent<TagComponent>(Tag::Player);
-  player.AddComponent<AnimationComponent>(1, 1, 10, true);
+  // player.AddComponent<AnimationComponent>(1, 1, 10, true);
   player.AddComponent<KeyboardControlledComponent>(
       glm::vec2(0, -200),
       glm::vec2(200, 0),
