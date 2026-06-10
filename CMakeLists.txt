@@ -93,6 +93,9 @@ add_executable(2dgameengine src/Main.cpp
         src/Components/elements/ItemType.h
         src/Systems/ScannerSystem.h
         src/Components/DropAnimationComponent.h
+        src/Components/DialogueComponent.h
+        src/tools/LinkedList.cpp
+        src/tools/LinkedList.h
 )
 
 target_compile_definitions(2dgameengine PRIVATE
